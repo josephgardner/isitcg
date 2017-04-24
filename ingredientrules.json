@@ -1,0 +1,177 @@
+{
+    "Rules": [
+        {
+            "Name": "Sulfates to Avoid",
+            "Description": "These ingredients are sulfates that should be avoided.",
+            "Color": "Red",
+            "Ingredients": [
+                "Alkylbenzene sulfonates",
+                "Alkyl Benzene Sulfonate",
+                "Ammonium laureth sulfate",
+                "Ammonium lauryl sulfate",
+                "Ammonium Xylenesulfonate",
+                "Sodium C14-16 Olefin Sulfonate",
+                "Sodium cocoyl sarcosinate",
+                "Sodium laureth sulfate",
+                "Sodium lauryl sulfate",
+                "Sodium lauryl sulfoacetate",
+                "Sodium myreth sulfate",
+                "Sodium Xylenesulfonate",
+                "TEA-dodecylbenzenesulfonate",
+                "Ethyl PEG-15 cocamine sulfate",
+                "Dioctyl sodium sulfosuccinate"
+            ]
+        },
+        {
+            "Name": "Gentle Cleansers",
+            "Description": "These ingredients are gentle cleansers that you want to look for.",
+            "Color": "Green",
+            "Ingredients": [
+                "Cocamidopropyl betaine",
+                "Coco betaine",
+                "Cocoamphoacetate",
+                "Cocoamphodipropionate",
+                "Disodium cocoamphodiacetate",
+                "Disodium cocoamphodipropionate",
+                "Lauroamphoacetate",
+                "Sodium cocoyl isethionate",
+                "behentrimonium methosulfate",
+                "disodium lautreth sulfosuccinate",
+                "babassuamidopropyl betaine"
+            ]
+        },
+        {
+            "Name": "Silicones to Use with Caution",
+            "Description": "These ingredients are partially soluble silicones to avoid, but could possibly be shampooed out with a sulfate free shampoo (may build up and need a sulfate to remove.)",
+            "Color": "Orange",
+            "Ingredients": [
+                "Cyclomethicone",
+                "Cyclopentasiloxane",
+                "Cyclotetrasiloxane",
+                "Cyclohexasiloxane",
+                "Octamethyl cyclotetrasiloxane",
+                "Silicone Quaternium-17",
+                "Lauryl Methicone Copolyol"
+            ]
+        },
+        {
+            "Name": "Silicones to Avoid",
+            "Description": "These ingredients are silicones that should be avoided.",
+            "Color": "Red",
+            "Ingredients": [
+                "Dimethicone",
+                "Bisaminopropyl dimethicone",
+                "Cetearyl methicone",
+                "Cetyl Dimethicone",
+                "Cyclopentasiloxane",
+                "Stearoxy Dimethicone",
+                "Stearyl Dimethicone",
+                "Trimethylsilylamodimethicone",
+                "Amodimethicone",
+                "Dimethicone",
+                "Dimethiconol",
+                "Behenoxy Dimethicone",
+                "Phenyl trimethicone",
+                "Aminopropyl Triethoxysilane"
+            ]
+        },
+        {
+            "Name": "Waxes and Oils to Avoid",
+            "Description": "These ingredients are waxes or non-natural oils that should be avoided.",
+            "Color": "Red",
+            "Ingredients": [
+                "Castor oil",
+                "Mineral oil",
+                "Mineral oil (parrifidium liquidium)",
+                "parrifidium liquidium",
+                "Petrolatum",
+                "bees wax",
+                "candelia wax"
+            ]
+        },
+        {
+            "Name": "Drying Alcohols to Avoid",
+            "Description": "These ingredients are drying alcohols that should be avoided.",
+            "Color": "Red",
+            "Ingredients": [
+                "Denatured alcohol",
+                "SD alcohol 40",
+                "Witch hazel",
+                "Isopropanol",
+                "Ethanol",
+                "SD alcohol",
+                "Propanol",
+                "Propyl alcohol",
+                "Isopropyl alcohol"
+            ]
+        },
+        {
+            "Name": "Moisturizing Alcohols",
+            "Description": "These ingredients are moisturizing alcohols that you want to look for.",
+            "Color": "Green",
+            "Ingredients": [
+                "Behenyl alcohol",
+                "Cetearyl alcohol",
+                "Cetyl alcohol",
+                "Isocetyl alcohol",
+                "Isostearyl alcohol",
+                "Lauryl alcohol",
+                "Myristyl alcohol",
+                "Stearyl alcohol",
+                "C30-50 Alcohols",
+                "Lanolin alcohol"
+            ]
+        },
+        {
+            "Name": "Proteins",
+            "Description": "These ingredients are proteins that you can either avoid or look for, depending on your hair type. Some is good for the hair diet, especially damaged hair. However, normal hair, or protein sensitive hair could begin to feel stiff, frizzy, and dry, indicating your hair is getting to much protein.",
+            "Color": "Purple",
+            "Ingredients": [
+                "Cocodimonium hydroxypropyl hydrolyzed casein",
+                "Cocodimonium hydroxypropyl hydrolyzed collagen",
+                "Cocodimonium hydroxypropyl hydrolyzed hair keratin",
+                "Cocodimonium hydroxypropyl hydrolyzed keratin",
+                "Cocodimonium hydroxypropyl hydrolyzed rice protein",
+                "Cocodimonium hydroxypropyl hydrolyzed silk",
+                "Cocodimonium hydroxypropyl hydrolyzed soy protein",
+                "Cocodimonium hydroxypropyl hydrolyzed wheat protein",
+                "Cocodimonium hydroxypropyl silk amino acids",
+                "Cocoyl hydrolyzed collagen",
+                "Cocoyl hydrolyzed keratin",
+                "Hydrolyzed keratin",
+                "Hydrolyzed oat flour",
+                "Hydrolyzed silk",
+                "Hydrolyzed silk protein",
+                "Hydrolyzed soy protein",
+                "Hydrolyzed wheat protein",
+                "Hydrolyzed wheat protein",
+                "Keratin",
+                "Potassium cocoyl hydrolyzed collagen",
+                "TEA-cocoyl hydrolyzed collagen",
+                "TEA-cocoyl hydrolyzed soy protein"
+            ]
+        },
+        {
+            "Name": "Polyquats",
+            "Description": "These ingredients could cause build up on finer, thin hair",
+            "Color": "Purple",
+            "Ingredients": [
+                "Polyquaternium 4"
+            ]
+        },
+        {
+            "Name": "Parabens",
+            "Description": "These ingredients are OK if you want to use them. There is nothing in them that will build up in your hair. Some believe they are a higher cancer risk and choose to avoid them. It's a personal choice",
+            "Color": "Purple",
+            "Ingredients": [
+                "Preservatives",
+                "methylparaben",
+                "ethylparaben",
+                "propylparaben",
+                "isobutylparaben",
+                "butylparaben",
+                "benzylparaben"
+            ]
+        }
+    ]
+}

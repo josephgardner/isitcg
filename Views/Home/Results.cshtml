@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Results - Is It CG?";
+}
+@model MatchResults
+
+<div><h2 style="color:blue;">Answer: @ViewData["result"]</h2></div>
+
+@foreach (var match in Model.Matches)
+{
+    <div>
+        <h3>@match.Key</h3>
+        <ul>
+        @foreach (var item in @match.Value)
+        {
+            <li>@item</li>
+        }
+        </ul>
+    </div>
+}

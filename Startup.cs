@@ -35,7 +35,9 @@ namespace isitcg
             services.AddTransient<IFileManager, DefaultFileManager>();
             services.AddDistributedRedisCache(options => 
             {
-                options.Configuration = Configuration.GetSection("REDIS_URL").Value;
+                options.Configuration = Configuration
+                    .GetSection("REDIS_URL").Value
+                    .Substring("redis://h:".Length);
             });
 
             // Add framework services.

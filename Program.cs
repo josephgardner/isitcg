@@ -11,9 +11,7 @@ namespace isitcg
     {
         public static void Main(string[] args)
         {
-            var url = $"http://*:{Environment.GetEnvironmentVariable("PORT")}/";
             var host = new WebHostBuilder()
-                .UseUrls(url)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()

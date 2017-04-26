@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Redis;
 
 namespace isitcg
 {
@@ -32,6 +33,11 @@ namespace isitcg
             services.Configure<IngredientRules>(Configuration);
             services.AddTransient<IIngredientHandler, DefaultIngredientHandler>();
             services.AddTransient<IFileManager, DefaultFileManager>();
+            services.AddDistributedRedisCache(options => 
+            {
+                options.Configuration = Configuration.GetSection("REDIS_URL").Value;
+            });
+
             // Add framework services.
             services.AddMvc();
         }

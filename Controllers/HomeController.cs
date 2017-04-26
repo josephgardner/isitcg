@@ -27,16 +27,16 @@ namespace isitcg.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Submit(string ingredients)
+        public async Task<IActionResult> Submit(string ingredients)
         {
             var results = _ingredientHandler.CreateResults(ingredients);
-            var id = _fileManager.Write(results);
+            var id = await _fileManager.WriteAsync(results);
             return RedirectToAction("Results", new { id });
         }
 
-        public IActionResult Results(string id)
+        public async Task<IActionResult> Results(string id)
         {
-            var results = _fileManager.Read(id);
+            var results = await _fileManager.ReadAsync(id);
             ViewData["result"] = results.Matches.Any() ? "NO!" : "YES!";
             return View(results);
         }

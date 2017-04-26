@@ -1,8 +1,10 @@
+using System.Threading.Tasks;
+
 namespace isitcg
 {
     public interface IFileManager
     {
-        string Write(MatchResults data);
-        MatchResults Read(string id);
+        Task<string> WriteAsync(MatchResults data);
+        Task<MatchResults> ReadAsync(string id);
     }
 }

@@ -35,13 +35,13 @@ namespace isitcg
             services.AddTransient<IIngredientHandler, DefaultIngredientHandler>();
             services.AddTransient<IFileManager, DefaultFileManager>();
             var redisUri = new Uri(Configuration
-                    .GetSection("REDIS_URL").Value);
+                    .GetSection("REDISCLOUD_URL").Value);
             services.AddDistributedRedisCache(async options => 
             {
                 var addresses = await Dns.GetHostAddressesAsync(redisUri.Host);
                 var ip = addresses[0].MapToIPv4().ToString();
                 var password = redisUri.UserInfo.Split(':')[1];
-                var connect = $"{password}@{ip}:{redisUri.Port}";
+                var connect = $"{ip}:{redisUri.Port},password={password}";
 
                 options.Configuration = connect;
             });

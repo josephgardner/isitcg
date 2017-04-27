@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Redis;
+using System.Net;
 
 namespace isitcg
 {
@@ -33,11 +34,16 @@ namespace isitcg
             services.Configure<IngredientRules>(Configuration);
             services.AddTransient<IIngredientHandler, DefaultIngredientHandler>();
             services.AddTransient<IFileManager, DefaultFileManager>();
-            services.AddDistributedRedisCache(options => 
+            var redisUri = new Uri(Configuration
+                    .GetSection("REDIS_URL").Value);
+            services.AddDistributedRedisCache(async options => 
             {
-                options.Configuration = Configuration
-                    .GetSection("REDIS_URL").Value
-                    .Substring("redis://h:".Length);
+                var addresses = await Dns.GetHostAddressesAsync(redisUri.Host);
+                var ip = addresses[0].MapToIPv4().ToString();
+                var password = redisUri.UserInfo.Split(':')[1];
+                var connect = $"{password}@{ip}:{redisUri.Port}";
+
+                options.Configuration = connect;
             });
 
             // Add framework services.

@@ -28,7 +28,17 @@ namespace isitcg
                 var matches = seed.Remainder.Intersect(lookup, StringComparer.OrdinalIgnoreCase).ToList();
                 if (matches.Any())
                 {
-                    seed.Matches.Add(rule.Name, matches);
+                    seed.Matches.Add(new Rule{
+                        Name = rule.Name,
+                        Description = rule.Description,
+                        Result = rule.Result,
+                        Ingredients = matches
+                    });
+                    if (rule.Result == "bad")
+                        results.Result = "bad";
+                    else if (rule.Result == "warning" && results.Result == "good")
+                        results.Result = "warning";
+                    
                     foreach (var match in matches)
                     {
                         seed.Remainder.Remove(match);

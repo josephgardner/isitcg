@@ -3,7 +3,7 @@
         {
             "Name": "Sulfates to Avoid",
             "Description": "These ingredients are sulfates that should be avoided.",
-            "Color": "Red",
+            "Result": "bad",
             "Ingredients": [
                 "Alkylbenzene sulfonates",
                 "Alkyl Benzene Sulfonate",
@@ -25,7 +25,7 @@
         {
             "Name": "Gentle Cleansers",
             "Description": "These ingredients are gentle cleansers that you want to look for.",
-            "Color": "Green",
+            "Result": "good",
             "Ingredients": [
                 "Cocamidopropyl betaine",
                 "Coco betaine",
@@ -43,7 +43,7 @@
         {
             "Name": "Silicones to Use with Caution",
             "Description": "These ingredients are partially soluble silicones to avoid, but could possibly be shampooed out with a sulfate free shampoo (may build up and need a sulfate to remove.)",
-            "Color": "Orange",
+            "Result": "warning",
             "Ingredients": [
                 "Cyclomethicone",
                 "Cyclopentasiloxane",
@@ -57,7 +57,7 @@
         {
             "Name": "Silicones to Avoid",
             "Description": "These ingredients are silicones that should be avoided.",
-            "Color": "Red",
+            "Result": "bad",
             "Ingredients": [
                 "Dimethicone",
                 "Bisaminopropyl dimethicone",
@@ -78,7 +78,7 @@
         {
             "Name": "Waxes and Oils to Avoid",
             "Description": "These ingredients are waxes or non-natural oils that should be avoided.",
-            "Color": "Red",
+            "Result": "bad",
             "Ingredients": [
                 "Castor oil",
                 "Mineral oil",
@@ -92,7 +92,7 @@
         {
             "Name": "Drying Alcohols to Avoid",
             "Description": "These ingredients are drying alcohols that should be avoided.",
-            "Color": "Red",
+            "Result": "bad",
             "Ingredients": [
                 "Denatured alcohol",
                 "SD alcohol 40",
@@ -108,7 +108,7 @@
         {
             "Name": "Moisturizing Alcohols",
             "Description": "These ingredients are moisturizing alcohols that you want to look for.",
-            "Color": "Green",
+            "Result": "good",
             "Ingredients": [
                 "Behenyl alcohol",
                 "Cetearyl alcohol",
@@ -124,8 +124,8 @@
         },
         {
             "Name": "Proteins",
-            "Description": "These ingredients are proteins that you can either avoid or look for, depending on your hair type. Some is good for the hair diet, especially damaged hair. However, normal hair, or protein sensitive hair could begin to feel stiff, frizzy, and dry, indicating your hair is getting to much protein.",
-            "Color": "Purple",
+            "Description": "These ingredients are proteins that you can either avoid or look for, depending on your hair type. Some is good for the hair diet, especially damaged hair. However, normal hair, or protein sensitive hair could begin to feel stiff, frizzy, and dry, indicating your hair is getting too much protein.",
+            "Result": "warning",
             "Ingredients": [
                 "Cocodimonium hydroxypropyl hydrolyzed casein",
                 "Cocodimonium hydroxypropyl hydrolyzed collagen",
@@ -154,7 +154,7 @@
         {
             "Name": "Polyquats",
             "Description": "These ingredients could cause build up on finer, thin hair",
-            "Color": "Purple",
+            "Color": "warning",
             "Ingredients": [
                 "Polyquaternium 4"
             ]
@@ -162,7 +162,7 @@
         {
             "Name": "Parabens",
             "Description": "These ingredients are OK if you want to use them. There is nothing in them that will build up in your hair. Some believe they are a higher cancer risk and choose to avoid them. It's a personal choice",
-            "Color": "Purple",
+            "Color": "warning",
             "Ingredients": [
                 "Preservatives",
                 "methylparaben",

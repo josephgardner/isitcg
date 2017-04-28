@@ -13,9 +13,10 @@ namespace isitcg
                 throw new ArgumentNullException(nameof(remainder));
 
             Remainder = remainder.ToList();
+            Result = "good";
         }
+        public string Result { get; set; }
         public IList<string> Remainder { get; private set; }
-        public IDictionary<string, IList<string>> Matches { get; } =
-             new Dictionary<string, IList<string>>();
+        public IList<Rule> Matches { get; set; } = new List<Rule>();
     }
 }

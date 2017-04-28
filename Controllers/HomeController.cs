@@ -37,7 +37,7 @@ namespace isitcg.Controllers
         public async Task<IActionResult> Results(string id)
         {
             var results = await _fileManager.ReadAsync(id);
-            ViewData["result"] = results.Matches.Any() ? "NO!" : "YES!";
+            ViewData["result"] = results.Result;
             return View(results);
         }
 

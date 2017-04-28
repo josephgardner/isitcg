@@ -8,9 +8,10 @@
 @foreach (var match in Model.Matches)
 {
     <div>
-        <h3>@match.Key</h3>
+        <h3>@match.Name</h3>
+        <div>@match.Description</div>
         <ul>
-        @foreach (var item in @match.Value)
+        @foreach (var item in @match.Ingredients)
         {
             <li>@item</li>
         }

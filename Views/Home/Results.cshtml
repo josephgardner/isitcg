@@ -3,18 +3,41 @@
 }
 @model MatchResults
 
-<div><h2 style="color:blue;">Answer: @ViewData["result"]</h2></div>
+<div><h2 style="color:blue;">Answer: @Model.Result</h2></div>
 
 @foreach (var match in Model.Matches)
 {
-    <div>
-        <h3>@match.Name</h3>
-        <div>@match.Description</div>
-        <ul>
+    <div class="panel panel-@match.Result">
+    <!-- Default panel contents -->
+    <div class="panel-heading uppercase">@match.Result</div>
+    <div class="panel-body">
+        <h4 class="card-title">@match.Name</h4>
+        <p class="card-text">@match.Description</p>
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
         @foreach (var item in @match.Ingredients)
         {
-            <li>@item</li>
+            <li class="list-group-item">@item</li>
         }
-        </ul>
+    </ul>
     </div>
 }
+
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading uppercase">Probably OK</div>
+    <div class="panel-body">
+        <h4 class="card-title">Remaining Ingredients</h4>
+        <p class="card-text">These ingredients are either OK to use, or weren't an exact match for those to avoid.</p>
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
+        @foreach (var item in Model.Remainder)
+        {
+            <li class="list-group-item">@item</li>
+        }
+    </ul>
+</div>

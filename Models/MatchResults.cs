@@ -16,7 +16,11 @@ namespace isitcg
             Result = "good";
         }
         public string Result { get; set; }
-        public IList<string> Remainder { get; private set; }
-        public IList<Rule> Matches { get; set; } = new List<Rule>();
+        public IList<string> Remainder { get; }
+        private readonly SortedSet<Rule> _matches = new SortedSet<Rule>(new RuleComparer());
+        public ICollection<Rule> Matches
+        {
+            get { return _matches; }
+        }
     }
 }

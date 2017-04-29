@@ -35,3 +35,5 @@ textarea {
         display: none;
     }
 }
+
+div.uppercase { text-transform: uppercase; }

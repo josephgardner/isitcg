@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,9 +35,9 @@ namespace isitcg
                         Result = rule.Result,
                         Ingredients = matches
                     });
-                    if (rule.Result == "bad")
-                        results.Result = "bad";
-                    else if (rule.Result == "warning" && results.Result == "good")
+                    if (rule.Result == "danger")
+                        results.Result = "danger";
+                    else if (rule.Result == "warning" && results.Result == "success")
                         results.Result = "warning";
                     
                     foreach (var match in matches)

@@ -109,7 +109,7 @@
         {
             "Name": "Moisturizing Alcohols",
             "Description": "These ingredients are moisturizing alcohols that you want to look for.",
-            "Result": "good",
+            "Result": "success",
             "Ingredients": [
                 "Behenyl alcohol",
                 "Cetearyl alcohol",

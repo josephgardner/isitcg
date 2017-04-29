@@ -86,6 +86,7 @@
                 "parrifidium liquidium",
                 "Petrolatum",
                 "bees wax",
+                "beeswax",
                 "candelia wax"
             ]
         },
@@ -108,7 +109,7 @@
         {
             "Name": "Moisturizing Alcohols",
             "Description": "These ingredients are moisturizing alcohols that you want to look for.",
-            "Result": "good",
+            "Result": "success",
             "Ingredients": [
                 "Behenyl alcohol",
                 "Cetearyl alcohol",
@@ -144,7 +145,7 @@
                 "Hydrolyzed silk protein",
                 "Hydrolyzed soy protein",
                 "Hydrolyzed wheat protein",
-                "Hydrolyzed wheat protein",
+                "Hydrolyzed pea protein",
                 "Keratin",
                 "Potassium cocoyl hydrolyzed collagen",
                 "TEA-cocoyl hydrolyzed collagen",

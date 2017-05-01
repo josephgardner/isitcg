@@ -124,6 +124,24 @@
             ]
         },
         {
+            "Name": "Waxes and Oils",
+            "Description": "These ingredients are waxes and oils that you want to look for.",
+            "Result": "success",
+            "Ingredients": [
+                "Emulsifying Wax",
+                "PEG-Hydrogenated Castor Oil",
+                "Avocado oil",
+                "Olive oil",
+                "Coconut oil",
+                "Argan Oil",
+                "Jojoba Oil",
+                "Tea Tree Oil",
+                "Grapeseed oil",
+                "Sweet almond oil",
+                "Rose oil"
+            ]
+        },
+        {
             "Name": "Proteins",
             "Description": "These ingredients are proteins that you can either avoid or look for, depending on your hair type. Some is good for the hair diet, especially damaged hair. However, normal hair, or protein sensitive hair could begin to feel stiff, frizzy, and dry, indicating your hair is getting too much protein.",
             "Result": "warning",

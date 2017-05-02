@@ -3,7 +3,13 @@
 }
 @model MatchResults
 
-<div><h2 style="color:blue;">Answer: @Model.Result</h2></div>
+<div class="jumbotron">
+    <h1 class="display-3">Is it CG?</h1>
+    <h2 style="color:blue;">Answer: @Model.Result</h2>
+    <p><a href="/" class="btn btn-primary btn-lg" role="button">
+        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
+    </a></p>
+</div>
 
 @foreach (var match in Model.Matches)
 {
@@ -40,10 +46,4 @@
             <li class="list-group-item">@item</li>
         }
     </ul>
-</div>
-
-<div class="panel">
-<a href="/" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
-</a>
 </div>

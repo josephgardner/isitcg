@@ -189,9 +189,12 @@
                 "Argan Oil",
                 "Argania Spinosa (Argan) Oil",
                 "Argania Spinosa Kernel Oil",
+                "Argania Spinosa Kernel (Argan) Oil",
                 "Jojoba Oil",
                 "Simmondsia Chinensis (Jojoba) Seed Oil",
                 "Simmondsia Chinensis Seed Oil",
+                "Summondsia Chinensis (Jojoba) Seed Oil",
+                "Summondsia Chinensis Seed Oil",
                 "Tea Tree Oil",
                 "Grapeseed oil",
                 "Grape seed oil",
@@ -326,7 +329,8 @@
                 "Hydrolyzed silk protein",
                 "Fructose",
                 "Mel (Manuka Honey)",
-                "Vegetable Glycerin"
+                "Vegetable Glycerin",
+                "Glycerin (Vegetable)"
             ]
         }
     ]

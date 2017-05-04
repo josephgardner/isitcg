@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Open Sans';
 }
 
 /* Wrapping element */
@@ -34,6 +35,34 @@ textarea {
     .carousel-caption {
         display: none;
     }
+    
+    .jumbotron .h1, .jumbotron h1 {
+    font-size: 100px;
+    font-family: 'Molle';
+    text-align: center;
+    color: #ed878d;
+}
+
+     .jumbotron .h3, .jumbotron h3 {
+    font-size: 20px;
+    TEXT-ALIGN: center;
+    color: #706f71;
+    font-weight: 700;
+    }
+    
+    .jumbotron p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 200;
+    color: #706f71;
+    text-align: center;
+}
+    
 }
 
 .uppercase { text-transform: uppercase; }
+
+.container .jumbotron, .container-fluid .jumbotron {
+    border: 2px solid #c7c2bb;
+    background-color: #fff;
+}

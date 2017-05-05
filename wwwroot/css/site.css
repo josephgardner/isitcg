@@ -1,7 +1,9 @@
-﻿body {
+body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Open Sans';
+    background-image: url("/images/background-curls.png");
+    background-repeat: repeat;
 }
 
 /* Wrapping element */
@@ -29,13 +31,9 @@ textarea {
     width: 100%;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
-    
+
+
+@media screen and (min-width: 768px) {
     .jumbotron .h1, .jumbotron h1 {
     font-size: 100px;
     font-family: 'Molle';
@@ -57,6 +55,14 @@ textarea {
     color: #706f71;
     text-align: center;
 }
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
     
 }
 

@@ -4,6 +4,7 @@ body {
     font-family: 'Open Sans';
     background-image: url("/images/background-curls.png");
     background-repeat: repeat;
+    color: #706f71;
 }
 
 /* Wrapping element */
@@ -31,6 +32,35 @@ textarea {
     width: 100%;
 }
 
+/* Panel Styling*/
+.panel {
+   border-radius: 10px;
+}
+
+.panel-heading {
+    color: #fff;
+    font-family: "Molle";
+    font-size: 2em;
+}
+
+.panel-danger>.panel-heading {
+    background-color: #ed878d;
+    border-color: #ed878d;
+}
+
+.panel-warning>.panel-heading {
+    background-color: #c7c2bb;
+    border-color: #a5a29f;
+}
+.panel-success>.panel-heading {
+    background-color: #a8cacd;
+    border-color: #7fb1b2;
+}
+
+.panel-primary>.panel-heading {
+    background-color: #ccece5;
+    border-color: #a7d3c8;
+}
 
 
 @media screen and (min-width: 768px) {
@@ -55,6 +85,12 @@ textarea {
     color: #706f71;
     text-align: center;
 }
+    .btn-primary {
+    color: #706f71;
+    background-color: #ccece5;
+    border-color: #abdbd0;
+    margin-top: 1em;
+    }
 }
 
 /* Hide/rearrange for smaller screens */

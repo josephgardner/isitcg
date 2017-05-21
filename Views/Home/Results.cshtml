@@ -5,7 +5,8 @@
 
 <div class="jumbotron">
     <h1 class="display-3">Is it CG?</h1>
-    <h2 style="color:blue;">Answer: @Model.Result</h2>
+    <div><h3>Answer: @Model.Result</h3>
+        <p>See below for a breakdown of the ingredients</p></div>
     <p><a href="/" class="btn btn-primary btn-lg" role="button">
         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
     </a></p>
@@ -15,7 +16,7 @@
 {
     <div class="panel panel-@match.Result">
     <!-- Default panel contents -->
-    <div class="panel-heading uppercase">@match.Result</div>
+    <div class="panel-heading">@match.Result</div>
     <div class="panel-body">
         <h4 class="card-title">@match.Name</h4>
         <p class="card-text">@match.Description</p>

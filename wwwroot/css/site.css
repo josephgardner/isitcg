@@ -68,14 +68,8 @@ textarea {
     color: #fff;
 }
 
-
-h4.card-title {
-    font-weight: 700;
-}
-
-@media screen and (min-width: 768px) {
-    .jumbotron .h1, .jumbotron h1 {
-    font-size: 100px;
+/* Jumbotron Styling */
+.jumbotron .h1, .jumbotron h1 {
     font-family: 'Molle';
     text-align: center;
     color: #ed878d;
@@ -84,7 +78,6 @@ h4.card-title {
      .jumbotron .h3, .jumbotron h3 {
     font-size: 20px;
     TEXT-ALIGN: center;
-    color: #706f71;
     font-weight: 700;
     }
     
@@ -92,7 +85,6 @@ h4.card-title {
     margin-bottom: 15px;
     font-size: 18px;
     font-weight: 200;
-    color: #706f71;
     text-align: center;
 }
     .btn-primary {
@@ -101,6 +93,26 @@ h4.card-title {
     border-color: #abdbd0;
     margin-top: 1em;
     }
+}
+
+
+h4.card-title {
+    font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron .h1, .jumbotron h1 {
+    font-size: 100px;
+}
+
+     .jumbotron .h3, .jumbotron h3 {
+    font-size: 20px;
+    }
+    
+    .jumbotron p {
+    font-size: 18px;
+}
+
 }
 
 /* Hide/rearrange for smaller screens */
@@ -115,6 +127,6 @@ h4.card-title {
 .uppercase { text-transform: uppercase; }
 
 .container .jumbotron, .container-fluid .jumbotron {
-    border: 2px solid #c7c2bb;
+    border: none;
     background-color: #fff;
 }

@@ -35,33 +35,43 @@ textarea {
 /* Panel Styling*/
 .panel {
    border-radius: 10px;
+    border: none;
 }
 
 .panel-heading {
     color: #fff;
     font-family: "Molle";
     font-size: 2em;
+   text-transform: capitalize;
 }
 
 .panel-danger>.panel-heading {
     background-color: #ed878d;
     border-color: #ed878d;
+    color: #fff;
 }
 
 .panel-warning>.panel-heading {
     background-color: #c7c2bb;
     border-color: #a5a29f;
+    color: #fff;
 }
 .panel-success>.panel-heading {
     background-color: #a8cacd;
     border-color: #7fb1b2;
+    color: #fff;
 }
 
 .panel-primary>.panel-heading {
-    background-color: #ccece5;
-    border-color: #a7d3c8;
+    background-color: #706f71;
+    border-color: #706f71;
+    color: #fff;
 }
 
+
+h4.card-title {
+    font-weight: 700;
+}
 
 @media screen and (min-width: 768px) {
     .jumbotron .h1, .jumbotron h1 {

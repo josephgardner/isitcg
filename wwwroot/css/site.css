@@ -14,6 +14,10 @@ body {
     padding-right: 15px;
 }
 
+.main {
+    margin: 0 auto;
+}
+
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
 select,
@@ -40,7 +44,7 @@ textarea {
 
 .panel-heading {
     color: #fff;
-    font-family: "Molle";
+    font-family: 'Molle', cursive;
     font-size: 2em;
    text-transform: capitalize;
    border-top-left-radius: 10px;
@@ -77,7 +81,7 @@ textarea {
 
 /* Jumbotron Styling */
 .jumbotron .h1, .jumbotron h1 {
-    font-family: 'Molle';
+    font-family: 'Molle', cursive;
     text-align: center;
     color: #ed878d;
 }

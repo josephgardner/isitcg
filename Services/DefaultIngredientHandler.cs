@@ -37,7 +37,7 @@ namespace isitcg
                     });
                     if (rule.Result == "danger")
                         results.Result = "danger";
-                    else if (rule.Result == "warning" && results.Result == "success")
+                    else if (rule.Result == "warning" && results.Result == "good")
                         results.Result = "warning";
                     
                     foreach (var match in matches)

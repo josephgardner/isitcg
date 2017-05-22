@@ -16,7 +16,20 @@
 {
     <div class="panel panel-@match.Result">
     <!-- Default panel contents -->
-    <div class="panel-heading">@match.Result</div>
+    <div class="panel-heading">
+        @if (match.Result == "danger")
+        {
+            Not CG Approved
+        }
+        else if (match.Result == "warning")
+        {
+            CG Approved with Caution
+        }
+        else 
+        {
+            CG Approved
+        }
+    </div>
     <div class="panel-body">
         <h4 class="card-title">@match.Name</h4>
         <p class="card-text">@match.Description</p>

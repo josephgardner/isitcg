@@ -5,7 +5,20 @@
 
 <div class="jumbotron">
     <h1 class="display-3">Is it CG?</h1>
-    <div><h3>Answer: @Model.Result</h3>
+    <div><h3>
+     @if (Model.Result == "danger")
+        {
+            <span>Uh Oh, this product is not CG Approved :-( </span>
+        }
+        else if (Model.Result == "warning")
+        {
+            <span>Congrats, this product is CG Approved, but proceed with caution!</span>
+        }
+        else 
+        {
+            <span>Congrats, this product is CG Approved!</span>
+        }
+    </h3>
         <p>See below for a breakdown of the ingredients</p></div>
     <p><a href="/" class="btn btn-primary btn-lg" role="button">
         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over

@@ -14,8 +14,10 @@ body {
     padding-right: 15px;
 }
 
-.main {
+form {
+    width: 75%;
     margin: 0 auto;
+    border: none;
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
@@ -39,17 +41,16 @@ textarea {
 /* Panel Styling*/
 .panel {
    border-radius: 10px;
-    border: none;
+   border: none;
 }
 
 .panel-heading {
-    color: #fff;
-    font-family: 'Molle', cursive;
-    font-size: 2em;
-   text-transform: capitalize;
+   color: #fff;
+   font-family: 'Molle', cursive;
+   font-size: 2em;
    border-top-left-radius: 10px;
    border-top-right-radius: 10px;
-    line-height: 125%;
+   line-height: 125%;
 }
 
 .panel-danger>.panel-heading {
@@ -104,11 +105,30 @@ textarea {
     border-color: #abdbd0;
     margin-top: 1em;
     }
-}
+
+ .btn-secondary {
+    color: #fff;
+    background-color: #ed878d;
+    border-color: #d66974;
+    margin-top: 1em;
+    }
 
 
 h4.card-title {
     font-weight: 700;
+}
+
+/* Footer Styling */
+
+.footer {
+    background-color: #c7c2bb;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.footer p {
+    font-size: .75em;
+    font-style: italic;
 }
 
 @media screen and (min-width: 768px) {

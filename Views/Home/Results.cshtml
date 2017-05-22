@@ -19,15 +19,15 @@
     <div class="panel-heading">
         @if (match.Result == "danger")
         {
-            Not CG Approved
+            <span>Not CG Approved</span>
         }
         else if (match.Result == "warning")
         {
-            CG Approved with Caution
+            <span>CG Approved with Caution</span>
         }
         else 
         {
-            CG Approved
+            <span>CG Approved</span>
         }
     </div>
     <div class="panel-body">

@@ -19,14 +19,11 @@ form {
     border: none;
 }
 
-a {
-    color: #a8cacd;
+.main {
+    display: block
+    text-align: center;
 }
 
-a:hover {
-    color: #ccece5;
-    text-decoration: none;
-}
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
@@ -130,15 +127,26 @@ h4.card-title {
 /* Footer Styling */
 
 .footer {
-    background-color: #ccece5;
-    padding: 10px;
+    background-color: #bce8ea;
+    padding: 20px;
     margin-top: 15px;
     border-radius: 10px;
+    border: 1px solid #58c5cb;
 }
 
 .footer p {
     font-size: 1em;
     font-style: italic;
+    line-height: 150%;
+}
+
+.footer a {
+    color: #ed878d;
+}
+
+.footer a:hover {
+    color: #d36671;
+    text-decoration: none;
 }
 
 @media screen and (min-width: 768px) {

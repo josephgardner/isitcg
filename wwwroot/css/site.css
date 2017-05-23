@@ -51,7 +51,7 @@ textarea {
 
 .panel-heading {
    color: #fff;
-   font-family: 'Molle', cursive;
+   font-family: 'Molle', 'Leckerli One', cursive;
    font-size: 2em;
    border-top-left-radius: 10px;
    border-top-right-radius: 10px;
@@ -87,7 +87,7 @@ textarea {
 
 /* Jumbotron Styling */
 .jumbotron .h1, .jumbotron h1 {
-    font-family: 'Molle', cursive;
+    font-family: 'Molle','Leckerli One', cursive;
     text-align: center;
     color: #ed878d;
 }
@@ -174,8 +174,17 @@ h4.card-title {
         .jumbotron .h1, .jumbotron h1 {
     font-size: 4em;
 }
+    .jumbotron .h3, .jumbotron h3 {
+    font-size: 1.25em;
+    }
+    
+    .jumbotron p {
+    font-size: 1.1em;
+    }
+    
     textarea {
     max-width: 370px;
+        width: 100%
 }
     
     

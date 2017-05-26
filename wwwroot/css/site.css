@@ -171,22 +171,30 @@ h4.card-title {
         display: none;
     }
     
-        .jumbotron .h1, .jumbotron h1 {
+    .jumbotron .h1, .jumbotron h1 {
     font-size: 4em;
 }
     .jumbotron .h3, .jumbotron h3 {
-    font-size: 1.25em;
+    font-size: 1em;
+    margin-top: 10px;
     }
     
     .jumbotron p {
-    font-size: 1.1em;
+    font-size: .9em;
+    line-height: 125%;
+    margin-bottom: 10px;
     }
     
     textarea {
     max-width: 370px;
-        width: 100%
+    width: 100%;
+    height: 50%;
 }
-    
+    .footer p {
+    font-size: .75em;
+    font-style: italic;
+    line-height: 150%;
+}
     
 }
 

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Options;
 
 namespace isitcg
@@ -20,13 +21,17 @@ namespace isitcg
         }
         public MatchResults CreateResults(string ingredients)
         {
-            var parts = ingredients.Split(',').Select(p => p.Trim().Trim('.'));
+            var parts = ingredients
+                .Replace('/', ',')
+                .Split(',')
+                .Select(p => p.Trim().Trim('.'));
             var results = new MatchResults(parts);
 
             results = _rules.Aggregate(results, (seed, rule) =>
             {
                 var lookup = rule.Ingredients;
-                var matches = seed.Remainder.Intersect(lookup, StringComparer.OrdinalIgnoreCase).ToList();
+                var matches = seed.Remainder.Intersect(lookup, 
+                    IngredientComparer.Instance).ToList();
                 if (matches.Any())
                 {
                     seed.Matches.Add(new Rule{

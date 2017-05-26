@@ -171,11 +171,21 @@ h4.card-title {
         display: none;
     }
     
+    body {
+    padding-top: 25px;
+    }
+    
+    .jumbotron {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    }
+    
     .jumbotron .h1, .jumbotron h1 {
     font-size: 4em;
 }
     .jumbotron .h3, .jumbotron h3 {
-    font-size: 1em;
+    font-size: .9em;
     margin-top: 10px;
     }
     
@@ -194,6 +204,7 @@ h4.card-title {
     font-size: .75em;
     font-style: italic;
     line-height: 150%;
+    margin-bottom: 0;
 }
     
 }

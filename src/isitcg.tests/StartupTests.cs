@@ -7,7 +7,7 @@ using System.IO;
 
 namespace isitcg.tests
 {
-    public class IngredientRulesTests
+    public class StartupTests
     {
         [Fact]
         public void CanLoadIngredientsJson()

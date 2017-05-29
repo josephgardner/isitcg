@@ -8,8 +8,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="xunit" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="YamlDotNet" Version="4.2.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\isitcg.web\isitcg.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="rule-tests.yaml" CopyToOutputDirectory="Always" />
   </ItemGroup>
 </Project>

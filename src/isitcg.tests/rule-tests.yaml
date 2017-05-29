@@ -1,0 +1,13 @@
+---
+Tests:
+- TestName: Simple test
+  Ingredients: test, two, three
+  Rules:
+  - Result: test-result
+    Ingredients:
+    - test
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: test-result
+    Ingredients:
+    - test

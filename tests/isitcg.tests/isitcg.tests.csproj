@@ -11,7 +11,7 @@
     <PackageReference Include="YamlDotNet" Version="4.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\isitcg.web\isitcg.csproj" />
+    <ProjectReference Include="..\..\src\isitcg.web\isitcg.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="rule-tests.yml" CopyToOutputDirectory="Always" />

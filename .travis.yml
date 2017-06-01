@@ -2,3 +2,5 @@ language: csharp
 mono: none
 dotnet: 1.0.4
 dist: trusty
+script:
+  - ./build.sh

@@ -32,7 +32,7 @@ namespace isitcg.tests
         public static IEnumerable<object[]> RuleData;
         static DefaultIngredientHandlerTests()
         {
-            var input = new StringReader(File.ReadAllText("rule-tests.yaml"));
+            var input = new StringReader(File.ReadAllText("rule-tests.yml"));
             var deserializer = new DeserializerBuilder().Build();
             var tests = deserializer.Deserialize<RuleTests>(input);
 

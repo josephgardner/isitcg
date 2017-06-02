@@ -3,4 +3,8 @@ mono: none
 dotnet: 1.0.4
 dist: trusty
 script:
-  - ./build.sh
+- "./build.sh"
+deploy:
+  provider: heroku
+  api_key:
+    secure: lrefHdxK2XZQ9z7wDaBf6atqadoUs1myPQnEfjTudtwryNglCKuoteQjZ+ReoH9+NeVEI/49MNT1ds8defpGD7x63MPxN6Z2gC0O/uRFVuf81uNvDa31OqVAMa0lrLcFQqJrYXF4pfYdMa5UxMUwdWnn97OV1O5RBik4tsmaQsH/jbBZIxqwp6ozn6M9gyHVal7q95oAbS7hSiy+ETu2LV4vsfxEF8xeow3X/bFUQJRqsSxoNOnda3AOMCb7XfpZYGOrAS4Hc5C78Rmzs/beAVP7rUUhEj9wiXSEi8TP5dILnAEbfLh195Q/0GmOQTbv4yB+9tCAlMYP5I77Hf6pAPj+qxcALoS/Ebs9vcK9UcsSYYLCmHiHTib44/DcT5a6V+YL0bBweIKg30QUJLV4sSBsQwDkoreRFhOMGVFW3qU5z2VFuWFyFYL3BFqa2M1nIZMw8DLDBP3adQJ/6Bsb7VNIcMFo91wLbuo+7iUZBUVwU4TEmvQRwORf8x9948q0uHtrXmNiTLBV2Jg2El9JQ4IJt4/8Bmb1rfkyUHAtDficO87Zbv+XKlKsfjbA2XU9Z2O5G9xV1U69ePRKo6Q+Z6KvCdLJ++Hf3XJH4fat8k8fjJTpoVdCtoDUDUKeOWWjNDnwRkXNS8voVx9DGAzUooHo8p7GBsAsfHdMBiPpGek=

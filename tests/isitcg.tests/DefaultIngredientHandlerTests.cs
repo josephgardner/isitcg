@@ -25,6 +25,8 @@ namespace isitcg.tests
         public IEnumerable<Rule> Rules { get; set; }
         public string ExpectedResult { get; set; }
         public IEnumerable<Rule> ExpectedMatches { get; set; }
+
+        public IEnumerable<string> ExpectedRemainder { get; set; }
         public override string ToString() => TestName;
     }
     public class DefaultIngredientHandlerTests
@@ -69,7 +71,6 @@ namespace isitcg.tests
             Assert.NotNull(actual);
             Assert.Equal(test.ExpectedResult, actual.Result);
             Assert.Equal(test.ExpectedMatches.Count(), actual.Matches.Count);
-
             for (int i = 0; i < test.ExpectedMatches.Count(); i++)
             {
                 var expectMatch = test.ExpectedMatches.ElementAt(i);
@@ -77,6 +78,8 @@ namespace isitcg.tests
                 Assert.Equal(expectMatch.Result, actualMatch.Result);
                 Assert.Equal(expectMatch.Ingredients, actualMatch.Ingredients);
             }
+
+            Assert.Equal<string>(test.ExpectedRemainder, actual.Remainder);
         }
     }
 }

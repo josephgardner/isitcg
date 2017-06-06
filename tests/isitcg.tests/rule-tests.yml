@@ -1,13 +1,181 @@
 ---
 Tests:
-- TestName: Simple test
-  Ingredients: test, two, three
+- TestName: Simplest test
+  Ingredients: one, two, three
   Rules:
-  - Result: test-result
+  - Result: one-result
     Ingredients:
-    - test
+    - one
   ExpectedResult: good
   ExpectedMatches:
-  - Result: test-result
+  - Result: one-result
     Ingredients:
-    - test
+    - one
+  ExpectedRemainder:
+    - two
+    - three
+
+- TestName: split on comma
+  Ingredients: one, two, three
+  Rules:
+  - Result: comma-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: comma-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedRemainder: []
+  
+- TestName: trims whitespace
+  Ingredients: |
+       one,            two,
+              three     
+  Rules:
+  - Result: trim-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: trim-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedRemainder: []
+
+- TestName: trims periods
+  Ingredients: .one., .two., .three.
+  Rules:
+  - Result: comma-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: comma-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedRemainder: []
+
+- TestName: rule ignores case
+  Ingredients: ONE, Two, thrEE
+  Rules:
+  - Result: comma-result
+    Ingredients:
+    - one
+    - two
+    - three
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: comma-result
+    Ingredients:
+    - ONE
+    - Two
+    - thrEE
+  ExpectedRemainder: []
+
+- TestName: danger beats good
+  Ingredients: one, two, three
+  Rules:
+  - Result: one-result
+    Ingredients:
+    - one
+  - Result: danger
+    Ingredients:
+    - two
+  ExpectedResult: danger
+  ExpectedMatches:
+  - Result: danger
+    Ingredients:
+    - two
+  - Result: one-result
+    Ingredients:
+    - one
+  ExpectedRemainder:
+    - three
+
+- TestName: danger beats warning
+  Ingredients: one, two, three
+  Rules:
+  - Result: warning
+    Ingredients:
+    - one
+  - Result: danger
+    Ingredients:
+    - two
+  ExpectedResult: danger
+  ExpectedMatches:
+  - Result: danger
+    Ingredients:
+    - two
+  - Result: warning
+    Ingredients:
+    - one
+  ExpectedRemainder:
+    - three
+
+- TestName: warning beats good
+  Ingredients: one, two, three
+  Rules:
+  - Result: one-result
+    Ingredients:
+    - one
+  - Result: warning
+    Ingredients:
+    - two
+  ExpectedResult: warning
+  ExpectedMatches:
+  - Result: warning
+    Ingredients:
+    - two
+  - Result: one-result
+    Ingredients:
+    - one
+  ExpectedRemainder:
+    - three
+
+- TestName: danger beats warning beats good
+  Ingredients: one, two, three
+  Rules:
+  - Result: one-result
+    Ingredients:
+    - one
+  - Result: warning
+    Ingredients:
+    - two
+  - Result: danger
+    Ingredients:
+    - three
+  ExpectedResult: danger
+  ExpectedMatches:
+  - Result: danger
+    Ingredients:
+    - three
+  - Result: warning
+    Ingredients:
+    - two
+  - Result: one-result
+    Ingredients:
+    - one
+  ExpectedRemainder: []
+
+- TestName: no match is a remainder
+  Ingredients: one, two, three
+  Rules: []
+  ExpectedResult: good
+  ExpectedMatches: []
+  ExpectedRemainder:
+    - one
+    - two
+    - three

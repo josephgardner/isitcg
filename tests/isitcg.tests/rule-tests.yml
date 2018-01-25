@@ -179,3 +179,45 @@ Tests:
     - one
     - two
     - three
+
+- TestName: match with slashes
+  Ingredients: "one/two/three"
+  Rules:
+  - Result: slash-result
+    Ingredients:
+    - "one/two/three"
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: slash-result
+    Ingredients:
+    - "one/two/three"
+  ExpectedRemainder: []
+
+- TestName: match slashes one part
+  Ingredients: "one/two/three"
+  Rules:
+  - Result: two-result
+    Ingredients:
+    - "two"
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: two-result
+    Ingredients:
+    - "one/two/three"
+  ExpectedRemainder: []
+
+- TestName: match slashes two parts
+  Ingredients: "one/two/three"
+  Rules:
+  - Result: one-result
+    Ingredients:
+    - "one"
+  - Result: two-result
+    Ingredients:
+    - "two"
+  ExpectedResult: good
+  ExpectedMatches:
+  - Result: one-result
+    Ingredients:
+    - "one/two/three"
+  ExpectedRemainder: []

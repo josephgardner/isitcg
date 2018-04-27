@@ -8,6 +8,9 @@
                 "Alkylbenzene sulfonates",
                 "Alkyl Benzene Sulfonate",
                 "Ammonium laureth sulfate",
+                "ammonium dodecyl sulfate",
+                "monododecyl ester",
+                "ammonium salt",
                 "Ammonium lauryl sulfate",
                 "Ammonium Xylenesulfonate",
                 "Sodium cocoyl sarcosinate",
@@ -18,7 +21,8 @@
                 "Sodium Xylenesulfonate",
                 "TEA-dodecylbenzenesulfonate",
                 "Ethyl PEG-15 cocamine sulfate",
-                "Dioctyl sodium sulfosuccinate"
+                "Dioctyl sodium sulfosuccinate",
+                "sodium coco sulfate"
             ]
         },
         {
@@ -148,6 +152,7 @@
             "Result": "danger",
             "Ingredients": [
                 "Castor oil",
+                "Ricinus communis seed oil",
                 "Mineral oil",
                 "Mineral oil (paraffinum liquidum)",
                 "Huile Minerale",

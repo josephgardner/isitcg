@@ -22,7 +22,8 @@
                 "TEA-dodecylbenzenesulfonate",
                 "Ethyl PEG-15 cocamine sulfate",
                 "Dioctyl sodium sulfosuccinate",
-                "sodium coco sulfate"
+                "sodium coco sulfate",
+                "Sulfate"
             ]
         },
         {
@@ -79,7 +80,8 @@
                 "Trimethylsiloxyamodimethicone",
                 "Polysilicone-15",
                 "Parsol SLX",
-                "Bis-Amino PEG/PPG-41/3 Aminoethyl PG-Propyl Dimethicone"
+                "Bis-Amino PEG/PPG-41/3 Aminoethyl PG-Propyl Dimethicone",
+                "Silicone"
             ]
         },
         {
@@ -182,7 +184,8 @@
                 "Propanol",
                 "Propyl alcohol",
                 "Isopropyl alcohol",
-                "Alcohol Denat"
+                "Alcohol Denat",
+                "Alcohol"
             ]
         },
         {

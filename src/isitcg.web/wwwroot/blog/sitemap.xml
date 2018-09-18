@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://isitcg.herokuapp.com/blog/posts/tips/</loc>
+    <loc>http://isitcg.com/blog/posts/tips/</loc>
     <lastmod>2018-09-16T14:06:08-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://isitcg.herokuapp.com/blog/posts/intro/</loc>
+    <loc>http://isitcg.com/blog/posts/intro/</loc>
     <lastmod>2018-09-16T12:36:46-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://isitcg.herokuapp.com/blog/categories/</loc>
+    <loc>http://isitcg.com/blog/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://isitcg.herokuapp.com/blog/</loc>
+    <loc>http://isitcg.com/blog/</loc>
     <lastmod>2018-09-16T14:06:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://isitcg.herokuapp.com/blog/posts/</loc>
+    <loc>http://isitcg.com/blog/posts/</loc>
     <lastmod>2018-09-16T14:06:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://isitcg.herokuapp.com/blog/tags/</loc>
+    <loc>http://isitcg.com/blog/tags/</loc>
     <priority>0</priority>
   </url>
   

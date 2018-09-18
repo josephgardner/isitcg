@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Is It CG? Blog</title>
-    <link>http://isitcg.herokuapp.com/blog/</link>
+    <link>http://isitcg.com/blog/</link>
     <description>Recent content on Is It CG? Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 16 Sep 2018 14:06:08 -0400</lastBuildDate>
     
-	<atom:link href="http://isitcg.herokuapp.com/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://isitcg.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tips and Tricks</title>
-      <link>http://isitcg.herokuapp.com/blog/posts/tips/</link>
+      <link>http://isitcg.com/blog/posts/tips/</link>
       <pubDate>Sun, 16 Sep 2018 14:06:08 -0400</pubDate>
       
-      <guid>http://isitcg.herokuapp.com/blog/posts/tips/</guid>
+      <guid>http://isitcg.com/blog/posts/tips/</guid>
       <description>Pro-tip, you (hopefully) don’t need to manually type any ingredients! Almost every consumer product has its ingredients listed on at least one website. So the trick is to search google for the product by name, and copy and paste the ingredients into the “Is it CG?” Web app!
 Find product online The first step is to find the list of ingredients on a vendor website. Simply enter the product name into google, and find a site selling it.</description>
     </item>
     
     <item>
       <title>Introduction</title>
-      <link>http://isitcg.herokuapp.com/blog/posts/intro/</link>
+      <link>http://isitcg.com/blog/posts/intro/</link>
       <pubDate>Sun, 16 Sep 2018 12:36:46 -0400</pubDate>
       
-      <guid>http://isitcg.herokuapp.com/blog/posts/intro/</guid>
+      <guid>http://isitcg.com/blog/posts/intro/</guid>
       <description>Welcome to the Is It CG? Blog! If you are asking what this app is all about, hopefully this will clear things up.
 Is It CG? evaluates ingredients in consumer hair products in accordance with the Curly Girl Method, a healthy hair care regimen for natural curls.
 Every curly girl at some point finds themselves having to research the ingredients in their vast array of products hoping to find the needle in a haystack that is causing their curly hair to frizz or droop.</description>

@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Is It CG? Blog</title>
-    <link>http://isitcg.herokuapp.com/blog/tags/</link>
+    <link>http://isitcg.com/blog/tags/</link>
     <description>Recent content in Tags on Is It CG? Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="http://isitcg.herokuapp.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://isitcg.com/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

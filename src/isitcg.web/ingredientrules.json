@@ -210,7 +210,11 @@
                 "Propyl alcohol",
                 "Isopropyl alcohol",
                 "Alcohol Denat",
-                "Alcohol"
+                "Alcohol",
+                "Benzyl alcohol",
+                "Isopropanol alcohol",
+                "Ethyl alcohol",
+                "Ethanol alcohol"
             ]
         },
         {

@@ -212,7 +212,6 @@
                 "Isopropyl alcohol",
                 "Alcohol Denat",
                 "Alcohol",
-                "Benzyl alcohol",
                 "Isopropanol alcohol",
                 "Ethyl alcohol",
                 "Ethanol alcohol"
@@ -233,7 +232,8 @@
                 "Myristyl alcohol",
                 "Stearyl alcohol",
                 "C30-50 Alcohols",
-                "Lanolin alcohol"
+                "Lanolin alcohol",
+                "Benzyl alcohol"
             ]
         },
         {
@@ -323,7 +323,8 @@
                 "Hydrolyzed Vegetable Protein PG-Propyl Silanetriol",
                 "Hydroxypropyltrimonium hydrolyzed wheat protein",
                 "Certified Organic Hydrolyzed Soy Protein",
-                "hydrolyzed quinoa protein"
+                "hydrolyzed quinoa protein",
+                "Hydrolyzed Barley Protein",
 
             ]
         },

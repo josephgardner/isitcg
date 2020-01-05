@@ -23,6 +23,10 @@
     <p><a href="/" class="btn btn-primary btn-lg" role="button">
         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
     </a></p>
+    @if (!string.IsNullOrEmpty(Model.ProductName))
+    {
+        <div class="productname">@Model.ProductName</div>
+    }
 </div>
 
 @foreach (var match in Model.Matches)

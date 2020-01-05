@@ -15,6 +15,7 @@ namespace isitcg
             Remainder = remainder.ToList();
             Result = "good";
         }
+        public string ProductName { get; set; }
         public string Result { get; set; }
         public IList<string> Remainder { get; }
         private readonly SortedSet<Rule> _matches = new SortedSet<Rule>(new RuleComparer());

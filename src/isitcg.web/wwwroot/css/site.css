@@ -24,11 +24,11 @@ form {
     text-align: center;
 }
 
-
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
 select,
 textarea {
+    padding: 5px;
     max-width: 700px;
 }
 
@@ -87,6 +87,9 @@ textarea {
 }
 
 /* Jumbotron Styling */
+.jumbotron {
+    padding-bottom: 24px;
+}
 .jumbotron .h1,
 .jumbotron h1 {
     font-family: 'Molle', 'Leckerli One', cursive;
@@ -99,6 +102,13 @@ textarea {
     font-size: 20px;
     TEXT-ALIGN: center;
     font-weight: 700;
+}
+
+.jumbotron .productname {
+    text-align: center;
+    padding-top: 24px;
+    font-family: 'Molle', 'Leckerli One', cursive;
+    font-size: 1.5em;
 }
 
 .jumbotron p {

@@ -16,6 +16,8 @@ namespace isitcg
             Result = "good";
         }
         public string ProductName { get; set; }
+        public string SearchResult() =>
+            string.IsNullOrEmpty(ProductName) ? "Curly Girl Method" : ProductName;
         public string Result { get; set; }
         public IList<string> Remainder { get; }
         private readonly SortedSet<Rule> _matches = new SortedSet<Rule>(new RuleComparer());

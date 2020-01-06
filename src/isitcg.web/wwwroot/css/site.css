@@ -109,6 +109,7 @@ textarea {
     padding-top: 24px;
     font-family: 'Molle', 'Leckerli One', cursive;
     font-size: 1.5em;
+    text-transform: lowercase;
 }
 
 .jumbotron p {

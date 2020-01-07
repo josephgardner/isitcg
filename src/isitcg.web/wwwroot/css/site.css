@@ -239,6 +239,7 @@ h4.card-title {
         margin-bottom: 10px;
     }
 
+    input,
     textarea {
         max-width: 370px;
         width: 100%;

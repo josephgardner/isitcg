@@ -3,9 +3,9 @@
 }
 @model MatchResults
 
-<div class="jumbotron">
-    <h1 class="display-3">Is it CG?</h1>
-    <div><h3>
+<div class="titlebar">
+    
+    <div><h1>
      @if (Model.Result == "danger")
         {
             <span>Uh Oh, this product is not CG Approved :-( </span>
@@ -47,6 +47,7 @@
             <span>CG Approved</span>
         }
     </div>
+
     <div class="panel-body">
         <h4 class="card-title">@match.Name</h4>
         <p class="card-text">@match.Description</p>
@@ -61,7 +62,8 @@
     </ul>
     </div>
 }
-
+<div class="main" >
+<div class="container">
 <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">Probably OK</div>
@@ -79,6 +81,7 @@
     </ul>
 </div>
 
+
 <script type="text/javascript">
 amzn_assoc_placement = "adunit0";
 amzn_assoc_tracking_id = "isitcg01-20";
@@ -94,3 +97,4 @@ amzn_assoc_default_browse_node = "3760911";
 amzn_assoc_title = "search-strip";
 </script>
 <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+</div></div>

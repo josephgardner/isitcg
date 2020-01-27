@@ -2,8 +2,8 @@ body {
     padding-top: 50px;
     /*padding-bottom: 20px;*/
     font-family: 'Open Sans';
-    background-image: url("/images/background-curls.png");
-    background-repeat: repeat-x;
+    background-image: url("http://isitcg.lisagardnerdesign.com/wp-content/themes/malina/images/bg-pattern.png");
+    background-repeat: repeat;
     color: #706f71;
     margin: 0;
 }
@@ -13,8 +13,11 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    margin-top: 75px;
+    padding-top: 75px;
     margin-bottom: 15px;
+    background-image: url("http://isitcg.lisagardnerdesign.com/wp-content/uploads/2020/01/background-curls-copy-3.png");
+    background-repeat: no-repeat;
+    background-color: transparent;
 }
 
 form {
@@ -25,16 +28,17 @@ form {
 .main {
     display: block;
     text-align: center;
-    background-image: url("http://isitcg.lisagardnerdesign.com/wp-content/themes/malina/images/bg-pattern.png");
 }
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
 select,
 textarea {
-    padding: 5px;
+    padding: 12px 20px;
     max-width: 700px !important;
     margin: auto !important;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+    box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
 }
 header {
   background-color: #fff;
@@ -51,9 +55,10 @@ a.logo_text {
   text-decoration: none;
 }
 
-.menu li a {
+.menu li a, .dl-menuwrapper li a {
   font-family: 'Montserrat';
 }
+
 
 button[type="submit"] {
   background-color: #7fb1b2;
@@ -80,9 +85,11 @@ button[type="submit"] {
 .panel {
     border-radius: 10px;
     border: none;
-    width: 60%;
+    width: 40%;
     margin: auto;
     background-color: #fff;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+    box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
 }
 
 .panel-heading {
@@ -171,13 +178,15 @@ p.card-text {
     padding: 24px;
     margin: 15px auto;
     width: 800px;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+    box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
 }
 .titlebar .h1,
 .titlebar h1 {
     font-family: 'Molle', 'Leckerli One', cursive;
     text-align: center;
     color: #ed878d;
-    font-size: 30px;
+    font-size: 26px;
 }
 
 .titlebar .h3,
@@ -264,6 +273,11 @@ h4.card-title {
   background-repeat: no-repeat;
 }
 
+#footer a {
+    color: #fff;
+    font-weight: 700;
+}
+
 /* Footer Styling 
 
 .footer {
@@ -318,7 +332,6 @@ h4.card-title {
 
     .titlebar .h1,
     .titlebar h1 {
-        font-size: 35px;
         margin-bottom: 15px;
     }
 
@@ -346,7 +359,7 @@ h4.card-title {
     }
 
     .body-content {
-      margin-top: 25px;
+      padding-top: 25px;
     }
 
     .panel {

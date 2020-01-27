@@ -1,50 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Results - Is It CG?";
+ViewData["Title"] = "Results - Is It CG?";
 }
 @model MatchResults
 
 <div class="titlebar">
-    
-    <div><h1>
-     @if (Model.Result == "danger")
-        {
+
+    <div>
+        <h1>
+            @if (Model.Result == "danger")
+            {
             <span>Uh Oh, this product is not CG Approved :-( </span>
-        }
-        else if (Model.Result == "warning")
-        {
-            <span>Congrats, this product is CG Approved, but contains some ingredients that may not work for everyone!</span>
-        }
-        else 
-        {
+            }
+            else if (Model.Result == "warning")
+            {
+            <span>Congrats, this product is CG Approved, but contains some ingredients that may not work for
+                everyone!</span>
+            }
+            else
+            {
             <span>Congrats, this product is CG Approved!</span>
-        }
-    </h3>
-        <p>See below for a breakdown of the ingredients</p></div>
+            }
+            </h3>
+            <p>See below for a breakdown of the ingredients</p>
+    </div>
     <p><a href="/" class="btn btn-primary btn-lg" role="button">
-        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
-    </a></p>
+            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
+        </a></p>
     @if (!string.IsNullOrEmpty(Model.ProductName))
     {
-        <div class="productname">@Model.ProductName</div>
+    <div class="productname">@Model.ProductName</div>
     }
 </div>
 
 @foreach (var match in Model.Matches)
 {
-    <div class="panel panel-@match.Result">
+
+<div class="panel panel-@match.Result">
     <!-- Default panel contents -->
+
     <div class="panel-heading">
         @if (match.Result == "danger")
         {
-            <span>Not CG Approved</span>
+        <span>Not CG Approved</span>
         }
         else if (match.Result == "warning")
         {
-            <span>CG Approved with caution</span>
+        <span>CG Approved with caution</span>
         }
-        else 
+        else
         {
-            <span>CG Approved</span>
+        <span>CG Approved</span>
         }
     </div>
 
@@ -57,44 +62,43 @@
     <ul class="list-group">
         @foreach (var item in @match.Ingredients)
         {
-            <li class="list-group-item">@item</li>
+        <li class="list-group-item">@item</li>
         }
     </ul>
-    </div>
+</div>
+
 }
-<div class="main" >
-<div class="container">
+
+
 <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">Probably OK</div>
     <div class="panel-body">
         <h4 class="card-title">Remaining Ingredients</h4>
-        <p class="card-text">These ingredients are either OK to use, or weren't an exact match for those to avoid.</p>
+        <p class="card-text">These ingredients are either OK to use, or weren't an exact match for those to
+            avoid.</p>
     </div>
 
     <!-- List group -->
     <ul class="list-group">
         @foreach (var item in Model.Remainder)
         {
-            <li class="list-group-item">@item</li>
+        <li class="list-group-item">@item</li>
         }
     </ul>
 </div>
 
-
 <script type="text/javascript">
-amzn_assoc_placement = "adunit0";
-amzn_assoc_tracking_id = "isitcg01-20";
-amzn_assoc_ad_mode = "search";
-amzn_assoc_ad_type = "smart";
-amzn_assoc_marketplace = "amazon";
-amzn_assoc_region = "US";
-amzn_assoc_default_search_phrase = "@Model.SearchResult()";
-amzn_assoc_default_category = "Beauty";
-amzn_assoc_linkid = "52fe6aa75e3e94809542bc7e26a02330";
-amzn_assoc_design = "in_content";
-amzn_assoc_default_browse_node = "3760911";
-amzn_assoc_title = "search-strip";
+    amzn_assoc_placement = "adunit0";
+    amzn_assoc_tracking_id = "isitcg01-20";
+    amzn_assoc_ad_mode = "search";
+    amzn_assoc_ad_type = "smart";
+    amzn_assoc_marketplace = "amazon";
+    amzn_assoc_region = "US";
+    amzn_assoc_default_search_phrase = "@Model.SearchResult()";
+    amzn_assoc_default_category = "Beauty";
+    amzn_assoc_linkid = "52fe6aa75e3e94809542bc7e26a02330";
+    amzn_assoc_design = "in_content";
+    amzn_assoc_default_browse_node = "3760911";
 </script>
 <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-</div></div>

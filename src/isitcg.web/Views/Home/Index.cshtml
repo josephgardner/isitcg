@@ -1,14 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Is It CG?";
+ViewData["Title"] = "Is It CG?";
 }
 
 <div class="titlebar">
     <h3 class="display-3">Enter ingredients</h3>
-<p>Enter the name of your favorite product and separate the ingredients with a comma. Click submit to see if it is Curly Girl (CG) Approved!</p>
+    <p>1. Enter the name of the product.<br>
+        2. Enter the ingredients separated by commas. <br>
+        3. Click submit to see if it is Curly Girl (CG) Approved!</p>
 </div>
 <div class="main">
-<form asp-controller="Home" asp-action="Submit" method="post">
-    <input type="text" name="productname" placeholder="Product Name (optional)" size="100"><br>
-    <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)" name="ingredients" rows=10 cols=100></textarea>
-    <div><button type="submit" class="btn btn-secondary btn-lg">Submit</button></div>
-</form></div>
+    <form asp-controller="Home" asp-action="Submit" method="post">
+        <input type="text" name="productname" placeholder="Product Name (optional)" size="100"><br>
+        <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)" name="ingredients"
+            rows=10 cols=100></textarea>
+        <div><button type="submit" class="btn btn-secondary btn-lg">Submit</button></div>
+    </form>
+</div>

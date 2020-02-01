@@ -24,9 +24,12 @@ ViewData["Title"] = "Results - Is It CG?";
             <p>See below for a breakdown of the ingredients</p>
     </div>
     <p>
+        @if (!string.IsNullOrEmpty(Model.Hash))
+        {
         <a href="/edit/@Model.Hash" class="btn btn-primary btn-lg" role="button">
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
         </a>
+        }
         <a href="/" class="btn btn-primary btn-lg" role="button">
             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
         </a></p>

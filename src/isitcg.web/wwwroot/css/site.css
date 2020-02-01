@@ -40,6 +40,12 @@ textarea {
     webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
     box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
 }
+
+input[type="text"],
+textarea{
+color: #706f71;
+}
+
 header {
   background-color: #fff;
 }

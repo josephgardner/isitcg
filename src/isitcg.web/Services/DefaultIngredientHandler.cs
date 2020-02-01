@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 
 namespace isitcg
 {
@@ -19,29 +19,45 @@ namespace isitcg
 
             _rules = rules.Value.Rules;
         }
-        public MatchResults CreateResults(string ingredients)
+
+        public string CreateHash(string productName, string ingredients)
         {
-            var parts = ingredients
-                .Split(',')
-                .Select(p => p.Trim().Trim('.'));
-            var results = new MatchResults(parts);
+            var product = new Product(productName, ingredients);
+            var json = JsonConvert.SerializeObject(product);
+            var hash = StringCompression.Compress(json);
+            return hash;
+        }
+
+        public MatchResults ResultsFromHash(string hash)
+        {
+            var json = StringCompression.Decompress(hash);
+            var product = JsonConvert.DeserializeObject<Product>(json);
+            var results = CreateResults(product);
+            return results;
+        }
+
+        private MatchResults CreateResults(Product product)
+        {
+            var results = new MatchResults(product.Parts);
+            results.ProductName = product.Name;
 
             results = _rules.Aggregate(results, (seed, rule) =>
             {
                 var lookup = rule.Ingredients;
-                var matches1 = seed.Remainder.Intersect(lookup, 
+                var matches1 = seed.Remainder.Intersect(lookup,
                     IngredientComparer.Instance);
-                
-                var matches2 =  from i in lookup
-                                from r in seed.Remainder
-                                where r.Contains('/')
-                                where r.Split('/').Contains(i)
-                                select r;
+
+                var matches2 = from i in lookup
+                               from r in seed.Remainder
+                               where r.Contains('/')
+                               where r.Split('/').Contains(i)
+                               select r;
 
                 var matches3 = matches1.Concat(matches2).ToList();
                 if (matches3.Any())
                 {
-                    seed.Matches.Add(new Rule{
+                    seed.Matches.Add(new Rule
+                    {
                         Name = rule.Name,
                         Description = rule.Description,
                         Result = rule.Result,
@@ -51,7 +67,7 @@ namespace isitcg
                         results.Result = "danger";
                     else if (rule.Result == "warning" && results.Result == "good")
                         results.Result = "warning";
-                    
+
                     foreach (var match in matches3)
                     {
                         seed.Remainder.Remove(match);

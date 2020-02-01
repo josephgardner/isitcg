@@ -2,6 +2,7 @@ namespace isitcg
 {
     public interface IIngredientHandler
     {
-        MatchResults CreateResults(string ingredients);
+        string CreateHash(string product, string ingredients);
+        MatchResults ResultsFromHash(string hash);
     }
 }

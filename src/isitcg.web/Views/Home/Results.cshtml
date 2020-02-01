@@ -23,7 +23,11 @@ ViewData["Title"] = "Results - Is It CG?";
             </h3>
             <p>See below for a breakdown of the ingredients</p>
     </div>
-    <p><a href="/" class="btn btn-primary btn-lg" role="button">
+    <p>
+        <a href="/edit/@Model.Hash" class="btn btn-primary btn-lg" role="button">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+        </a>
+        <a href="/" class="btn btn-primary btn-lg" role="button">
             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
         </a></p>
     @if (!string.IsNullOrEmpty(Model.ProductName))

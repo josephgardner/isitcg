@@ -15,6 +15,7 @@ namespace isitcg
             Remainder = remainder.ToList();
             Result = "good";
         }
+        public string Hash { get; set; }
         public string ProductName { get; set; }
         public string SearchResult() =>
             string.IsNullOrEmpty(ProductName) ? "Curly Girl Method" : ProductName;

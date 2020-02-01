@@ -28,18 +28,20 @@ namespace isitcg
             return hash;
         }
 
-        public MatchResults ResultsFromHash(string hash)
+        public Product ProductFromHash(string hash)
         {
             var json = StringCompression.Decompress(hash);
             var product = JsonConvert.DeserializeObject<Product>(json);
-            var results = CreateResults(product);
-            return results;
+            return product;
         }
 
-        private MatchResults CreateResults(Product product)
+        public MatchResults ResultsFromHash(string hash)
         {
+            var product = ProductFromHash(hash);
+
             var results = new MatchResults(product.Parts);
             results.ProductName = product.Name;
+            results.Hash = hash;
 
             results = _rules.Aggregate(results, (seed, rule) =>
             {

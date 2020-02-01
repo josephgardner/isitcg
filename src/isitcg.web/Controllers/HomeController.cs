@@ -20,9 +20,9 @@ namespace isitcg.Controllers
             _ingredientHandler = ingredientHandler;
             _fileManager = fileManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(Product product)
         {
-            return View();
+            return View(product ?? new Product());
         }
 
         [HttpPost]
@@ -30,13 +30,21 @@ namespace isitcg.Controllers
         public IActionResult Submit(string productname, string ingredients)
         {
             var hash = _ingredientHandler.CreateHash(productname, ingredients);
-            return RedirectToAction("Hash", new { hash });
+            return RedirectToAction("ViewHash", new { hash });
         }
 
-        public IActionResult Hash(string hash)
+        [Route("view/{hash}")]
+        public IActionResult ViewHash(string hash)
         {
             var results = _ingredientHandler.ResultsFromHash(hash);
             return View("Results", results);
+        }
+
+        [Route("edit/{hash}")]
+        public IActionResult EditHash(string hash)
+        {
+            var product = _ingredientHandler.ProductFromHash(hash);
+            return View("Index", product);
         }
 
         // Legacy results handler; read from redis. 

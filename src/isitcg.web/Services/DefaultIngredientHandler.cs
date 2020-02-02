@@ -38,10 +38,16 @@ namespace isitcg
         public MatchResults ResultsFromHash(string hash)
         {
             var product = ProductFromHash(hash);
+            var results = ResultsFromProduct(product);
+            results.Hash = hash;
 
+            return results;
+        }
+
+        internal MatchResults ResultsFromProduct(Product product)
+        {
             var results = new MatchResults(product.Parts);
             results.ProductName = product.Name;
-            results.Hash = hash;
 
             results = _rules.Aggregate(results, (seed, rule) =>
             {

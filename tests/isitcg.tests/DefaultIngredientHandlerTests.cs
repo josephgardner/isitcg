@@ -22,6 +22,7 @@ namespace isitcg.tests
     {
         public string TestName { get; set; }
         public string Ingredients { get; set; }
+        public Product Product { get => new Product("test", Ingredients); }
         public IEnumerable<Rule> Rules { get; set; }
         public string ExpectedResult { get; set; }
         public IEnumerable<Rule> ExpectedMatches { get; set; }
@@ -65,7 +66,7 @@ namespace isitcg.tests
             var handler = new DefaultIngredientHandler(mockRules.Object);
 
             //Act
-            var actual = handler.CreateResults(test.Ingredients);
+            var actual = handler.ResultsFromProduct(test.Product);
 
             //Assert
             Assert.NotNull(actual);

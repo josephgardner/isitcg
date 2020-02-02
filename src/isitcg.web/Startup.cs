@@ -36,8 +36,8 @@ namespace isitcg
             services.AddTransient<IIngredientHandler, DefaultIngredientHandler>();
             services.AddTransient<IFileManager, DefaultFileManager>();
             var redisUri = new Uri(Configuration
-                    .GetSection("REDISCLOUD_URL").Value);
-            services.AddDistributedRedisCache(async options => 
+                .GetSection("REDISCLOUD_URL").Value);
+            services.AddDistributedRedisCache(async options =>
             {
                 var addresses = await Dns.GetHostAddressesAsync(redisUri.Host);
                 var ip = addresses[0].MapToIPv4().ToString();
@@ -70,9 +70,9 @@ namespace isitcg
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            var rewriter = new RewriteOptions();
-            rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
-            app.UseRewriter(rewriter);
+            // var rewriter = new RewriteOptions();
+            // rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
+            // app.UseRewriter(rewriter);
 
             app.UseMvc(routes =>
             {

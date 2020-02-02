@@ -1,10 +1,11 @@
 body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-bottom: 20px;*/
     font-family: 'Open Sans';
-    background-image: url("/images/background-curls.png");
+    background-image: url("http://isitcg.lisagardnerdesign.com/wp-content/themes/malina/images/bg-pattern.png");
     background-repeat: repeat;
     color: #706f71;
+    margin: 0;
 }
 
 /* Wrapping element */
@@ -12,6 +13,11 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 75px;
+    margin-bottom: 15px;
+    background-image: url("http://isitcg.lisagardnerdesign.com/wp-content/uploads/2020/01/background-curls-copy-3.png");
+    background-repeat: no-repeat;
+    background-color: transparent;
 }
 
 form {
@@ -28,8 +34,43 @@ form {
 input,
 select,
 textarea {
-    padding: 5px;
-    max-width: 700px;
+    padding: 12px 20px;
+    max-width: 700px !important;
+    margin: auto !important;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+    box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+}
+
+input[type="text"],
+textarea{
+color: #706f71;
+}
+
+header {
+  background-color: #fff;
+}
+.logo .logo_text {
+  font-size: 28px;
+  line-height: 1.3em;
+  color: #ed878d;
+  transition: all 0.4s ease;
+  font-family: 'Molle';
+}
+
+a.logo_text {
+  text-decoration: none;
+}
+
+.menu li a, .dl-menuwrapper li a {
+  font-family: 'Montserrat';
+}
+
+
+button[type="submit"] {
+  background-color: #7fb1b2;
+  font-family: "Montserrat";
+  text-transform: capitalize;
+  margin-top: 15px;
 }
 
 /* Carousel */
@@ -43,19 +84,32 @@ textarea {
     width: 100%;
 }
 
+
+
+
 /* Panel Styling*/
 .panel {
     border-radius: 10px;
     border: none;
+    width: 40%;
+    margin: auto;
+    background-color: #fff;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+    box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
 }
 
 .panel-heading {
     color: #fff;
     font-family: 'Molle', 'Leckerli One', cursive;
     font-size: 2em;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    /*border-top-left-radius: 10px;
+    border-top-right-radius: 10px;*/
     line-height: 125%;
+    padding: 10px;
+}
+
+.panel-body {
+  padding: 15px;
 }
 
 .panel-danger>.panel-heading {
@@ -82,48 +136,120 @@ textarea {
     color: #fff;
 }
 
-.card-title {
-    font-weight: 700;
+
+.list-group {
+  padding-left: 0;
+  margin-bottom: 20px;
 }
 
-/* Jumbotron Styling */
-.jumbotron {
-    padding-bottom: 24px;
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
 }
-.jumbotron .h1,
-.jumbotron h1 {
+
+.panel>.list-group .list-group-item, .panel>.panel-collapse>.list-group .list-group-item {
+  border-width: 1px 0;
+  border-radius: 0;
+}
+
+.panel .list-group ul{
+  list-style: none;
+}
+
+.panel .list-group li {
+  font-size: 14px;
+}
+.card-title h4{
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.card-title {
+  margin: 0 0 10px;
+}
+h4.card-title{
+  font-size: 1.15em;
+}
+p.card-text {
+  font-size: 1em;
+}
+
+
+/* Titlebar Styling */
+.titlebar {
+    padding: 24px;
+    margin: 15px auto;
+    width: 800px;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+    box-shadow: 0 1px 5px 0px rgba(3,3,3,.15);
+}
+.titlebar .h1,
+.titlebar h1 {
     font-family: 'Molle', 'Leckerli One', cursive;
     text-align: center;
     color: #ed878d;
+    font-size: 26px;
 }
 
-.jumbotron .h3,
-.jumbotron h3 {
-    font-size: 20px;
+.titlebar .h3,
+.titlebar h3 {
+    font-family: 'Molle';
+    font-size: 120px;
     TEXT-ALIGN: center;
-    font-weight: 700;
+    font-weight: 400;
+    Text-transform: inherit;
+    color: #706f71;
+    margin-top: 10px;
 }
 
-.jumbotron .productname {
+.titlebar .productname {
     text-align: center;
     padding-top: 24px;
-    font-family: 'Molle', 'Leckerli One', cursive;
-    font-size: 1.5em;
-    text-transform: lowercase;
+    font-family: 'Montserrat';
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 150%
 }
 
-.jumbotron p {
+.titlebar p {
+    font-family: 'Montserrat';
     margin-bottom: 15px;
-    font-size: 18px;
-    font-weight: 200;
+    font-size: 16px;
+    font-weight: 400;
     text-align: center;
+    line-height: 160%;
 }
 
 .btn-primary {
-    color: #706f71;
-    background-color: #ccece5;
-    border-color: #abdbd0;
-    margin-top: 1em;
+  background-color: #7fb1b2;
+  font-family: "Montserrat";
+  text-transform: capitalize;
+  margin-top: 15px;
+  color: #fff;
+  font-size: 11px;
+    line-height: 1em;
+    font-weight: 400;
+    letter-spacing: 2.5px;
+    display: inline-block;
+    padding: 13px 32px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    vertical-align: middle;
+    overflow: hidden;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-appearance: none;
+    text-align: center;
+    border-radius: 0px;
+
 }
 
 .btn-secondary {
@@ -139,7 +265,26 @@ h4.card-title {
     font-weight: 700;
 }
 
-/* Footer Styling */
+
+#footer .special-bg {
+  background-color: #706f71;
+  position: absolute;
+  bottom: 0;
+  height: 62%;
+  min-height: 240px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: -1;
+  background-repeat: no-repeat;
+}
+
+#footer a {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Footer Styling 
 
 .footer {
     background-color: #bce8ea;
@@ -184,21 +329,24 @@ h4.card-title {
 .footer a:hover {
     color: #d36671;
     text-decoration: none;
-}
+} */
+
+
+
 
 @media screen and (min-width: 768px) {
 
-    .jumbotron .h1,
-    .jumbotron h1 {
-        font-size: 7.5em;
+    .titlebar .h1,
+    .titlebar h1 {
+        margin-bottom: 15px;
     }
 
-    .jumbotron .h3,
-    .jumbotron h3 {
-        font-size: 20px;
+    .titlebar .h3,
+    .titlebar h3 {
+        font-size: 60px;
     }
 
-    .jumbotron p {
+    .titlebar p {
         font-size: 18px;
     }
 
@@ -216,26 +364,37 @@ h4.card-title {
         padding-top: 25px;
     }
 
-    .jumbotron {
+    .body-content {
+      padding-top: 25px;
+    }
+
+    .panel {
+      width: 100%;
+    }
+
+    .titlebar {
         padding-top: 15px;
         padding-bottom: 15px;
         margin-bottom: 20px;
+        width: auto;
+        margin-top: 5px;
     }
 
-    .jumbotron .h1,
-    .jumbotron h1 {
-        font-size: 4em;
+    .titlebar .h1,
+    .titlebar h1 {
+        font-size: 1em;
+    
     }
 
-    .jumbotron .h3,
-    .jumbotron h3 {
-        font-size: .9em;
+    .titlebar .h3,
+    .titlebar h3 {
+        font-size: 2.5em;
         margin-top: 10px;
     }
 
-    .jumbotron p {
-        font-size: .9em;
-        line-height: 125%;
+    .titlebar p {
+        font-size: .75em;
+        line-height: 150%;
         margin-bottom: 10px;
     }
 
@@ -259,10 +418,10 @@ h4.card-title {
     text-transform: uppercase;
 }
 
-.container .jumbotron,
-.container-fluid .jumbotron {
+.container .titlebar,
+.container-fluid .titlebar {
     border: none;
     background-color: #fff;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    /*border-top-left-radius: 10px;
+    border-top-right-radius: 10px;*/
 }

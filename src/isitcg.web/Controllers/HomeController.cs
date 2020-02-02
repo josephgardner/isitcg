@@ -20,21 +20,34 @@ namespace isitcg.Controllers
             _ingredientHandler = ingredientHandler;
             _fileManager = fileManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(Product product)
         {
-            return View();
+            return View(product ?? new Product());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Submit(string productname, string ingredients)
+        public IActionResult Submit(string productname, string ingredients)
         {
-            var results = _ingredientHandler.CreateResults(ingredients);
-            results.ProductName = productname;
-            var id = await _fileManager.WriteAsync(results);
-            return RedirectToAction("Results", new { id });
+            var hash = _ingredientHandler.CreateHash(productname, ingredients);
+            return RedirectToAction("ViewHash", new { hash });
         }
 
+        [Route("view/{hash}")]
+        public IActionResult ViewHash(string hash)
+        {
+            var results = _ingredientHandler.ResultsFromHash(hash);
+            return View("Results", results);
+        }
+
+        [Route("edit/{hash}")]
+        public IActionResult EditHash(string hash)
+        {
+            var product = _ingredientHandler.ProductFromHash(hash);
+            return View("Index", product);
+        }
+
+        // Legacy results handler; read from redis. 
         public async Task<IActionResult> Results(string id)
         {
             var results = await _fileManager.ReadAsync(id);

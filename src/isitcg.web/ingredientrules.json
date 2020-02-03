@@ -372,6 +372,8 @@
                 "Polyquaternium-45",
                 "Polyquaternium-46",
                 "Polyquaternium-47",
+                "Polyquaternium-55",
+                "Polyquaternium-69",
                 "Polyquaternium 1",
                 "Polyquaternium 2",
                 "Polyquaternium 3",
@@ -412,7 +414,9 @@
                 "Polyquaternium 44",
                 "Polyquaternium 45",
                 "Polyquaternium 46",
-                "Polyquaternium 47"
+                "Polyquaternium 47",
+                "Polyquaternium 55",
+                "Polyquaternium 69"
             ]
         },
         {
@@ -450,7 +454,7 @@
         {
             "Name": "Film Forming Humectants",
             "Description": "Film forming humectants are excellent moisturizing ingredients that form a film over the hair and will help resist dehydration. These ingredients are safe to use in low dew points.",
-            "Result": "warning",
+            "Result": "success",
             "Ingredients": [
                 "Aloe Barbadensis Leaf Extract",
                 "Aloe Barbadensis (Aloe Vera) Leaf Extract",

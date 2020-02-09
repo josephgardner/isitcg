@@ -39,6 +39,8 @@ namespace isitcg.Controllers
         public IActionResult ViewHash(string hash)
         {
             var results = _ingredientHandler.ResultsFromHash(hash);
+            _database.SortedSetIncrement(
+                "products", results.ProductName, 1, CommandFlags.FireAndForget);
             return View("Results", results);
         }
 

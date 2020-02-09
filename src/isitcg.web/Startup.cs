@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.Extensions.Caching.Redis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using StackExchange.Redis;
 
 namespace isitcg
 {
@@ -34,18 +34,17 @@ namespace isitcg
             services.AddOptions();
             services.Configure<IngredientRules>(Configuration);
             services.AddTransient<IIngredientHandler, DefaultIngredientHandler>();
-            services.AddTransient<IFileManager, DefaultFileManager>();
-            var redisUri = new Uri(Configuration
-                .GetSection("REDISCLOUD_URL").Value);
-            services.AddDistributedRedisCache(async options =>
-            {
-                var addresses = await Dns.GetHostAddressesAsync(redisUri.Host);
-                var ip = addresses[0].MapToIPv4().ToString();
-                var password = redisUri.UserInfo.Split(':')[1];
-                var connect = $"{ip}:{redisUri.Port},password={password}";
 
-                options.Configuration = connect;
-            });
+            var redisUri = new Uri(Configuration
+                            .GetSection("REDISCLOUD_URL").Value);
+            var addresses = Dns.GetHostAddressesAsync(redisUri.Host).Result;
+            var ip = addresses[0].MapToIPv4().ToString();
+            var password = redisUri.UserInfo.Split(':')[1];
+            var connect = $"{ip}:{redisUri.Port},password={password}";
+            var redis = ConnectionMultiplexer.Connect(connect);
+            services.AddSingleton<IConnectionMultiplexer>(redis);
+            services.AddTransient<IDatabase>(c =>
+                c.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
             // Add framework services.
             services.AddMvc();
@@ -70,9 +69,9 @@ namespace isitcg
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            var rewriter = new RewriteOptions();
-            rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
-            app.UseRewriter(rewriter);
+            // var rewriter = new RewriteOptions();
+            // rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
+            // app.UseRewriter(rewriter);
 
             app.UseMvc(routes =>
             {

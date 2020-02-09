@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using StackExchange.Redis;
+using Newtonsoft.Json;
 
 namespace isitcg.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IIngredientHandler _ingredientHandler;
-        private readonly IFileManager _fileManager;
-        public HomeController(IIngredientHandler ingredientHandler, IFileManager fileManager)
+        private readonly IDatabase _database;
+        public HomeController(IIngredientHandler ingredientHandler, IDatabase database)
         {
             if (ingredientHandler == null)
                 throw new ArgumentNullException(nameof(ingredientHandler));
-            if (fileManager == null)
-                throw new ArgumentNullException(nameof(fileManager));
+            if (database == null)
+                throw new ArgumentNullException(nameof(database));
 
             _ingredientHandler = ingredientHandler;
-            _fileManager = fileManager;
+            _database = database;
         }
         public IActionResult Index(Product product)
         {
@@ -50,7 +52,8 @@ namespace isitcg.Controllers
         // Legacy results handler; read from redis. 
         public async Task<IActionResult> Results(string id)
         {
-            var results = await _fileManager.ReadAsync(id);
+            var json = (await _database.HashGetAllAsync(id)).Last().Value;
+            var results = JsonConvert.DeserializeObject<MatchResults>(json);
             return View(results);
         }
 

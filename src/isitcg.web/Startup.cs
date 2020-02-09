@@ -70,9 +70,9 @@ namespace isitcg
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            // var rewriter = new RewriteOptions();
-            // rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
-            // app.UseRewriter(rewriter);
+            var rewriter = new RewriteOptions();
+            rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
+            app.UseRewriter(rewriter);
 
             app.UseMvc(routes =>
             {

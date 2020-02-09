@@ -9,7 +9,7 @@ ViewData["Title"] = "Results - Is It CG?";
         <h1>
             @if (Model.Result == "danger")
             {
-            <span>Uh Oh, this product is not CG Approved :-( </span>
+            <span>Uh Oh, this product is not CG Approved.</span><br><p> No worries! <a href="http://isitcg.lisagardnerdesign.com/favorite-products-2019/" target="_blank">Click here to see some of our favorite products that are approved</a></p>
             }
             else if (Model.Result == "warning")
             {
@@ -94,7 +94,8 @@ ViewData["Title"] = "Results - Is It CG?";
         }
     </ul>
 </div>
-<div style="text-align:center;">
+<div class="container">
+    <div class="center">
 <script type="text/javascript">
     amzn_assoc_placement = "adunit0";
     amzn_assoc_tracking_id = "isitcg0a-20";
@@ -109,4 +110,5 @@ ViewData["Title"] = "Results - Is It CG?";
     amzn_assoc_default_browse_node = "3760911";
 </script>
 <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-</div>
+ </div>
+ </div>

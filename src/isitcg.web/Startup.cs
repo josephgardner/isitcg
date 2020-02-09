@@ -34,6 +34,7 @@ namespace isitcg
             services.AddOptions();
             services.Configure<IngredientRules>(Configuration);
             services.AddTransient<IIngredientHandler, DefaultIngredientHandler>();
+            services.AddTransient<ResultCounter>();
 
             var redisUri = new Uri(Configuration
                             .GetSection("REDISCLOUD_URL").Value);

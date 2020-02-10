@@ -18,6 +18,7 @@ body {
     background-image: url("http://isitcg.lisagardnerdesign.com/wp-content/uploads/2020/01/background-curls-copy-3.png");
     background-repeat: no-repeat;
     background-color: transparent;
+    min-height: 525px;
 }
 
 form {
@@ -227,6 +228,10 @@ p.card-text {
     text-align: center;
     line-height: 160%;
 }
+
+.titlebar a {
+    color: #ed878d;
+}
 .titlebar a:hover {
     font-weight: 600;
 }
@@ -236,7 +241,7 @@ p.card-text {
   font-family: "Montserrat";
   text-transform: capitalize;
   margin-top: 15px;
-  color: #fff;
+  color: #fff !important;
   font-size: 11px;
     line-height: 1em;
     font-weight: 400;

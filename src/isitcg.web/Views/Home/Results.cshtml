@@ -62,7 +62,12 @@ ViewData["Title"] = "Results - Is It CG?";
 
     <div class="panel-body">
         <h4 class="card-title">@match.Name</h4>
-        <p class="card-text">@match.Description</p>
+        <p class="card-text">@match.Description
+            @if (!string.IsNullOrEmpty(match.BlogUrl))
+            {
+            <a href="@match.BlogUrl" target="_blank">(More info...)</a>
+            }
+        </p>
     </div>
 
     <!-- List group -->

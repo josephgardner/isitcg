@@ -68,6 +68,7 @@ namespace isitcg
                     {
                         Name = rule.Name,
                         Description = rule.Description,
+                        BlogUrl = rule.BlogUrl,
                         Result = rule.Result,
                         Ingredients = matches3
                     });

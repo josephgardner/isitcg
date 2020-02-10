@@ -1,4 +1,5 @@
 using StackExchange.Redis;
+using System;
 
 namespace isitcg
 {
@@ -15,13 +16,26 @@ namespace isitcg
 
         public void Count(MatchResults results)
         {
-            _db.SortedSetIncrement(
-                 PRODUCTS_KEY, results.ProductName, 1, CommandFlags.FireAndForget);
-
-            foreach (var unknown in results.Remainder)
+            try
             {
-                _db.SortedSetIncrement(
-                    UNKNOWN_INGREDIENTS_KEY, unknown, 1, CommandFlags.FireAndForget);
+                if (!string.IsNullOrEmpty(results.ProductName))
+                {
+                    _db.SortedSetIncrement(
+                         PRODUCTS_KEY, results.ProductName, 1, CommandFlags.FireAndForget);
+                }
+
+                foreach (var unknown in results.Remainder)
+                {
+                    if (!string.IsNullOrEmpty(unknown))
+                    {
+                        _db.SortedSetIncrement(
+                            UNKNOWN_INGREDIENTS_KEY, unknown, 1, CommandFlags.FireAndForget);
+                    }
+                }
+            }
+            catch
+            {
+                //swallow error
             }
         }
     }

@@ -466,6 +466,15 @@
                 "benzylparaben"
             ]
         },
+          {
+            "Name": "Itchy M's",
+            "Description": "These ingredients are preservatives from the family of substances called Isothiozalinones and are added to products to prevent the growth of micro-organisms. These ingredients should be avoided if you have sensitive skin, as they can make your scalp itchy and irritated",
+            "Result": "warning",
+            "Ingredients": [
+                "Methylchloroisothiazolinone",
+                "Methylisothiazolinone"
+            ]
+        },
         {
             "Name": "Humectants",
             "Description": "A humectant absorbs moisture and keeps a moisture balance in the hair and skin. Humectants will search for moisture in your own hair too. Therefore, in areas where it may be hot, but dry, these products may actually do more bad than good. In the right condition, humectants are materials used in products to moisturize dry or damaged hair.",

@@ -30,6 +30,12 @@ form {
     display: block;
     text-align: center;
 }
+a {
+    color: #ed878d;
+}
+a:hover {
+    color: #ce5964;
+}
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,

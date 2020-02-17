@@ -61,7 +61,7 @@ header {
   line-height: 1.3em;
   color: #ed878d;
   transition: all 0.4s ease;
-  font-family: 'Molle';
+  font-family: 'Molle', 'Leckerli One', cursive;
 }
 
 a.logo_text {
@@ -78,7 +78,7 @@ a.logo_text {
 
 button[type="submit"] {
   background-color: #7fb1b2;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   text-transform: capitalize;
   margin-top: 15px;
 }
@@ -207,7 +207,7 @@ p.card-text {
 
 .titlebar .h3,
 .titlebar h3 {
-    font-family: 'Molle';
+    font-family: 'Molle', 'Leckerli One', cursive;
     font-size: 120px;
     TEXT-ALIGN: center;
     font-weight: 400;
@@ -244,7 +244,7 @@ p.card-text {
 
 .btn-primary {
   background-color: #7fb1b2;
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
   text-transform: capitalize;
   margin-top: 15px;
   color: #fff !important;

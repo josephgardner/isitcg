@@ -167,6 +167,26 @@
             ]
         },
         {
+            "Name": "Chelating Agents",
+            "Description": "These ingredients bind with metal ions or metallic compounds and prevent them from adhering to your hair. They work to detox your hair from mineral and potentially toxic metal build up. Products with these ingredients should be used sparingly - up to once a month.",
+            "Result": "warning",
+            "Ingredients": [
+                "Tetrasodium EDTA",
+                "disodium EDTA",
+                "Diiospropyl Oxalate",
+                "Disodium EDTA",
+                "Disodium EDTA-copper",
+                "EDTA",
+                "HEDTA",
+                "Potassium",
+                "Sodium Citrate",
+                "TEA-EDTA",
+                "Tetrasodium EDTA",
+                "Trisodium EDTA",
+                "Trisodium HEDTA"
+            ]
+        },
+        {
             "Name": "Silicones to Use with Caution",
             "Description": "These ingredients are partially soluble silicones to avoid, but could possibly be shampooed out with a sulfate free shampoo (may build up and need a sulfate to remove.)",
             "Result": "warning",
@@ -702,6 +722,42 @@
                 "Hydrolyzed pea protein",
                 "Keratin Amino Acids"
             ]
-        }
+        },
+        {
+            "Name": "Verified - Okay",
+            "Description": "These ingredients have been verified as having no affect on curly hair and include ingredients like water, antioxidants and thickeners",
+            "Result": "success",
+            "Ingredients": [
+                "Water",
+                "Eau",
+                "Aqua/Water/Eau",
+                "Tocopherol",
+                "Tocopheryl Acetate",
+                "Water (Aqua)",
+                "sodium hydroxide",
+                "butylene glycol",
+                "Lactic Acid",
+                "Carbomer"
+            ]
+        },
+        {
+            "Name": "Verified - Caution",
+            "Description": "These ingredients have been verified as having no affect on curly hair but could be irritating to skin. Please do more research on these ingredients to see if they will work for your individual needs",
+            "Result": "warning",
+            "Ingredients": [
+                "linalool",
+                "Limonene",
+                "Glycol Distearate",
+                "DMDM Hydantoin",
+                "Iodopropynyl Butylcarbamate",
+                "geraniol",
+                "coumarin",
+                "Parfum",
+                "hexyl cinnamal",
+                "citronellol",
+                "Butylphenyl Methylpropional",
+                "benzyl salicylate"
+            ]
+        },
     ]
 }

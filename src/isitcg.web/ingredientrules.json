@@ -550,6 +550,34 @@
             ]
         },
         {
+            "Name": "Conditioning Agents",
+            "Description": "These ingredients are Cationic Surfactants that can be an effective mild cleanser in a conditioner or as film-forming conditioning agents. They are water soluble, but some can build up over time.",
+            "Result": "warning",
+            "Ingredients": [
+                "Caprylyl Glycol",
+                "guar hydroxypropyltrimonium chloride",
+                "Stearalkonium chloride",
+                "Cetrimonium chloride",
+                "Cetrimonium bromide",
+                "Behentrimonium methosulfate",
+                "Behentrimonium chloride",
+                "Benzalkonium chloride",
+                "Cinnamidopropyltrimonium chloride",
+                "Cocotrimonium chloride",
+                "Dicetyldimonium chloride",
+                "Dicocodimonium chloride",
+                "Hydrogenated Palm Trimethylammonium chloride",
+                "Lauryltrimonium chloride",
+                "Quaternium-15",
+                "Quaternium-22",
+                "Stearamidopropyl dimethylamine",
+                "Isostearamidopropyl dimethylamine",
+                "Isostearamidopropyl morpholine",
+                "Wheatgermamidopropyl dimethylamine",
+                "Behenamidopropyl dimethylamine"
+            ]
+        },
+        {
             "Name": "Parabens",
             "Description": "These ingredients are OK if you want to use them. There is nothing in them that will build up in your hair. Some believe they are a higher cancer risk and choose to avoid them. It's a personal choice",
             "Result": "warning",
@@ -607,6 +635,7 @@
                 "Tea tree oil",
                 "Grapefruit seed extract",
                 "Vinegar",
+                "Acetum (Vinegar)",
                 "acetic acid"
             ]
         },
@@ -687,6 +716,7 @@
                 "nettle leaf tea",
                 "nettle extract",
                 "Urtica Dioica Extract",
+                "Urtica Dioica (Nettle) Leaf Extract",
                 "Panthenol",
                 "Dexpanthenol",
                 "Provitamin B5", 
@@ -756,8 +786,9 @@
                 "hexyl cinnamal",
                 "citronellol",
                 "Butylphenyl Methylpropional",
-                "benzyl salicylate"
+                "benzyl salicylate",
+                "Fragrance (Parfum)"
             ]
-        },
+        }
     ]
 }

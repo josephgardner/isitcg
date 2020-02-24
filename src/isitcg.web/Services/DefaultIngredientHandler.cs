@@ -70,6 +70,7 @@ namespace isitcg
                         Description = rule.Description,
                         BlogUrl = rule.BlogUrl,
                         Result = rule.Result,
+                        Rank = rule.Rank,
                         Ingredients = matches3
                     });
                     if (rule.Result == "danger")

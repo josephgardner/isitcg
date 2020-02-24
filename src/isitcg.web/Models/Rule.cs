@@ -8,6 +8,7 @@ namespace isitcg
         public string Description { get; set; }
         public string Result { get; set; }
         public string BlogUrl { get; set; }
+        public int Rank { get; set; }
         public IEnumerable<string> Ingredients { get; set; }
     }
 }

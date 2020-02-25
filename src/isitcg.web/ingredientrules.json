@@ -68,6 +68,7 @@
             "Name": "Gentle Cleansers",
             "Description": "These ingredients are gentle cleansers that you want to look for.",
             "Result": "success",
+            "BlogUrl": "http://isitcg.lisagardnerdesign.com/gentle-cleansers/",
             "Rank":5,
             "Ingredients": [
                 "ammonium cocoyl isethionate",

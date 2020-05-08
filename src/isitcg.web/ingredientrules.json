@@ -336,6 +336,18 @@
                 "Alkane"
             ]
         },
+         {
+            "Name": "Oils to use with Caution",
+            "Description": "These ingredients are oils that should be used with caution because they have the potential to build up and a cowash only routine might not be able to remove",
+            "Result": "caution",
+            "Rank":3,
+            "Ingredients": [
+                "Castor oil",
+                "Ricinus communis seed oil",
+                "Ricinus Communis (Castor) Seed Oil",
+                "Ricinus Communis"
+            ]
+        },
         {
             "Name": "Drying Alcohols to Avoid",
             "Description": "These ingredients are drying alcohols that should be avoided.",
@@ -475,6 +487,7 @@
             "Description": "These ingredients could cause build up on finer, thin hair",
             "Result": "warning",
             "Rank":17,
+            "BlogUrl": "http://isitcg.lisagardnerdesign.com/not-all-polyquats-are-created-equal/",
             "Ingredients": [
                 "Polyquaternium-1",
                 "Polyquaternium-2",

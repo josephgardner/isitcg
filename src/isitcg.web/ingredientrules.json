@@ -337,7 +337,7 @@
          {
             "Name": "Oils to use with Caution",
             "Description": "These ingredients are oils that should be used with caution because they have the potential to build up and a cowash only routine might not be able to remove",
-            "Result": "caution",
+            "Result": "warning",
             "Rank":3,
             "Ingredients": [
                 "Castor oil",

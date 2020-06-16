@@ -657,7 +657,6 @@
             "Ingredients": [
                 "Potassium sorbate",
                 "sorbic acid",
-                "Citric acid",
                 "Diammonium citrate",
                 "Potassium citrate",
                 "Sodium citrate",
@@ -795,6 +794,7 @@
             "Ingredients": [
                 "Water",
                 "Eau",
+                "Aqua",
                 "Aqua/Water/Eau",
                 "Tocopherol",
                 "Tocopheryl Acetate",
@@ -802,7 +802,8 @@
                 "sodium hydroxide",
                 "butylene glycol",
                 "Lactic Acid",
-                "Carbomer"
+                "Carbomer",
+                "Citric acid"
             ]
         },
         {

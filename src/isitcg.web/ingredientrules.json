@@ -348,7 +348,8 @@
                 "Ricinus Communis",
                 "Butyrospermum Parkii (Shea) Butter",
                 "Butyrospermum Parkii (Shea) Butter Extract",
-                "Butyrospermum Parkii (Shea) Oil"
+                "Butyrospermum Parkii (Shea) Oil",
+                "Glycine Soja (Soybean) Oil"
             ]
         },
         {
@@ -697,7 +698,8 @@
                 "Vegetable Glycerin",
                 "Glycerin (Vegetable)",
                 "GLYCERYL MONOSTEARATE",
-                "Glyceryl Stearate"
+                "Glyceryl Stearate",
+                "Hexylene Glycol"
             ]
         },
         {
@@ -819,6 +821,8 @@
                 "Glyceryl Stearate",
                 "Polysorbate 20",
                 "Polysorbate-20",
+                "Polysorbate 60",
+                "Polysorbate-60",
                 "Emulsifying Wax",
                 "GLYCOL DISTEARATE",
                 "Benzyl Benzoate",
@@ -826,12 +830,23 @@
                 "Propanediol",
                 "Dehydroacetic Acid",
                 "Alpha-Isomethyl Ionone",
-                "Caprylic/Capric Triglyceride"
+                "Caprylic/Capric Triglyceride",
+                "Dipropylene Glycol",
+                "Trideceth-12",
+                "Propylene Glycol Dicaprylate/Dicaprate",
+                "Xanthan Gum",
+                "PPG-1 Trideceth-6",
+                "Isopropyl Myristate",
+                "Cetyl Esters",
+                "Biotin",
+                "Histidine",
+                "Propane",
+                "Benzophenone-4"
             ]
         },
         {
             "Name": "Verified - Caution",
-            "Description": "These ingredients have been verified as having no affect on curly hair but could be irritating to skin. Please do more research on these ingredients to see if they will work for your individual needs",
+            "Description": "These ingredients have been verified as having no affect on curly hair but could be irritating to skin or have other negative effects. Please do more research on these ingredients to see if they will work for your individual needs",
             "Result": "warning",
             "Rank":23,
             "Ingredients": [
@@ -850,7 +865,11 @@
                 "Fragrance (Parfum)",
                 "Sodium chloride",
                 "Diazolidinyl urea",
-                "Hydroxycitronellal"
+                "Hydroxycitronellal",
+                "PVP",
+                "Aminomethyl Propanol",
+                "Salicylic Acid"
+
             ]
         }
     ]

@@ -345,7 +345,10 @@
                 "Castor oil",
                 "Ricinus communis seed oil",
                 "Ricinus Communis (Castor) Seed Oil",
-                "Ricinus Communis"
+                "Ricinus Communis",
+                "Butyrospermum Parkii (Shea) Butter",
+                "Butyrospermum Parkii (Shea) Butter Extract",
+                "Butyrospermum Parkii (Shea) Oil"
             ]
         },
         {
@@ -480,6 +483,7 @@
                 "Hydroxypropyltrimonium hydrolyzed wheat protein",
                 "Certified Organic Hydrolyzed Soy Protein",
                 "hydrolyzed quinoa protein",
+                "hydrolyzed quinoa",
                 "Hydrolyzed Barley Protein"
             ]
         },
@@ -669,7 +673,8 @@
                 "Grapefruit seed extract",
                 "Vinegar",
                 "Acetum (Vinegar)",
-                "acetic acid"
+                "acetic acid",
+                "Benzoic acid"
             ]
         },
         
@@ -690,7 +695,9 @@
                 "Fructose",
                 "Mel (Manuka Honey)",
                 "Vegetable Glycerin",
-                "Glycerin (Vegetable)"
+                "Glycerin (Vegetable)",
+                "GLYCERYL MONOSTEARATE",
+                "Glyceryl Stearate"
             ]
         },
         {
@@ -788,9 +795,10 @@
                 "Keratin Amino Acids"
             ]
         },
+       
         {
             "Name": "Verified - Okay",
-            "Description": "These ingredients have been verified as having no affect on curly hair and include ingredients like water, antioxidants and thickeners",
+            "Description": "These ingredients have been verified as having no affect on curly hair and include ingredients like water, antioxidants, emulsifiers and thickeners",
             "Result": "success",
             "Rank":22,
             "Ingredients": [
@@ -805,7 +813,20 @@
                 "butylene glycol",
                 "Lactic Acid",
                 "Carbomer",
-                "Citric acid"
+                "Citric acid",
+                "Ceteareth 20",
+                "Ceteareth-20",
+                "Glyceryl Stearate",
+                "Polysorbate 20",
+                "Polysorbate-20",
+                "Emulsifying Wax",
+                "GLYCOL DISTEARATE",
+                "Benzyl Benzoate",
+                "Citral",
+                "Propanediol",
+                "Dehydroacetic Acid",
+                "Alpha-Isomethyl Ionone",
+                "Caprylic/Capric Triglyceride"
             ]
         },
         {
@@ -826,7 +847,10 @@
                 "citronellol",
                 "Butylphenyl Methylpropional",
                 "benzyl salicylate",
-                "Fragrance (Parfum)"
+                "Fragrance (Parfum)",
+                "Sodium chloride",
+                "Diazolidinyl urea",
+                "Hydroxycitronellal"
             ]
         }
     ]

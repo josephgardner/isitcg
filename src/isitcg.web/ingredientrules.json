@@ -653,7 +653,8 @@
                 "Isothiazolinone",
                 "Sodium benzoate",
                 "Phenoxyethanol",
-                "Benzyl alcohol"
+                "Benzyl alcohol",
+                "BHT"
             ]
         },
         {
@@ -841,7 +842,14 @@
                 "Biotin",
                 "Histidine",
                 "Propane",
-                "Benzophenone-4"
+                "Benzophenone-4",
+                "Isobutane",
+                "Salvia Officinalis (Sage) Leaf Extract",
+                "Arginine",
+                "Laureth-4",
+                "Cocamide MEA",
+                "VP/VA Copolymer",
+                "Lecithin"
             ]
         },
         {
@@ -868,7 +876,10 @@
                 "Hydroxycitronellal",
                 "PVP",
                 "Aminomethyl Propanol",
-                "Salicylic Acid"
+                "Salicylic Acid",
+                "Magnesium chloride",
+                "Amyl Cinnamal",
+                "Eugenol"
 
             ]
         }

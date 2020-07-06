@@ -103,7 +103,9 @@
                 "sodium lauryl glucose carboxylate",
                 "sodium laurylglucosides hydroxypropylsulfonate",
                 "sodium methyl 2-sulfolaurate",
-                "sodium methyl cocoyl taurate"
+                "sodium methyl cocoyl taurate",
+                "Sodium Methyl Oleoyl Taurate",
+                "Lauramidopropyl betaine"
             ]
         },
         
@@ -115,14 +117,6 @@
             "Ingredients": [
                 "dioctyl sodium sulfosuccinate",
                 "disodium cocoyl glutamate",
-                "olefin sulfonate",
-                "oliefin sulfonate",
-                "sodium c 14-18 olefin sulfonate",
-                "sodium c 16-18 olefin sulfonate",
-                "sodium c12-14 olefin sulfonate",
-                "sodium c14-15 olefin sulfonate",
-                "sodium c14-16 olefin sulfonate",
-                "sodium c14-26 olefin sulfonate",
                 "sodium cocoyl glutamate",
                 "sodium cocoyl sarcosinate",
                 "sodium lauroyl methyl isethionate",
@@ -139,8 +133,9 @@
         
         {
             "Name": "Clarifying Ingredients",
-            "Description": "Shampoos with clarifying ingredients are surfactants that remove product, hard water, oil and mineral build up. These ingredients are not as harsh as sulfates, but should be used sparingly (avg of two times/month)",
-            "Result": "success",
+            "Description": "Shampoos with clarifying ingredients remove product and oil build up. These ingredients are not as harsh as sulfates, but should be used sparingly (avg of two times/month)",
+            "Result": "warning",
+            "BlogUrl": "http://isitcg.lisagardnerdesign.com/reset-your-curls-with-clarifying-ingredients/",
             "Rank":7,
             "Ingredients": [
                 "C14-16 Olefin sulfonate",
@@ -150,6 +145,12 @@
                 "Sodium c14-18 Olefin Sulfonate",
                 "Sodium c14-26 Olefin Sulfonate",
                 "Sodium c16-18 Olefin Sulfonate",
+                "sodium c 14-18 olefin sulfonate",
+                "sodium c 16-18 olefin sulfonate",
+                "sodium c12-14 olefin sulfonate",
+                "sodium c14-15 olefin sulfonate",
+                "sodium c14-16 olefin sulfonate",
+                "sodium c14-26 olefin sulfonate",
                 "Olefin sulfonate",
                 "Oliefin sulfonate",
                 "Tea Tree Oil",
@@ -163,6 +164,7 @@
                 "Paper Bark Tree", 
                 "Cajuput", 
                 "Tea Tree Extract",
+                "Melaleuca Alternifolia (Tea Tree) Leaf Oil",
                 "Eucalyptus",
                 "Lemongrass",
                 "CYMBOPOGON SCHOENANTHUS (LEMONGRASS) EXTRACT",
@@ -170,6 +172,9 @@
                 "Cymbopogon citratus",
                 "Citronella grass",
                 "Fever grass",
+                "Salix Nigra (Willow) Bark Extract",
+                "Willow Bark Extract",
+                "Willow Bark",
                 "Cymbopogon"
             ]
         },
@@ -353,6 +358,7 @@
                 "Butyrospermum Parkii (Shea) Butter",
                 "Butyrospermum Parkii (Shea) Butter Extract",
                 "Butyrospermum Parkii (Shea) Oil",
+                "Butyrospermum Parkii (Shea Butter)",
                 "Glycine Soja (Soybean) Oil"
             ]
         },

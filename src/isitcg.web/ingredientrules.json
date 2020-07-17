@@ -5,6 +5,7 @@
             "Description": "These ingredients are sulfates that should be avoided.",
             "Result": "danger",
             "Rank":1,
+            "BlogUrl": "https://isitcg.lisagardnerdesign.com/say-no-to-sulfates-and-silicones-for-juicy-curls/",
             "Ingredients": [
                 "Alkylbenzene sulfonates",
                 "Alkylbenzene sulphonates",
@@ -208,6 +209,7 @@
             "Description": "These ingredients are partially soluble silicones to avoid, but could possibly be shampooed out with a sulfate free shampoo (may build up and need a sulfate to remove.)",
             "Result": "warning",
             "Rank":10,
+            "BlogUrl": "https://isitcg.lisagardnerdesign.com/say-no-to-sulfates-and-silicones-for-juicy-curls/",
             "Ingredients": [
                 "Cyclomethicone",
                 "Cyclopentasiloxane",
@@ -223,6 +225,7 @@
             "Description": "These ingredients are silicones that should be avoided.",
             "Result": "danger",
             "Rank":2,
+            "BlogUrl": "https://isitcg.lisagardnerdesign.com/say-no-to-sulfates-and-silicones-for-juicy-curls/",
             "Ingredients": [
                 "Dimethicone",
                 "Bisaminopropyl dimethicone",

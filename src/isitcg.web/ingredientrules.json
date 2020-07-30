@@ -657,7 +657,7 @@
             ]
         },
         {
-            "Name": "Synthetic Preservatives",
+            "Name": "Preservatives",
             "Description": "Preservatives are added to products to prevent the growth of micro-organisms.",
             "Result": "success",
             "Rank":20,
@@ -667,15 +667,7 @@
                 "Sodium benzoate",
                 "Phenoxyethanol",
                 "Benzyl alcohol",
-                "BHT"
-            ]
-        },
-        {
-            "Name": "Naturally Derived Preservatives",
-            "Description": "Preservatives are added to products to prevent the growth of micro-organisms.",
-            "Result": "success",
-            "Rank":21,
-            "Ingredients": [
+                "BHT",
                 "Potassium sorbate",
                 "sorbic acid",
                 "Diammonium citrate",

@@ -85,13 +85,19 @@ Tests:
     - thrEE
   ExpectedRemainder: []
 
-- TestName: danger beats good
-  Ingredients: one, two, three
+- TestName: order by rank
+  Ingredients: one, two, three, four
   Rules:
-  - Result: one-result
+  - Result: good
+    Rank: 2
+    Ingredients:
+    - four
+  - Result: danger
+    Rank: 3
     Ingredients:
     - one
   - Result: danger
+    Rank: 1
     Ingredients:
     - two
   ExpectedResult: danger
@@ -99,76 +105,14 @@ Tests:
   - Result: danger
     Ingredients:
     - two
-  - Result: one-result
+  - Result: good
+    Ingredients:
+    - four
+  - Result: danger
     Ingredients:
     - one
   ExpectedRemainder:
     - three
-
-- TestName: danger beats warning
-  Ingredients: one, two, three
-  Rules:
-  - Result: warning
-    Ingredients:
-    - one
-  - Result: danger
-    Ingredients:
-    - two
-  ExpectedResult: danger
-  ExpectedMatches:
-  - Result: danger
-    Ingredients:
-    - two
-  - Result: warning
-    Ingredients:
-    - one
-  ExpectedRemainder:
-    - three
-
-- TestName: warning beats good
-  Ingredients: one, two, three
-  Rules:
-  - Result: one-result
-    Ingredients:
-    - one
-  - Result: warning
-    Ingredients:
-    - two
-  ExpectedResult: warning
-  ExpectedMatches:
-  - Result: warning
-    Ingredients:
-    - two
-  - Result: one-result
-    Ingredients:
-    - one
-  ExpectedRemainder:
-    - three
-
-- TestName: danger beats warning beats good
-  Ingredients: one, two, three
-  Rules:
-  - Result: one-result
-    Ingredients:
-    - one
-  - Result: warning
-    Ingredients:
-    - two
-  - Result: danger
-    Ingredients:
-    - three
-  ExpectedResult: danger
-  ExpectedMatches:
-  - Result: danger
-    Ingredients:
-    - three
-  - Result: warning
-    Ingredients:
-    - two
-  - Result: one-result
-    Ingredients:
-    - one
-  ExpectedRemainder: []
 
 - TestName: no match is a remainder
   Ingredients: one, two, three

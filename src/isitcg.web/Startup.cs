@@ -70,6 +70,7 @@ namespace isitcg
 
             var rewriter = new RewriteOptions();
             rewriter.AddDomainRedirect("isitcg.herokuapp.com", "www.isitcg.com");
+            rewriter.AddRedirect("blog/.*", "https://isitcg.lisagardnerdesign.com/");
             app.UseRewriter(rewriter);
 
             app.UseMvc(routes =>

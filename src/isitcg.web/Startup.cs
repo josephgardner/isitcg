@@ -16,7 +16,7 @@ namespace isitcg
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -49,11 +49,11 @@ namespace isitcg
                 c.GetRequiredService<IConnectionMultiplexer>().GetDatabase());
 
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(configuration => configuration.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {

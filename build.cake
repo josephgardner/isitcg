@@ -13,7 +13,7 @@ Task("Build")
 {
     var settings = new DotNetCoreBuildSettings
     {
-        Framework = "netcoreapp1.1.1",
+        Framework = "netcoreapp3.1",
         Configuration = "Release"
     };
 

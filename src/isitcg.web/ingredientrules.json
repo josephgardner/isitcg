@@ -70,7 +70,7 @@
             "Description": "These ingredients are gentle cleansers that you want to look for.",
             "Result": "success",
             "BlogUrl": "http://isitcg.lisagardnerdesign.com/gentle-cleansers/",
-            "Rank":5,
+            "Rank":16,
             "Ingredients": [
                 "ammonium cocoyl isethionate",
                 "babassuamidopropyl betaine",
@@ -114,7 +114,7 @@
             "Name": "Cleansing Agents",
             "Description": "These ingredients are cleansing agents that could potentially be drying, but are not as harsh as sulfates.",
             "Result": "warning",
-            "Rank":6,
+            "Rank":15,
             "Ingredients": [
                 "dioctyl sodium sulfosuccinate",
                 "disodium cocoyl glutamate",
@@ -137,7 +137,7 @@
             "Description": "Shampoos with clarifying ingredients remove product and oil build up. These ingredients are not as harsh as sulfates, but should be used sparingly (avg of two times/month)",
             "Result": "warning",
             "BlogUrl": "http://isitcg.lisagardnerdesign.com/reset-your-curls-with-clarifying-ingredients/",
-            "Rank":7,
+            "Rank":14,
             "Ingredients": [
                 "C14-16 Olefin sulfonate",
                 "Sodium c12-14 Olefin Sulfonate",
@@ -188,7 +188,7 @@
             "Name": "Chelating Agents",
             "Description": "These ingredients bind with metal ions or metallic compounds and prevent them from adhering to your hair. They work to detox your hair from mineral and potentially toxic metal build up. Products with these ingredients should be used sparingly - up to once a month.",
             "Result": "warning",
-            "Rank":8,
+            "Rank":13,
             "Ingredients": [
                 "Tetrasodium EDTA",
                 "disodium EDTA",
@@ -214,7 +214,7 @@
             "Name": "Silicones to Use with Caution",
             "Description": "These ingredients are partially soluble silicones to avoid, but could possibly be shampooed out with a sulfate free shampoo (may build up and need a sulfate to remove.)",
             "Result": "warning",
-            "Rank":10,
+            "Rank":5,
             "BlogUrl": "https://isitcg.lisagardnerdesign.com/say-no-to-sulfates-and-silicones-for-juicy-curls/",
             "Ingredients": [
                 "Cyclomethicone",
@@ -258,7 +258,7 @@
             "Name": "Water Soluble Silicones",
             "Description": "These are exceptions that are OK: (The raw ingredients dissolve in water and rinse off with plain water. Shampoo may or may not be necessary to remove products containing these ingredients).",
             "Result": "success",
-            "Rank":9,
+            "Rank":18,
             "Ingredients": [
                 "PEG-Dimethicone",
                 "Dimethicone Copolyol",
@@ -358,7 +358,7 @@
             "Name": "Oils to use with Caution",
             "Description": "These ingredients are oils that should be used with caution because they have the potential to build up and a cowash only routine might not be able to remove",
             "Result": "warning",
-            "Rank":3,
+            "Rank":9,
             "Ingredients": [
                 "Castor oil",
                 "Ricinus communis seed oil",
@@ -399,7 +399,7 @@
             "Name": "Moisturizing Alcohols",
             "Description": "These ingredients are moisturizing alcohols that you want to look for.",
             "Result": "success",
-            "Rank":11,
+            "Rank":19,
             "Ingredients": [
                 "Behenyl alcohol",
                 "Cetearyl alcohol",
@@ -418,7 +418,7 @@
             "Name": "Waxes",
             "Description": "These ingredients are waxes that are okay to use.",
             "Result": "success",
-            "Rank":12,
+            "Rank":20,
             "Ingredients": [
                 "Emulsifying Wax",
                 "emulsifying wax nf",
@@ -431,7 +431,8 @@
             "Name": "Botanical Ingredients - Extracts and Oils",
             "Description": "These ingredients originate from plants (herbs, roots, flowers, fruits, leaves or seeds) and provide a wide variety of benefits including: cleansing, stimulating, nourishing, refreshing, soothing, moisturizing, normalizing and deodorizing. Botanical ingredients may appear in other categories if they serve a specific purpose to the curly girl method",
             "Result": "success",
-            "Rank":12,
+            "Rank":21,
+            "BlogUrl": "https://isitcg.lisagardnerdesign.com/botanical-oils-and-extracts/",
             "Ingredients": [
                 "Achillea Millefolium Extract",
                 "Adansonia Digitata Seed Oil",
@@ -593,7 +594,7 @@
             "Name": "Proteins",
             "Description": "These ingredients are proteins that you can either avoid or look for, depending on your hair type. Some is good for the hair diet, especially damaged hair. However, normal hair, or protein sensitive hair could begin to feel stiff, frizzy, and dry, indicating your hair is getting too much protein.",
             "Result": "warning",
-            "Rank":14,
+            "Rank":6,
             "Ingredients": [
                 "Cocodimonium hydroxypropyl hydrolyzed casein",
                 "Cocodimonium hydroxypropyl hydrolyzed collagen",
@@ -645,7 +646,7 @@
             "Name": "Polyquats",
             "Description": "These ingredients could cause build up on finer, thin hair",
             "Result": "warning",
-            "Rank":17,
+            "Rank":8,
             "BlogUrl": "http://isitcg.lisagardnerdesign.com/not-all-polyquats-are-created-equal/",
             "Ingredients": [
                 "Polyquaternium-1",
@@ -740,7 +741,7 @@
             "Name": "Conditioning Agents",
             "Description": "These ingredients are Cationic Surfactants that can be an effective mild cleanser in a conditioner or as film-forming conditioning agents. They are water soluble, but some can build up over time.",
             "Result": "warning",
-            "Rank":13,
+            "Rank":10,
             "Ingredients": [
                 "Caprylyl Glycol",
                 "guar hydroxypropyltrimonium chloride",
@@ -769,7 +770,7 @@
             "Name": "Parabens",
             "Description": "These ingredients are OK if you want to use them. There is nothing in them that will build up in your hair. Some believe they are a higher cancer risk and choose to avoid them. It's a personal choice",
             "Result": "warning",
-            "Rank":18,
+            "Rank":11,
             "Ingredients": [
                 "Preservatives",
                 "methylparaben",
@@ -784,7 +785,7 @@
             "Name": "Itchy M's",
             "Description": "These ingredients are preservatives from the family of substances called Isothiozalinones and are added to products to prevent the growth of micro-organisms. These ingredients should be avoided if you have sensitive skin, as they can make your scalp itchy and irritated",
             "Result": "warning",
-              "Rank":19,
+              "Rank":12,
             "BlogUrl": "http://isitcg.lisagardnerdesign.com/itchy-ms/",
             "Ingredients": [
                 "Methylchloroisothiazolinone",
@@ -800,7 +801,7 @@
             "Name": "Preservatives",
             "Description": "Preservatives are added to products to prevent the growth of micro-organisms.",
             "Result": "success",
-            "Rank":20,
+            "Rank":22,
             "Ingredients": [
                 "phenoxyethanol",
                 "Isothiazolinone",
@@ -831,7 +832,7 @@
             "Name": "Humectants",
             "Description": "A humectant absorbs moisture and keeps a moisture balance in the hair and skin. Humectants will search for moisture in your own hair too. Therefore, in areas where it may be hot, but dry, these products may actually do more bad than good. In the right condition, humectants are materials used in products to moisturize dry or damaged hair.",
             "Result": "warning",
-            "Rank":14,
+            "Rank":7,
             "Ingredients": [
                 "Glycerin",
                 "Glycerine",
@@ -855,7 +856,7 @@
             "Name": "Film Forming Humectants",
             "Description": "Film forming humectants are excellent moisturizing ingredients that form a film over the hair and will help resist dehydration. These ingredients are safe to use in low dew points.",
             "Result": "success",
-            "Rank":15,
+            "Rank":17,
             "BlogUrl": "http://isitcg.lisagardnerdesign.com/new-category-film-forming-humectants/",
             "Ingredients": [
                 "Aloe Barbadensis Leaf Extract",

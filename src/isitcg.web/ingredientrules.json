@@ -457,6 +457,7 @@
                 "Certified Organic Blueberry Fruit Extract",
                 "Brassica Oleracea Italica (Broccoli) Seed Oil",
                 "CALENDULA OFFICINALIS FLOWER EXTRACT",
+                "CINNAMOMUM CASSIA BARK OIL",
                 "Vaccinium Macrocarpon (Cranberry) Seed Oil",
                 "Camellia Sinensis (Green Tea) Leaf Extract",
                 "Camerllia Sinesis (Green Tea) Leaf Extract",
@@ -578,6 +579,7 @@
                 "Styrax Tonkinensis (Benzoin) Resin Extract",
                 "Sweet almond oil",
                 "Prunus Amygdalus Dulcis (Sweet Almond) Oil",
+                "PRUNUS AMYGDALUS DULCIS (SWEET ALMOND) FRUIT EXTRACT",
                 "Prunus Amygdalus Dulcis Oil",
                 "PRUNUS AMYGDALUS DULCIS (SWEET ALMOND) SEED EXTRACT",
                 "Sunflower Seed Oil",
@@ -587,7 +589,8 @@
                 "Thymus Vulgaris (Thyme) Extract",
                 "Trichilia Emetica Seed Butter",
                 "Nigella Sativa (Virgin Black Cumin) Oil",
-                "Prunus Serotina (Wild Cherry) Bark Extract"
+                "Prunus Serotina (Wild Cherry) Bark Extract",
+                "SCLEROCARYA BIRREA SEED OIL"
             ]
         },
         {
@@ -638,7 +641,8 @@
                 "Hydrolyzed Barley Protein",
                 "Hydrolyzed Adansonia Digitata (Baobab) Seed Protein",
                 "Hydrolyzed Keratin Protein",
-                "Hydrolyzed Yeast"
+                "Hydrolyzed Yeast",
+                "HYDROLYZED JOJOBA ESTERS"
 
             ]
         },
@@ -845,6 +849,7 @@
                 "Sodium PCA",
                 "Fructose",
                 "Mel (Manuka Honey)",
+                "HONEY/MEL/MIEL",
                 "Vegetable Glycerin",
                 "Glycerin (Vegetable)",
                 "GLYCERYL MONOSTEARATE",

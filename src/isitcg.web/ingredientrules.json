@@ -62,7 +62,8 @@
                 "tea-dodecylbenzenesulfonate",
                 "tea-dodecylbenzenesulphonate",
                 "triethanolamine lauryl sulfate",
-                "triethanolamine lauryl sulphate"
+                "triethanolamine lauryl sulphate",
+                "Sodium Sulfate"
             ]
         },
         {
@@ -107,6 +108,8 @@
                 "sodium methyl cocoyl taurate",
                 "Sodium Methyl Oleoyl Taurate",
                 "Lauramidopropyl betaine"
+              
+
             ]
         },
         
@@ -128,7 +131,9 @@
                 "sodium lauryl methyl isothionate",
                 "sodium lauryl sarcosinate",
                 "sodium lauryl sulfoacetate",
-                "sodium myristoyl sarcosinate"
+                "sodium myristoyl sarcosinate",
+                "PEG-120 Methyl Glucose Dioleate",
+                "PPG-2 Hydroxyethyl Coco/Isostearamide"
             ]
         },
         
@@ -207,7 +212,8 @@
                 "Sodium gluconate",
                 "Sodium phytate",
                 "phytic acid",
-                "Oryza Sativa (Rice) Extract"
+                "Oryza Sativa (Rice) Extract",
+                "Trisodium Ethylenediamine Disuccinate"
             ]
         },
         {
@@ -261,6 +267,7 @@
             "Rank":18,
             "Ingredients": [
                 "PEG-Dimethicone",
+                "PEG-12 Dimethicone",
                 "Dimethicone Copolyol",
                 "Dimethicone-PG Diethylmonium Chloride",
                 "Quaternium-80", 
@@ -493,11 +500,13 @@
                 "Cocos Nucifera (Coconut) Water",
                 "Cocos Nucifera (Coconut) Fruit Juice",
                 "Cocos Nucifera (Coconut) Milk",
+                "Cocos Nucifera (Coconut) Fruit Extract",
                 "Certified Organic Coconut Oil",
                 "THEOBROMA CACAO (COCOA) SEED BUTTER",
                 "Coffea Arabica (Coffee) Seed Extract",
                 "Tussilago Farfara (Coltsfoot) Flower Extract",
                 "Cucumis Sativus (Cucumber) Fruit Extract",
+                "Daucus Carota Sativa (Carrot) Seed Oil",
                 "Echinacea Purpurea Extract",
                 "Ecklonia Radiata Extract",
                 "Equisetum Arvense Extract",
@@ -516,6 +525,8 @@
                 "Geranium Maculatum Oil",
                 "Humulus Lupulus (Hops) Extract",
                 "Jojoba Oil",
+                "Mentha Piperita (Peppermint) Leaf Extract",
+                "Moringa Oleifera Seed Oil",
                 "Simmondsia Chinensis (Jojoba) Seed Oil",
                 "Simmondsia Chinensis Seed Oil",
                 "Summondsia Chinensis (Jojoba) Seed Oil",
@@ -642,7 +653,8 @@
                 "Hydrolyzed Adansonia Digitata (Baobab) Seed Protein",
                 "Hydrolyzed Keratin Protein",
                 "Hydrolyzed Yeast",
-                "HYDROLYZED JOJOBA ESTERS"
+                "HYDROLYZED JOJOBA ESTERS",
+                "Hydrolyzed Corn Protein"
 
             ]
         },
@@ -749,6 +761,7 @@
             "Ingredients": [
                 "Caprylyl Glycol",
                 "guar hydroxypropyltrimonium chloride",
+                "Hydroxypropyl Guar Hydroxypropyltrimonium Chloride",
                 "Stearalkonium chloride",
                 "Cetrimonium chloride",
                 "Cetrimonium bromide",
@@ -768,6 +781,7 @@
                 "Isostearamidopropyl morpholine",
                 "Wheatgermamidopropyl dimethylamine",
                 "Behenamidopropyl dimethylamine"
+       
             ]
         },
         {
@@ -828,7 +842,8 @@
                 "Acetum (Vinegar)",
                 "acetic acid",
                 "Benzoic acid",
-                "Leuconostoc/Radish Root Ferment Filtrate"
+                "Leuconostoc/Radish Root Ferment Filtrate",
+                "Caprylhydroxamic Acid"
             ]
         },
         
@@ -854,7 +869,8 @@
                 "Glycerin (Vegetable)",
                 "GLYCERYL MONOSTEARATE",
                 "Glyceryl Stearate",
-                "Hexylene Glycol"
+                "Hexylene Glycol",
+                "Pentylene Glycol"
             ]
         },
         {
@@ -924,6 +940,7 @@
                 "Provitamin B5", 
                 "D-Panthenol", 
                 "DL-Panthenol", 
+                "Panthenyl Ethyl Ether",
                 "Provitamin B",
                 "Hydroxypropyltrimonium honey",
                 "Hydrolyzed silk protein",
@@ -952,7 +969,8 @@
                 "Silk Amino Acids",
                 "Wheat Amino Acids",
                 "Hydrolyzed pea protein",
-                "Keratin Amino Acids"
+                "Keratin Amino Acids",
+                "Diheptyl Succinate"
             ]
         },
        
@@ -1012,7 +1030,19 @@
                 "Ethylhexylglycerin",
                 "Glycol Stearate",
                 "C 12-15 Alkyl Benzoate",
-                "PEG 150 Pentaerythrityl Tetrastearate"
+                "PEG 150 Pentaerythrityl Tetrastearate",
+                "Tapioca Starch",
+                "Triethyl Citrate",
+                "Glyceryl Oleate",
+                "Ethylhexyl Methoxycinnamate",
+                "Sodium Hyaluronate",
+                "Stearic Acid",
+                "PEG-150 Distearate",
+                "Trideceth-6",
+                "C11-15 Pareth-7",
+                "Coconut Acid",
+                "Glycine",
+                "Maltodextrin"
             ]
         },
         {
@@ -1042,7 +1072,12 @@
                 "Salicylic Acid",
                 "Magnesium chloride",
                 "Amyl Cinnamal",
-                "Eugenol"
+                "Eugenol",
+                "Triethanolamine",
+                "Ascorbic Acid",
+                "Chlorphenesin",
+                "Hydroxyisohexyl 3-Cyclohexene Carboxaldehyde",
+                "Sodium Acetate"
 
             ]
         }

@@ -175,6 +175,7 @@
                 "Eucalyptus Globulus (Eucalyptus)",
                 "Eucalyptus Globulus (Eucalyptus) Oil",
                 "Eucalyptus Globulus Leaf Extract",
+                "Eucalyptus Globulus Extract",
                 "Lemongrass",
                 "Schoenanthus (Lemongrass) Extract",
                 "CYMBOPOGON SCHOENANTHUS (LEMONGRASS) EXTRACT",
@@ -186,6 +187,7 @@
                 "Willow Bark Extract",
                 "Willow Bark",
                 "Salix Alba (Willow Bark) Extract",
+                "SALIX ALBA (WILLOW) BARK EXTRACT",
                 "Cymbopogon"
             ]
         },
@@ -601,7 +603,15 @@
                 "Trichilia Emetica Seed Butter",
                 "Nigella Sativa (Virgin Black Cumin) Oil",
                 "Prunus Serotina (Wild Cherry) Bark Extract",
-                "SCLEROCARYA BIRREA SEED OIL"
+                "SCLEROCARYA BIRREA SEED OIL",
+                "Lactobacillus/Tomato Fruit Ferment Extract",
+                "Melissa Officinalis Leaf Extract",
+                "Salvia Hispanica Seed Oil",
+                "coco nucifera(coconut )oil",
+                "sclerotium gum Citrus Aurantium Amara (Bitter Orange) Flower Water",
+                "HIBISCUS EXTRACT",
+                "CAMELIA SINENSIS (GREEN TEA) LEAF EXTRACT",
+                "Beta Vulgaris (Beet) Root Extract"
             ]
         },
         {
@@ -654,7 +664,8 @@
                 "Hydrolyzed Keratin Protein",
                 "Hydrolyzed Yeast",
                 "HYDROLYZED JOJOBA ESTERS",
-                "Hydrolyzed Corn Protein"
+                "Hydrolyzed Corn Protein",
+                "Rice Amino Acids"
 
             ]
         },
@@ -843,7 +854,9 @@
                 "acetic acid",
                 "Benzoic acid",
                 "Leuconostoc/Radish Root Ferment Filtrate",
-                "Caprylhydroxamic Acid"
+                "Caprylhydroxamic Acid",
+                "phenoxyethanol (optiphen nd) caprylyl glycol",
+                "Gluconolactone"
             ]
         },
         
@@ -885,11 +898,16 @@
                 "ALOE LEAVES EXTRACT", 
                 "ALOE VERA LEAF EXTRACT",
                 "Certified Organic Aloe Barbadensis Leaf Juice",
+                "Aloe Barbadensis (Aloe Vera) Leaf Juice Powder",
+                "Aloe Barbadensis (Aloe Vera) Leaf Gel",
                 "BARBADOS ALOE EXTRACT", 
                 "CURACAO ALOE EXTRACT",
                 "Organic Aloe Vera Juice",
                 "Aqueous-Infused Extracts of Marshmallow",
+                "althaea officinalis (marshmallow) root extract",
                 "Nettle & Horsetail",
+                "Horsetail",
+                "Nettle and Marshmallow",
                 "EXTRACT OF ALOE",
                 "EXTRACT OF ALOE BARBADENSIS",
                 "EXTRACT OF ALOE LEAVES",
@@ -897,6 +915,7 @@
                 "Aloe",
                 "Aloe Vera Juice",
                 "Flaxseed oil",
+                "Linum Usitatissimum (Linseed/Flaxseed Extract)",
                 "Linseed Oil",
                 "Linum usitatissimum Seed Oil",
                 "Linseed seed oil",
@@ -914,6 +933,7 @@
                 "Zanthan Gum", 
                 "Xanthan",
                 "Guar Gum",
+                "Cyamop-sistetragonolobus (guar) gum sorbitol",
                 "Cyamopsis Tetragonoloba Gum", 
                 "Cyanopsis Tetragonalba",
                 "marsh mallow root",
@@ -927,6 +947,9 @@
                 "Irish Moss", 
                 "Carrageenan Gum",
                 "seaweed extract", 
+                "HYPNEA MUSCIFORMIS EXTRACT (SEAWEED)",
+                "GELIDIELLA ACEROSA EXTRACT (SEAWEED)",
+                "SARGASSUM FILIPENDULA (SEAWEED) EXTRACT",
                 "sea emollient", 
                 "sea algae", 
                 "sea vegetable",
@@ -1042,7 +1065,23 @@
                 "C11-15 Pareth-7",
                 "Coconut Acid",
                 "Glycine",
-                "Maltodextrin"
+                "Maltodextrin",
+                "Hydroxypropyl Starch Phosphate",
+                "Corn Starch Modified",
+                "Acyl Coenzyme A Desaturase",
+                "Magnesium Sulfate",
+                "Cetearyl Olivate",
+                "Sorbitan Olivate",
+                "Cellulose Gum",
+                "Microcrystalline Cellulose",
+                "Dionized water",
+                "corn starch",
+                "cyanocobalamin (vitamin b-12)",
+                "Calcium Gluconate",
+                "DEHYDROXANTHAN GUM",
+                "ACACIA GUM",
+                "Erythorbic Acid"
+                
             ]
         },
         {
@@ -1064,6 +1103,7 @@
                 "Butylphenyl Methylpropional",
                 "benzyl salicylate",
                 "Fragrance (Parfum)",
+                "fragance (parfum)",
                 "Sodium chloride",
                 "Diazolidinyl urea",
                 "Hydroxycitronellal",

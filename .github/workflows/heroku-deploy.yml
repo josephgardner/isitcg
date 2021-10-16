@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+      - name: Cake Action
+        uses: cake-build/cake-action@v1.3.0
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:

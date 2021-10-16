@@ -1,3 +1,3 @@
 # Is it CG?
 
-[![Build Status](https://travis-ci.org/josephgardner/isitcg.svg?branch=master)](https://travis-ci.org/josephgardner/isitcg)
+[![Deploy](https://github.com/josephgardner/isitcg/actions/workflows/heroku-deploy.yml/badge.svg)](https://github.com/josephgardner/isitcg/actions/workflows/heroku-deploy.yml)

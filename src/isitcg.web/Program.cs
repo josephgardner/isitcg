@@ -15,7 +15,6 @@ namespace isitcg
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .ConfigureLogging((hostingContext, logging) =>

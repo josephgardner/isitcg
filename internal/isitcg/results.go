@@ -5,7 +5,7 @@ type results struct {
 	ProductName string
 	Result      string
 	Remainder   []string
-	Matches     []rule
+	Matches     []Rule
 }
 
 func NewMatchResults(remainder []string) *results {

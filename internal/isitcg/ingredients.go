@@ -10,36 +10,37 @@ import (
 type ingredientHandler interface {
 	CreateHash(product string, ingredients string) string
 	ResultsFromHash(hash string) results
-	ProductFromHash(hash string) product
+	ResultsFromProduct(product Product) results
+	ProductFromHash(hash string) Product
 }
 
-type DefaultIngredientHandler struct {
-	rules []rule
+type defaultIngredientHandler struct {
+	rules []Rule
 }
 
-var _ ingredientHandler = (*DefaultIngredientHandler)(nil)
+var _ ingredientHandler = (*defaultIngredientHandler)(nil)
 
-func NewDefaultIngredientHandler(rules []rule) *DefaultIngredientHandler {
-	return &DefaultIngredientHandler{
+func NewIngredientHandler(rules []Rule) ingredientHandler {
+	return &defaultIngredientHandler{
 		rules: rules,
 	}
 }
 
-func (h DefaultIngredientHandler) CreateHash(productName, ingredients string) string {
-	product := product{Name: productName, Ingredients: ingredients}
+func (h defaultIngredientHandler) CreateHash(productName, ingredients string) string {
+	product := Product{Name: productName, Ingredients: ingredients}
 	json, _ := json.Marshal(product)
 	hash := Compress(string(json))
 	return hash
 }
 
-func (h DefaultIngredientHandler) ProductFromHash(hash string) product {
+func (h defaultIngredientHandler) ProductFromHash(hash string) Product {
 	j := Decompress(hash)
-	var product product
+	var product Product
 	json.Unmarshal([]byte(j), &product)
 	return product
 }
 
-func (h DefaultIngredientHandler) ResultsFromHash(hash string) results {
+func (h defaultIngredientHandler) ResultsFromHash(hash string) results {
 	product := h.ProductFromHash(hash)
 	results := h.ResultsFromProduct(product)
 	results.Hash = hash
@@ -54,7 +55,7 @@ func matchAny(str string, matchWords []string) bool {
 	return re.MatchString(str)
 }
 
-func (h DefaultIngredientHandler) ResultsFromProduct(product product) results {
+func (h defaultIngredientHandler) ResultsFromProduct(product Product) results {
 	results := results{
 		ProductName: product.Name,
 		Remainder:   product.Parts(),
@@ -68,7 +69,7 @@ func (h DefaultIngredientHandler) ResultsFromProduct(product product) results {
 			continue
 		}
 
-		newRule := rule{
+		newRule := Rule{
 			Name:        cur.Name,
 			Description: cur.Description,
 			BlogUrl:     cur.BlogUrl,

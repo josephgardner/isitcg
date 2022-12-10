@@ -18,9 +18,9 @@ type RuleTests struct {
 type RuleTest struct {
 	TestName          string   `yaml:"TestName"`
 	Ingredients       string   `yaml:"Ingredients"`
-	Rules             []rule   `yaml:"Rules"`
+	Rules             []Rule   `yaml:"Rules"`
 	ExpectedResult    string   `yaml:"ExpectedResult"`
-	ExpectedMatches   []rule   `yaml:"ExpectedMatches"`
+	ExpectedMatches   []Rule   `yaml:"ExpectedMatches"`
 	ExpectedRemainder []string `yaml:"ExpectedRemainder"`
 }
 
@@ -47,7 +47,7 @@ func TestRuleMatchesIngredient(t *testing.T) {
 	for _, c := range NewRuleTests().Tests {
 		t.Run(c.TestName, func(tt *testing.T) {
 			// Act
-			actual := NewDefaultIngredientHandler(c.Rules).ResultsFromProduct(product{
+			actual := NewIngredientHandler(c.Rules).ResultsFromProduct(Product{
 				Name:        "test",
 				Ingredients: c.Ingredients,
 			})

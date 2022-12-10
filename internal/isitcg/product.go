@@ -2,19 +2,19 @@ package isitcg
 
 import "strings"
 
-type product struct {
+type Product struct {
 	Name        string
 	Ingredients string
 }
 
-func NewProduct(name, ingredients string) *product {
-	return &product{
+func NewProduct(name, ingredients string) *Product {
+	return &Product{
 		Name:        name,
 		Ingredients: ingredients,
 	}
 }
 
-func (p *product) Parts() []string {
+func (p *Product) Parts() []string {
 	parts := strings.Split(p.Ingredients, ",")
 	for i, part := range parts {
 		part = strings.TrimSpace(part)

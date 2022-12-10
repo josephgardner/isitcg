@@ -2,15 +2,14 @@ package isitcg
 
 import (
 	"encoding/json"
-	"regexp"
 	"sort"
 	"strings"
 )
 
-type ingredientHandler interface {
+type IngredientHandler interface {
 	CreateHash(product string, ingredients string) string
-	ResultsFromHash(hash string) results
-	ResultsFromProduct(product Product) results
+	ResultsFromHash(hash string) Results
+	ResultsFromProduct(product Product) Results
 	ProductFromHash(hash string) Product
 }
 
@@ -18,9 +17,9 @@ type defaultIngredientHandler struct {
 	rules []Rule
 }
 
-var _ ingredientHandler = (*defaultIngredientHandler)(nil)
+var _ IngredientHandler = (*defaultIngredientHandler)(nil)
 
-func NewIngredientHandler(rules []Rule) ingredientHandler {
+func NewIngredientHandler(rules []Rule) IngredientHandler {
 	return &defaultIngredientHandler{
 		rules: rules,
 	}
@@ -40,7 +39,7 @@ func (h defaultIngredientHandler) ProductFromHash(hash string) Product {
 	return product
 }
 
-func (h defaultIngredientHandler) ResultsFromHash(hash string) results {
+func (h defaultIngredientHandler) ResultsFromHash(hash string) Results {
 	product := h.ProductFromHash(hash)
 	results := h.ResultsFromProduct(product)
 	results.Hash = hash
@@ -48,15 +47,16 @@ func (h defaultIngredientHandler) ResultsFromHash(hash string) results {
 }
 
 func matchAny(str string, matchWords []string) bool {
-	// Compile the regular expression to use for matching
-	re := regexp.MustCompile("(?i)(" + strings.Join(matchWords, "|") + ")")
-
-	// Find all matches in the input string
-	return re.MatchString(str)
+	for _, matchWord := range matchWords {
+		if strings.Contains(strings.ToLower(str), strings.ToLower(matchWord)) {
+			return true
+		}
+	}
+	return false
 }
 
-func (h defaultIngredientHandler) ResultsFromProduct(product Product) results {
-	results := results{
+func (h defaultIngredientHandler) ResultsFromProduct(product Product) Results {
+	results := Results{
 		ProductName: product.Name,
 		Remainder:   product.Parts(),
 		Result:      "good",

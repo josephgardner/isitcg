@@ -15,8 +15,8 @@ func main() {
 	if err != nil {
 		panic("failed to load rules")
 	}
-	isitcg.NewIngredientHandler(rules)
-	router := router(renderer())
+	ingredients := isitcg.NewIngredientHandler(rules)
+	router := router(ingredients, renderer())
 
 	wwwroot := http.FileServer(http.Dir("./static/"))
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", wwwroot))

@@ -1,6 +1,6 @@
 package isitcg
 
-type results struct {
+type Results struct {
 	Hash        string
 	ProductName string
 	Result      string
@@ -8,8 +8,8 @@ type results struct {
 	Matches     []Rule
 }
 
-func NewMatchResults(remainder []string) *results {
-	return &results{
+func NewMatchResults(remainder []string) *Results {
+	return &Results{
 		Remainder: remainder,
 		Result:    "good",
 	}

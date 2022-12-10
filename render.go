@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+
+	"github.com/josephgardner/isitcg/internal/isitcg"
 )
 
 const (
@@ -12,19 +14,19 @@ const (
 )
 
 type renders interface {
-	Index(w http.ResponseWriter, p product)
-	Results(w http.ResponseWriter, r results)
+	Index(w http.ResponseWriter, p isitcg.Product)
+	Results(w http.ResponseWriter, r isitcg.Results)
 }
 
 type rendersHtml struct {
 	views map[string]*template.Template
 }
 
-func (r *rendersHtml) Index(w http.ResponseWriter, p product) {
+func (r *rendersHtml) Index(w http.ResponseWriter, p isitcg.Product) {
 	r.render(TMPL_INDEX, w, p)
 }
 
-func (r *rendersHtml) Results(w http.ResponseWriter, res results) {
+func (r *rendersHtml) Results(w http.ResponseWriter, res isitcg.Results) {
 	r.render(TMPL_RESULTS, w, res)
 }
 
@@ -50,13 +52,4 @@ func loadTemplate(name string) *template.Template {
 		"./templates/base.html",
 		fmt.Sprintf("./templates/%s.html", name),
 	))
-}
-
-type product struct {
-	Name        string `json:"n,omitempty"`
-	Ingredients string `json:"i,omitempty"`
-}
-
-type results struct {
-	Result string
 }

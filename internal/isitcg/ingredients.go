@@ -58,8 +58,15 @@ func matchAny(str string, matchWords []string) bool {
 func (h defaultIngredientHandler) ResultsFromProduct(product Product) Results {
 	results := Results{
 		ProductName: product.Name,
+		Matches:     []Rule{},
 		Remainder:   product.Parts(),
 		Result:      "good",
+	}
+
+	if len(results.ProductName) != 0 {
+		results.SearchResult = results.ProductName
+	} else {
+		results.SearchResult = "curly girl method"
 	}
 
 	for _, cur := range h.rules {

@@ -1,16 +1,18 @@
-﻿{{define "title"}}Is It CG? - Results{{end}}
+{{define "title"}}Is It CG? - Results{{end}}
 {{define "content"}}
 <div class="titlebar">
-
     <div>
         <h1>
             {{if eq .Result "danger"}}
-            <span>Uh Oh, this product is not CG Approved.</span><br>
-            <p><a href="http://isitcg.lisagardnerdesign.com/favorite-products-2019/" target="_blank">No worries! click
-                    here to see some of our favorite products that are approved!</a></p>
+            <span>Uh Oh, this product is not CG Approved.</span><br />
+            <p>
+                <a href="http://isitcg.lisagardnerdesign.com/favorite-products-2019/" target="_blank">No worries! click
+                    here to see some of our favorite products that are
+                    approved!</a>
+            </p>
             {{else if eq .Result "warning"}}
-            <span>Congrats, this product is CG Approved, but contains some ingredients that may not work for
-                everyone!</span>
+            <span>Congrats, this product is CG Approved, but contains some ingredients
+                that may not work for everyone!</span>
             {{else}}
             <span>Congrats, this product is CG Approved!</span>
             {{end}}
@@ -24,7 +26,8 @@
         </a>
         {{end}}
         <a href="/" class="btn btn-primary btn-lg" role="button">
-            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
+            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start
+            Over
         </a>
     </p>
     {{if ne .ProductName ""}}
@@ -51,7 +54,6 @@
     </div>
 </div>
 
-
 {{range .Matches}}
 
 <div class="panel panel-{{.Result}}">
@@ -69,8 +71,8 @@
 
     <div class="panel-body">
         <h4 class="card-title">{{.Name}}</h4>
-        <p class="card-text">{{.Description}}
-            {{if ne .BlogUrl ""}}
+        <p class="card-text">
+            {{.Description}} {{if ne .BlogUrl ""}}
             <a href="{{.BlogUrl}}" target="_blank">(More info...)</a>
             {{end}}
         </p>
@@ -86,14 +88,15 @@
 
 {{end}}
 
-
 <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">Probably OK</div>
     <div class="panel-body">
         <h4 class="card-title">Remaining Ingredients</h4>
-        <p class="card-text">These ingredients are either OK to use, or weren't an exact match for those to
-            avoid.</p>
+        <p class="card-text">
+            These ingredients are either OK to use, or weren't an exact match for
+            those to avoid.
+        </p>
     </div>
 
     <!-- List group -->

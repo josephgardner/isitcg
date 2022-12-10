@@ -4,39 +4,32 @@
 
     <div>
         <h1>
-            @if (Model.Result == "danger")
-            {
+            {{if eq .Result "danger"}}
             <span>Uh Oh, this product is not CG Approved.</span><br>
-            <p> <a href="http://isitcg.lisagardnerdesign.com/favorite-products-2019/" target="_blank">No worries! click
+            <p><a href="http://isitcg.lisagardnerdesign.com/favorite-products-2019/" target="_blank">No worries! click
                     here to see some of our favorite products that are approved!</a></p>
-            }
-            else if (Model.Result == "warning")
-            {
+            {{else if eq .Result "warning"}}
             <span>Congrats, this product is CG Approved, but contains some ingredients that may not work for
                 everyone!</span>
-            }
-            else
-            {
+            {{else}}
             <span>Congrats, this product is CG Approved!</span>
-            }
-            </h3>
-            <p>See below for a breakdown of the ingredients</p>
+            {{end}}
+        </h1>
+        <p>See below for a breakdown of the ingredients</p>
     </div>
     <p>
-        @if (!string.IsNullOrEmpty(Model.Hash))
-        {
-        <a href="/edit/@Model.Hash" class="btn btn-primary btn-lg" role="button">
+        {{if ne .Hash ""}}
+        <a href="/edit/{{ .Hash }}" class="btn btn-primary btn-lg" role="button">
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
         </a>
-        }
+        {{end}}
         <a href="/" class="btn btn-primary btn-lg" role="button">
             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
         </a>
     </p>
-    @if (!string.IsNullOrEmpty(Model.ProductName))
-    {
-    <div class="productname">@Model.ProductName</div>
-    }
+    {{if ne .ProductName ""}}
+    <div class="productname">{{.ProductName}}</div>
+    {{end}}
 </div>
 
 <div class="container">
@@ -48,7 +41,7 @@
             amzn_assoc_ad_type = "smart";
             amzn_assoc_marketplace = "amazon";
             amzn_assoc_region = "US";
-            amzn_assoc_default_search_phrase = "@Model.SearchResult()";
+            amzn_assoc_default_search_phrase = "{{.SearchResult}}";
             amzn_assoc_default_category = "Beauty";
             amzn_assoc_linkid = "e44f390874f79511be7ef180922c859f";
             amzn_assoc_design = "in_content";
@@ -59,47 +52,39 @@
 </div>
 
 
-@foreach (var match in Model.Matches)
-{
+{{range .Matches}}
 
-<div class="panel panel-@match.Result">
+<div class="panel panel-{{.Result}}">
     <!-- Default panel contents -->
 
     <div class="panel-heading">
-        @if (match.Result == "danger")
-        {
+        {{if eq .Result "danger"}}
         <span>Not CG Approved</span>
-        }
-        else if (match.Result == "warning")
-        {
+        {{else if eq .Result "warning"}}
         <span>CG Approved with caution</span>
-        }
-        else
-        {
+        {{else}}
         <span>CG Approved</span>
-        }
+        {{end}}
     </div>
 
     <div class="panel-body">
-        <h4 class="card-title">@match.Name</h4>
-        <p class="card-text">@match.Description
-            @if (!string.IsNullOrEmpty(match.BlogUrl))
-            {
-            <a href="@match.BlogUrl" target="_blank">(More info...)</a>
-            }
+        <h4 class="card-title">{{.Name}}</h4>
+        <p class="card-text">{{.Description}}
+            {{if ne .BlogUrl ""}}
+            <a href="{{.BlogUrl}}" target="_blank">(More info...)</a>
+            {{end}}
         </p>
     </div>
 
     <!-- List group -->
     <ul class="list-group">
-        @foreach (var item in @match.Ingredients)
-        {
-        <li class="list-group-item">@item</li>
-        }
+        {{range .Ingredients}}
+        <li class="list-group-item">{{.}}</li>
+        {{end}}
     </ul>
 </div>
 
-}
+{{end}}
 
 
 <div class="panel panel-primary">
@@ -113,10 +98,9 @@
 
     <!-- List group -->
     <ul class="list-group">
-        @foreach (var item in Model.Remainder)
-        {
-        <li class="list-group-item">@item</li>
-        }
+        {{range .Remainder}}
+        <li class="list-group-item">{{.}}</li>
+        {{end}}
     </ul>
 </div>
 <div class="container">
@@ -128,7 +112,7 @@
             amzn_assoc_ad_type = "smart";
             amzn_assoc_marketplace = "amazon";
             amzn_assoc_region = "US";
-            amzn_assoc_default_search_phrase = "@Model.SearchResult()";
+            amzn_assoc_default_search_phrase = "{{.SearchResult}}";
             amzn_assoc_default_category = "Beauty";
             amzn_assoc_linkid = "e44f390874f79511be7ef180922c859f";
             amzn_assoc_design = "in_content";

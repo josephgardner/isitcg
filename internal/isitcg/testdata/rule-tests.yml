@@ -171,10 +171,10 @@ Tests:
     Rules:
       - Result: one
         Ingredients:
-          - "alcohol"
+          - alcohol
       - Result: two
         Ingredients:
-          - "benzyl alcohol"
+          - Benzyl alcohol
     ExpectedResult: good
     ExpectedMatches:
       - Result: one

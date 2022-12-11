@@ -88,6 +88,7 @@
 
 {{end}}
 
+{{ if .Remainder }}
 <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">Probably OK</div>
@@ -106,6 +107,8 @@
         {{end}}
     </ul>
 </div>
+{{end}}
+
 <div class="container">
     <div class="center">
         <script type="text/javascript">

@@ -47,9 +47,12 @@ func (h defaultIngredientHandler) ResultsFromHash(hash string) Results {
 }
 
 func matchAny(str string, matchWords []string) bool {
-	for _, matchWord := range matchWords {
-		if strings.Contains(strings.ToLower(str), strings.ToLower(matchWord)) {
-			return true
+	parts := strings.Split(strings.ToLower(str), "/")
+	for _, part := range parts {
+		for _, matchWord := range matchWords {
+			if strings.Contains(strings.ToLower(matchWord), part) {
+				return true
+			}
 		}
 	}
 	return false

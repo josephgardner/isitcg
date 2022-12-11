@@ -1,167 +1,186 @@
 ---
 Tests:
-- TestName: Simplest test
-  Ingredients: one, two, three
-  Rules:
-  - Result: one-result
-    Ingredients:
-    - one
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: one-result
-    Ingredients:
-    - one
-  ExpectedRemainder:
-    - two
-    - three
+  - TestName: Simplest test
+    Ingredients: one, two, three
+    Rules:
+      - Result: one-result
+        Ingredients:
+          - one
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: one-result
+        Ingredients:
+          - one
+    ExpectedRemainder:
+      - two
+      - three
 
-- TestName: split on comma
-  Ingredients: one, two, three
-  Rules:
-  - Result: comma-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: comma-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedRemainder: []
-  
-- TestName: trims whitespace
-  Ingredients: |
-       one,            two,
-              three     
-  Rules:
-  - Result: trim-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: trim-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedRemainder: []
+  - TestName: split on comma
+    Ingredients: one, two, three
+    Rules:
+      - Result: comma-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: comma-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedRemainder: []
 
-- TestName: trims periods
-  Ingredients: .one., .two., .three.
-  Rules:
-  - Result: comma-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: comma-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedRemainder: []
+  - TestName: trims whitespace
+    Ingredients: |
+      one,            two,
+             three
+    Rules:
+      - Result: trim-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: trim-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedRemainder: []
 
-- TestName: rule ignores case
-  Ingredients: ONE, Two, thrEE
-  Rules:
-  - Result: comma-result
-    Ingredients:
-    - one
-    - two
-    - three
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: comma-result
-    Ingredients:
-    - ONE
-    - Two
-    - thrEE
-  ExpectedRemainder: []
+  - TestName: trims periods
+    Ingredients: .one., .two., .three.
+    Rules:
+      - Result: comma-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: comma-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedRemainder: []
 
-- TestName: order by rank
-  Ingredients: one, two, three, four
-  Rules:
-  - Result: good
-    Rank: 2
-    Ingredients:
-    - four
-  - Result: danger
-    Rank: 3
-    Ingredients:
-    - one
-  - Result: danger
-    Rank: 1
-    Ingredients:
-    - two
-  ExpectedResult: danger
-  ExpectedMatches:
-  - Result: danger
-    Ingredients:
-    - two
-  - Result: good
-    Ingredients:
-    - four
-  - Result: danger
-    Ingredients:
-    - one
-  ExpectedRemainder:
-    - three
+  - TestName: rule ignores case
+    Ingredients: ONE, Two, thrEE
+    Rules:
+      - Result: comma-result
+        Ingredients:
+          - one
+          - two
+          - three
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: comma-result
+        Ingredients:
+          - ONE
+          - Two
+          - thrEE
+    ExpectedRemainder: []
 
-- TestName: no match is a remainder
-  Ingredients: one, two, three
-  Rules: []
-  ExpectedResult: good
-  ExpectedMatches: []
-  ExpectedRemainder:
-    - one
-    - two
-    - three
+  - TestName: order by rank
+    Ingredients: one, two, three, four
+    Rules:
+      - Result: good
+        Rank: 2
+        Ingredients:
+          - four
+      - Result: danger
+        Rank: 3
+        Ingredients:
+          - one
+      - Result: danger
+        Rank: 1
+        Ingredients:
+          - two
+    ExpectedResult: danger
+    ExpectedMatches:
+      - Result: danger
+        Ingredients:
+          - two
+      - Result: good
+        Ingredients:
+          - four
+      - Result: danger
+        Ingredients:
+          - one
+    ExpectedRemainder:
+      - three
 
-- TestName: match with slashes
-  Ingredients: "one/two/three"
-  Rules:
-  - Result: slash-result
-    Ingredients:
-    - "one/two/three"
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: slash-result
-    Ingredients:
-    - "one/two/three"
-  ExpectedRemainder: []
+  - TestName: no match is a remainder
+    Ingredients: one, two, three
+    Rules: []
+    ExpectedResult: good
+    ExpectedMatches: []
+    ExpectedRemainder:
+      - one
+      - two
+      - three
 
-- TestName: match slashes one part
-  Ingredients: "one/two/three"
-  Rules:
-  - Result: two-result
-    Ingredients:
-    - "two"
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: two-result
-    Ingredients:
-    - "one/two/three"
-  ExpectedRemainder: []
+  - TestName: match with slashes
+    Ingredients: "one/two/three"
+    Rules:
+      - Result: slash-result
+        Ingredients:
+          - "one/two/three"
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: slash-result
+        Ingredients:
+          - "one/two/three"
+    ExpectedRemainder: []
 
-- TestName: match slashes two parts
-  Ingredients: "one/two/three"
-  Rules:
-  - Result: one-result
-    Ingredients:
-    - "one"
-  - Result: two-result
-    Ingredients:
-    - "two"
-  ExpectedResult: good
-  ExpectedMatches:
-  - Result: one-result
-    Ingredients:
-    - "one/two/three"
-  ExpectedRemainder: []
+  - TestName: match slashes one part
+    Ingredients: "one/two/three"
+    Rules:
+      - Result: two-result
+        Ingredients:
+          - "two"
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: two-result
+        Ingredients:
+          - "one/two/three"
+    ExpectedRemainder: []
+
+  - TestName: match slashes two parts
+    Ingredients: "one/two/three"
+    Rules:
+      - Result: one-result
+        Ingredients:
+          - "one"
+      - Result: two-result
+        Ingredients:
+          - "two"
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: one-result
+        Ingredients:
+          - "one/two/three"
+    ExpectedRemainder: []
+
+  - TestName: match more descriptive
+    Ingredients: "alcohol, benzyl alcohol"
+    Rules:
+      - Result: one
+        Ingredients:
+          - "alcohol"
+      - Result: two
+        Ingredients:
+          - "benzyl alcohol"
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: one
+        Ingredients:
+          - alcohol
+      - Result: two
+        Ingredients:
+          - benzyl alcohol
+    ExpectedRemainder: []

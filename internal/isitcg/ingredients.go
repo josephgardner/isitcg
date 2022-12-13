@@ -2,6 +2,7 @@ package isitcg
 
 import (
 	"encoding/json"
+	"regexp"
 	"sort"
 	"strings"
 )
@@ -47,12 +48,17 @@ func (h defaultIngredientHandler) ResultsFromHash(hash string) Results {
 }
 
 func matchAny(str string, matchWords []string) bool {
+
 	low := strings.ToLower(str)
 	parts := strings.Split(low, "/")
 	parts = append([]string{low}, parts...)
+
+	regex := regexp.MustCompile(`(\[.*?\])|(\(.*?\))|-|\*|\s`)
 	for _, part := range parts {
 		for _, matchWord := range matchWords {
-			if strings.EqualFold(strings.ToLower(matchWord), part) {
+			s1 := regex.ReplaceAllString(matchWord, "")
+			s2 := regex.ReplaceAllString(part, "")
+			if strings.EqualFold(strings.ToLower(s1), s2) {
 				return true
 			}
 		}

@@ -184,3 +184,19 @@ Tests:
         Ingredients:
           - benzyl alcohol
     ExpectedRemainder: []
+
+  - TestName: ignore formatting
+    Ingredients: "*Foo, Fo - o, Fo (asdf) o, F [asdf] oo"
+    Rules:
+      - Result: one
+        Ingredients:
+          - foo
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: one
+        Ingredients:
+          - "*Foo"
+          - "Fo - o"
+          - "Fo (asdf) o"
+          - "F [asdf] oo"
+    ExpectedRemainder: []

@@ -15,11 +15,13 @@ func NewProduct(name, ingredients string) *Product {
 }
 
 func (p *Product) Parts() []string {
-	parts := strings.Split(p.Ingredients, ",")
-	for i, part := range parts {
+	parts := make([]string, 0)
+	for _, part := range strings.Split(p.Ingredients, ",") {
 		part = strings.TrimSpace(part)
 		part = strings.Trim(part, ".")
-		parts[i] = part
+		if len(part) > 0 {
+			parts = append(parts, part)
+		}
 	}
 	return parts
 }

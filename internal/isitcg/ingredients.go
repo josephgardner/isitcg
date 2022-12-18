@@ -53,7 +53,7 @@ func matchAny(str string, matchWords []string) bool {
 	parts := strings.Split(low, "/")
 	parts = append([]string{low}, parts...)
 
-	regex := regexp.MustCompile(`(\[.*?\])|(\(.*?\))|-|\*|\s`)
+	regex := regexp.MustCompile(`(\[.*?\])|(\(.*?\))|\W`)
 	for _, part := range parts {
 		for _, matchWord := range matchWords {
 			s1 := regex.ReplaceAllString(matchWord, "")

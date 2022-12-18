@@ -54,9 +54,9 @@ func TestRuleMatchesIngredient(t *testing.T) {
 
 			// Assert
 			assert.NotNil(tt, actual)
-			assert.Equal(tt, c.ExpectedResult, actual.Result)
-			assert.Equal(tt, c.ExpectedRemainder, actual.Remainder)
-			require.Equal(tt, len(c.ExpectedMatches), len(actual.Matches))
+			assert.Equal(tt, c.ExpectedResult, actual.Result, "expected result")
+			assert.Equal(tt, c.ExpectedRemainder, actual.Remainder, "expected remainder")
+			require.Equal(tt, len(c.ExpectedMatches), len(actual.Matches), "match length")
 			for i := 0; i < len(c.ExpectedMatches); i++ {
 				expectMatch := c.ExpectedMatches[i]
 				actualMatch := actual.Matches[i]

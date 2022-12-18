@@ -200,3 +200,35 @@ Tests:
           - "Fo (asdf) o"
           - "F [asdf] oo"
     ExpectedRemainder: []
+  - TestName: ignore invalid characters
+    Ingredients: "F!@#▓☺$%^o+=ѝண(asdf)-o, F   ǎṐ [ ண&*^%$asdf]~`oo  "
+    Rules:
+      - Result: one
+        Ingredients:
+          - foo
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: one
+        Ingredients:
+          - "F!@#▓☺$%^o+=ѝண(asdf)-o"
+          - "F   \ue003ǎṐ [ ண&*^%$asdf]~`oo"
+    ExpectedRemainder: []
+  - TestName: remainder only
+    Ingredients: "  ,,,,   , ,   , ண&*^%$       ,"
+    Rules:
+      - Result: one
+        Ingredients:
+          - foo
+    ExpectedResult: good
+    ExpectedMatches: []
+    ExpectedRemainder:
+      - "ண&*^%$"
+  - TestName: empty
+    Ingredients: ""
+    Rules:
+      - Result: one
+        Ingredients:
+          - foo
+    ExpectedResult: good
+    ExpectedMatches: []
+    ExpectedRemainder: []

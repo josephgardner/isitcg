@@ -20,6 +20,7 @@ func main() {
 
 	wwwroot := http.FileServer(http.Dir("./static/"))
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", wwwroot))
+	router.PathPrefix("/").Handler(wwwroot)
 
 	port, ok := os.LookupEnv("PORT")
 	if !ok {

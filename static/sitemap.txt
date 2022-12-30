@@ -1,4 +1,4 @@
-http://www.isitcg.com
-http://www.isitcg.com/blog/
-http://www.isitcg.com/blog/posts/intro/
-http://www.isitcg.com/blog/posts/tips/
+https://www.isitcg.com
+https://www.isitcg.com/blog/
+https://www.isitcg.com/blog/posts/intro/
+https://www.isitcg.com/blog/posts/tips/

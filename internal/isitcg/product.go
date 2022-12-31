@@ -3,8 +3,8 @@ package isitcg
 import "strings"
 
 type Product struct {
-	Name        string
-	Ingredients string
+	Name        string `json:"n"`
+	Ingredients string `json:"i"`
 }
 
 func NewProduct(name, ingredients string) *Product {

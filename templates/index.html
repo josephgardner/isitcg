@@ -1,0 +1,17 @@
+{{define "content"}}
+<div class="titlebar">
+    <h3 class="display-3">Enter ingredients</h3>
+    <p>1. Enter the name of the product.<br>
+        2. Enter the ingredients separated by commas. <br>
+        3. Click submit to see if it is Curly Girl (CG) Approved!</p>
+</div>
+<div class="main">
+    <form method="post" action="/">
+        <input type="text" name="productname" placeholder="Product Name (optional)" size="100"
+            value="{{ .Name }}" /><br>
+        <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)" name="ingredients"
+            rows=10 cols=100>{{ .Ingredients }}</textarea>
+        <div><button type="submit" class="btn btn-secondary btn-lg">Submit</button></div>
+    </form>
+</div>
+{{end}}

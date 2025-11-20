@@ -1,6 +1,6 @@
 module github.com/josephgardner/isitcg
 
-go 1.22
+go 1.21
 
 require (
 	github.com/gorilla/handlers v1.5.1

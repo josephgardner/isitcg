@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -11,7 +12,7 @@ const (
 	ROUTE_VIEW = "view"
 )
 
-func router(ingredientHandler isitcg.IngredientHandler, renders renders) *mux.Router {
+func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter isitcg.Counter) *mux.Router {
 
 	router := mux.NewRouter()
 
@@ -49,6 +50,7 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders) *mux.Ro
 		Methods(http.MethodGet).
 		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			res := ingredientHandler.ResultsFromHash(mux.Vars(r)["hash"])
+			counter.Count(context.Background(), res)
 			renders.Results(w, res)
 		})
 

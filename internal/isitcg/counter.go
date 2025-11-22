@@ -2,12 +2,23 @@ package isitcg
 
 import (
 	"context"
+	"crypto/sha256"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 )
+
+// normalizeProductName normalizes a product name for consistent hashing
+func normalizeProductName(name string) string {
+	name = strings.TrimSpace(name)
+	name = strings.ToLower(name)
+	// Collapse multiple spaces into one
+	fields := strings.Fields(name)
+	return strings.Join(fields, " ")
+}
 
 type Counter interface {
 	Count(ctx context.Context, results Results, clientIP string) error
@@ -23,10 +34,19 @@ type redisCounter struct {
 
 func (c *redisCounter) Count(ctx context.Context, results Results, clientIP string) error {
 	if results.ProductName != "" {
+		// Normalize and hash product name for consistent keys
+		normalized := normalizeProductName(results.ProductName)
+		hash := fmt.Sprintf("%x", sha256.Sum256([]byte(normalized)))
+		hllKey := fmt.Sprintf("products:hll:%s", hash)
+
 		// Track unique IPs with HyperLogLog
-		hllKey := fmt.Sprintf("products:hll:%s", results.ProductName)
 		if err := c.db.PFAdd(ctx, hllKey, clientIP).Err(); err != nil {
 			log.Printf("failed to add IP to HLL for product %s: %v", results.ProductName, err)
+		}
+
+		// Set rolling TTL (90 days) - resets on each access
+		if err := c.db.Expire(ctx, hllKey, 90*24*time.Hour).Err(); err != nil {
+			log.Printf("failed to set TTL for HLL key %s: %v", hllKey, err)
 		}
 
 		// Update last-seen timestamp

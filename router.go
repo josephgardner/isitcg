@@ -3,10 +3,37 @@ package main
 import (
 	"context"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/josephgardner/isitcg/internal/isitcg"
 )
+
+// getClientIP extracts the client IP from the request,
+// checking X-Forwarded-For header first (for proxies like Dokku/nginx)
+func getClientIP(r *http.Request) string {
+	// Check X-Forwarded-For header (set by reverse proxies)
+	if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
+		// Take the first IP in the list
+		if idx := strings.Index(xff, ","); idx != -1 {
+			return strings.TrimSpace(xff[:idx])
+		}
+		return strings.TrimSpace(xff)
+	}
+
+	// Check X-Real-IP header
+	if xri := r.Header.Get("X-Real-IP"); xri != "" {
+		return xri
+	}
+
+	// Fall back to RemoteAddr
+	ip := r.RemoteAddr
+	// Strip port if present
+	if idx := strings.LastIndex(ip, ":"); idx != -1 {
+		ip = ip[:idx]
+	}
+	return ip
+}
 
 const (
 	ROUTE_VIEW = "view"
@@ -50,7 +77,8 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 		Methods(http.MethodGet).
 		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			res := ingredientHandler.ResultsFromHash(mux.Vars(r)["hash"])
-			counter.Count(context.Background(), res)
+			clientIP := getClientIP(r)
+			counter.Count(context.Background(), res, clientIP)
 			renders.Results(w, res)
 		})
 

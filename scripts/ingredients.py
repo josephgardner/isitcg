@@ -54,27 +54,47 @@ def cmd_update(dry_run=False):
     pending = [i for i in data.get("ingredients", []) if i["name"].lower() not in existing]
     prs = category_prs() if not dry_run else {}
 
-    # Build issue body
-    lines = [
-        "# Ingredient Suggestions\n",
-        "Check a box to include that ingredient in a PR. **Only check ONE category per ingredient.**\n",
-        "---\n"
-    ]
-
-    for item in sorted(pending, key=lambda x: -x.get("count", 0)):
-        lines.append(f"### {item['name']}\n*Seen {item.get('count', 0)} times*\n")
-
+    # Group ingredients by category and track which categories each ingredient appears in
+    by_category = {}
+    ing_categories = {}  # ingredient name -> list of categories
+    for item in pending:
+        name = item['name']
+        count = item.get('count', 0)
         for sug in item.get("suggested_categories", []):
             cat = sug["category"]
             conf = int(sug.get("confidence", 0) * 100)
-            pr_num = prs.get(slugify(cat))
+            reason = sug.get('reason', '')
+            by_category.setdefault(cat, []).append({
+                "name": name, "count": count, "conf": conf, "reason": reason
+            })
+            ing_categories.setdefault(name, []).append(cat)
+
+    # Sort categories by total ingredient count
+    sorted_cats = sorted(by_category.items(), key=lambda x: -sum(i["count"] for i in x[1]))
+
+    # Build issue body
+    lines = [
+        "# Ingredient Suggestions\n",
+        "Check ingredients to add to each category.\n",
+    ]
+
+    for cat, ingredients in sorted_cats:
+        pr_num = prs.get(slugify(cat))
+        pr_link = f" ([PR #{pr_num}](../../pull/{pr_num}))" if pr_num else ""
+        lines.append(f"## {cat}{pr_link}\n")
+
+        for ing in sorted(ingredients, key=lambda x: -x["count"]):
             check = "[x]" if pr_num else "[ ]"
-            link = f" [PR #{pr_num}](../../pull/{pr_num})" if pr_num else ""
+            # Add links to other categories this ingredient appears in
+            other_cats = [c for c in ing_categories[ing['name']] if c != cat]
+            alt_links = " ⊕ " + ", ".join(f"[{c}]" for c in other_cats) if other_cats else ""
+            lines.append(f"- {check} **{ing['name']}** ({ing['count']}x, {ing['conf']}%) - {ing['reason']}{alt_links}")
 
-            lines.append(f"- {check} **{cat}** ({conf}%){link}")
-            lines.append(f"  - {sug.get('reason', '')}\n")
+        lines.append("")
 
-        lines.append("---\n")
+    # Add reference-style links at the end
+    for cat, _ in sorted_cats:
+        lines.append(f"[{cat}]: #{slugify(cat)}")
 
     body = "\n".join(lines) if pending else "*No pending ingredients.*"
 

@@ -1,0 +1,30 @@
+name: Sync Ingredient PRs
+
+on:
+  issues:
+    types: [edited]
+
+concurrency:
+  group: ingredient-sync
+  cancel-in-progress: true
+
+jobs:
+  sync-prs:
+    runs-on: ubuntu-latest
+    # Only run for the dashboard issue
+    if: contains(github.event.issue.title, 'Ingredient Suggestions Dashboard')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sync PRs with checkboxes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/ingredients.py sync

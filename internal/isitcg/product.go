@@ -16,12 +16,34 @@ func NewProduct(name, ingredients string) *Product {
 
 func (p *Product) Parts() []string {
 	parts := make([]string, 0)
-	for _, part := range strings.Split(p.Ingredients, ",") {
-		part = strings.TrimSpace(part)
-		part = strings.Trim(part, ".")
-		if len(part) > 0 {
-			parts = append(parts, part)
+	current := strings.Builder{}
+	depth := 0
+
+	for _, ch := range p.Ingredients {
+		if ch == '(' {
+			depth++
+			current.WriteRune(ch)
+		} else if ch == ')' {
+			depth--
+			current.WriteRune(ch)
+		} else if ch == ',' && depth == 0 {
+			part := strings.TrimSpace(current.String())
+			part = strings.Trim(part, ".")
+			if len(part) > 0 {
+				parts = append(parts, part)
+			}
+			current.Reset()
+		} else {
+			current.WriteRune(ch)
 		}
 	}
+
+	// Don't forget the last part
+	part := strings.TrimSpace(current.String())
+	part = strings.Trim(part, ".")
+	if len(part) > 0 {
+		parts = append(parts, part)
+	}
+
 	return parts
 }

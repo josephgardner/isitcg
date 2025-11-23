@@ -232,3 +232,22 @@ Tests:
     ExpectedResult: good
     ExpectedMatches: []
     ExpectedRemainder: []
+
+  - TestName: preserve commas in parentheses
+    Ingredients: "Water (Aqua, Eau), Glycerin"
+    Rules:
+      - Result: water-result
+        Ingredients:
+          - water
+      - Result: glycerin-result
+        Ingredients:
+          - glycerin
+    ExpectedResult: good
+    ExpectedMatches:
+      - Result: water-result
+        Ingredients:
+          - "Water (Aqua, Eau)"
+      - Result: glycerin-result
+        Ingredients:
+          - "Glycerin"
+    ExpectedRemainder: []

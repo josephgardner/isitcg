@@ -3,8 +3,7 @@
 Ingredient suggestions management.
 
 Usage:
-  python scripts/ingredients.py update [--dry-run]  # Update dashboard issue
-  python scripts/ingredients.py sync [--dry-run]    # Sync PRs with checkboxes
+  python scripts/ingredients.py update [--dry-run]  # Create/update PRs for pending ingredients
 """
 
 import json, os, re, subprocess, sys
@@ -12,7 +11,6 @@ import requests
 
 API_URL = "https://analytics.apps.algoplay.com/api/ingredients/pending"
 RULES_FILE = "ingredientrules.json"
-ISSUE_TITLE = "Ingredient Suggestions Dashboard"
 
 def gh(*args):
     return subprocess.run(["gh", *args], capture_output=True, text=True)
@@ -32,108 +30,66 @@ def save_rules(data):
 def existing_ingredients():
     return {ing.lower() for rule in load_rules()["Rules"] for ing in rule["Ingredients"]}
 
-def find_issue():
-    result = gh("issue", "list", "--search", f'"{ISSUE_TITLE}" in:title', "--json", "number,title")
-    return next((i["number"] for i in json.loads(result.stdout) if i["title"] == ISSUE_TITLE), None)
-
 def category_prs():
+    """Get existing PRs mapped by category slug."""
     result = gh("pr", "list", "--json", "number,headRefName", "--limit", "500")
     if result.returncode != 0: return {}
     return {pr["headRefName"].replace("ingredient-suggestions/", ""): pr["number"]
             for pr in json.loads(result.stdout)
             if pr["headRefName"].startswith("ingredient-suggestions/")}
 
+def pr_last_author(pr_num):
+    """Get the login of the last commit author on a PR."""
+    result = gh("pr", "view", str(pr_num), "--json", "commits")
+    if result.returncode != 0: return None
+    commits = json.loads(result.stdout).get("commits", [])
+    if not commits: return None
+    authors = commits[-1].get("authors", [])
+    return authors[0].get("login") if authors else None
+
 
 def cmd_update(dry_run=False):
-    """Update the dashboard issue with pending ingredients."""
+    """Create/update PRs for pending ingredients."""
     api_key = os.environ.get("ANALYTICS_API_KEY")
     if not api_key: raise ValueError("ANALYTICS_API_KEY not set")
 
     data = requests.get(API_URL, headers={"X-API-Key": api_key}).json()
     existing = existing_ingredients()
     pending = [i for i in data.get("ingredients", []) if i["name"].lower() not in existing]
-    prs = category_prs() if not dry_run else {}
 
-    # Group ingredients by category and track which categories each ingredient appears in
+    # Group ingredients by their top suggested category
     by_category = {}
-    ing_categories = {}  # ingredient name -> list of categories
     for item in pending:
         name = item['name']
         count = item.get('count', 0)
-        for sug in item.get("suggested_categories", []):
-            cat = sug["category"]
-            conf = int(sug.get("confidence", 0) * 100)
-            reason = sug.get('reason', '')
-            by_category.setdefault(cat, []).append({
-                "name": name, "count": count, "conf": conf, "reason": reason
-            })
-            ing_categories.setdefault(name, []).append(cat)
+        suggestions = item.get("suggested_categories", [])
+        if not suggestions:
+            continue
+        # Use first (highest confidence) suggestion for grouping
+        top = suggestions[0]
+        cat = top["category"]
+        by_category.setdefault(cat, []).append({
+            "name": name,
+            "count": count,
+            "suggestions": suggestions  # Keep all suggestions for PR body
+        })
 
-    # Sort categories by total ingredient count
-    sorted_cats = sorted(by_category.items(), key=lambda x: -sum(i["count"] for i in x[1]))
-
-    # Build issue body
-    lines = [
-        "# Ingredient Suggestions\n",
-        "Check ingredients to add to each category.\n",
-    ]
-
-    for cat, ingredients in sorted_cats:
-        pr_num = prs.get(slugify(cat))
-        pr_link = f" ([PR #{pr_num}](../../pull/{pr_num}))" if pr_num else ""
-        lines.append(f"## {cat}{pr_link}\n")
-
-        for ing in sorted(ingredients, key=lambda x: -x["count"]):
-            check = "[x]" if pr_num else "[ ]"
-            # Add links to other categories this ingredient appears in
-            other_cats = [c for c in ing_categories[ing['name']] if c != cat]
-            alt_links = " ⊕ " + ", ".join(f"[{c}]" for c in other_cats) if other_cats else ""
-            lines.append(f"- {check} **{ing['name']}** ({ing['count']}x, {ing['conf']}%) - {ing['reason']}{alt_links}")
-
-        lines.append("")
-
-    # Add reference-style links at the end
-    for cat, _ in sorted_cats:
-        lines.append(f"[{cat}]: #{slugify(cat)}")
-
-    body = "\n".join(lines) if pending else "*No pending ingredients.*"
-
-    if dry_run:
-        print(body)
+    if not by_category:
+        print("No pending ingredients to process")
         return
-
-    issue_num = find_issue()
-    if issue_num:
-        gh("issue", "edit", str(issue_num), "--body", body)
-        print(f"Updated issue #{issue_num}")
-    else:
-        result = gh("issue", "create", "--title", ISSUE_TITLE, "--body", body)
-        print(f"Created: {result.stdout.strip()}")
-
-
-def cmd_sync(dry_run=False):
-    """Sync PRs with checkbox state."""
-    issue_num = find_issue()
-    if not issue_num: return print("Dashboard issue not found")
-
-    body = json.loads(gh("issue", "view", str(issue_num), "--json", "body").stdout)["body"]
-
-    # Parse checked items grouped by category
-    by_category = {}
-    current_ing = None
-    for line in body.split("\n"):
-        if m := re.match(r"^### (.+)$", line):
-            current_ing = m.group(1).strip()
-        elif (m := re.match(r"^- \[x\] \*\*(.+?)\*\*", line)) and current_ing:
-            by_category.setdefault(m.group(1).strip(), []).append(current_ing)
 
     print(f"Found {sum(len(v) for v in by_category.values())} ingredients in {len(by_category)} categories")
 
     if dry_run:
-        for cat, ingredients in by_category.items():
+        for cat, ingredients in sorted(by_category.items()):
             print(f"\n{cat}:")
-            for ing in sorted(ingredients):
-                print(f"  - {ing}")
+            for ing in sorted(ingredients, key=lambda x: -x["count"]):
+                top = ing["suggestions"][0]
+                conf = int(top.get("confidence", 0) * 100)
+                print(f"  - {ing['name']} ({ing['count']}x, {conf}%) - {top.get('reason', '')}")
+                for alt in ing["suggestions"][1:]:
+                    alt_conf = int(alt.get("confidence", 0) * 100)
+                    print(f"      ⊕ {alt['category']} ({alt_conf}%) - {alt.get('reason', '')}")
         return
 
     git("config", "user.name", "github-actions[bot]")
@@ -141,41 +97,60 @@ def cmd_sync(dry_run=False):
 
     prs = category_prs()
 
-    # Create/update PRs
+    # Create/update PRs for each category
     for cat, ingredients in by_category.items():
         slug = slugify(cat)
         branch = f"ingredient-suggestions/{slug}"
+        pr_num = prs.get(slug)
+
+        # Check if PR was manually edited
+        if pr_num:
+            last_author = pr_last_author(pr_num)
+            if last_author and last_author != "github-actions[bot]":
+                print(f"Skipping {cat} - manually edited by {last_author}")
+                continue
 
         git("fetch", "origin", "main")
         git("checkout", "-B", branch, "origin/main")
 
         rules = load_rules()
+        ingredient_names = [ing["name"] for ing in ingredients]
         for rule in rules["Rules"]:
             if rule["Name"] == cat:
-                rule["Ingredients"] = sorted(set(rule["Ingredients"] + ingredients), key=str.lower)
+                rule["Ingredients"] = sorted(set(rule["Ingredients"] + ingredient_names), key=str.lower)
                 break
         save_rules(rules)
 
         git("add", RULES_FILE)
         if git("diff", "--cached", "--quiet").returncode == 0:
+            print(f"No changes for {cat}")
             continue
 
         git("commit", "-m", f"Add ingredients to {cat}")
         git("push", "-f", "origin", branch)
 
-        if slug not in prs:
-            ing_list = "\n".join(f"- {i}" for i in sorted(ingredients))
-            gh("pr", "create", "--title", f"Add ingredients: {cat}",
-               "--body", f"Adding to **{cat}**:\n\n{ing_list}", "--base", "main", "--head", branch)
-            print(f"Created PR for {cat}")
-        else:
-            print(f"Updated PR #{prs[slug]}")
+        # Build PR body with ingredient details
+        ing_lines = []
+        for ing in sorted(ingredients, key=lambda x: -x["count"]):
+            top = ing["suggestions"][0]
+            conf = int(top.get("confidence", 0) * 100)
+            ing_lines.append(f"- **{ing['name']}** ({ing['count']}x, {conf}%) - {top.get('reason', '')}")
+            for alt in ing["suggestions"][1:]:
+                alt_conf = int(alt.get("confidence", 0) * 100)
+                ing_lines.append(f"  - ⊕ {alt['category']} ({alt_conf}%) - {alt.get('reason', '')}")
+        ing_list = "\n".join(ing_lines)
 
-    # Close PRs for unchecked categories
-    for slug, pr_num in prs.items():
-        if slug not in {slugify(c) for c in by_category}:
-            gh("pr", "close", str(pr_num), "--delete-branch")
-            print(f"Closed PR #{pr_num}")
+        if not pr_num:
+            result = gh("pr", "create",
+                "--title", f"Add ingredients: {cat}",
+                "--body", f"Adding to **{cat}**:\n\n{ing_list}",
+                "--base", "main",
+                "--head", branch)
+            print(f"Created PR for {cat}: {result.stdout.strip()}")
+        else:
+            # Update existing PR body
+            gh("pr", "edit", str(pr_num), "--body", f"Adding to **{cat}**:\n\n{ing_list}")
+            print(f"Updated PR #{pr_num} for {cat}")
 
     git("checkout", "main")
 
@@ -184,5 +159,4 @@ if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else None
     dry_run = "--dry-run" in sys.argv
     if cmd == "update": cmd_update(dry_run)
-    elif cmd == "sync": cmd_sync(dry_run)
     else: print(__doc__)

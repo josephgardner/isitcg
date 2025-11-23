@@ -3,8 +3,8 @@
 Ingredient suggestions management.
 
 Usage:
-  python scripts/ingredients.py update  # Update dashboard issue
-  python scripts/ingredients.py sync    # Sync PRs with checkboxes
+  python scripts/ingredients.py update [--dry-run]  # Update dashboard issue
+  python scripts/ingredients.py sync [--dry-run]    # Sync PRs with checkboxes
 """
 
 import json, os, re, subprocess, sys
@@ -44,7 +44,7 @@ def category_prs():
             if pr["headRefName"].startswith("ingredient-suggestions/")}
 
 
-def cmd_update():
+def cmd_update(dry_run=False):
     """Update the dashboard issue with pending ingredients."""
     api_key = os.environ.get("ANALYTICS_API_KEY")
     if not api_key: raise ValueError("ANALYTICS_API_KEY not set")
@@ -52,7 +52,7 @@ def cmd_update():
     data = requests.get(API_URL, headers={"X-API-Key": api_key}).json()
     existing = existing_ingredients()
     pending = [i for i in data.get("ingredients", []) if i["name"].lower() not in existing]
-    prs = category_prs()
+    prs = category_prs() if not dry_run else {}
 
     # Build issue body
     lines = [
@@ -78,6 +78,10 @@ def cmd_update():
 
     body = "\n".join(lines) if pending else "*No pending ingredients.*"
 
+    if dry_run:
+        print(body)
+        return
+
     issue_num = find_issue()
     if issue_num:
         gh("issue", "edit", str(issue_num), "--body", body)
@@ -87,7 +91,7 @@ def cmd_update():
         print(f"Created: {result.stdout.strip()}")
 
 
-def cmd_sync():
+def cmd_sync(dry_run=False):
     """Sync PRs with checkbox state."""
     issue_num = find_issue()
     if not issue_num: return print("Dashboard issue not found")
@@ -104,6 +108,13 @@ def cmd_sync():
             by_category.setdefault(m.group(1).strip(), []).append(current_ing)
 
     print(f"Found {sum(len(v) for v in by_category.values())} ingredients in {len(by_category)} categories")
+
+    if dry_run:
+        for cat, ingredients in by_category.items():
+            print(f"\n{cat}:")
+            for ing in sorted(ingredients):
+                print(f"  - {ing}")
+        return
 
     git("config", "user.name", "github-actions[bot]")
     git("config", "user.email", "github-actions[bot]@users.noreply.github.com")
@@ -151,6 +162,7 @@ def cmd_sync():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else None
-    if cmd == "update": cmd_update()
-    elif cmd == "sync": cmd_sync()
+    dry_run = "--dry-run" in sys.argv
+    if cmd == "update": cmd_update(dry_run)
+    elif cmd == "sync": cmd_sync(dry_run)
     else: print(__doc__)

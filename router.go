@@ -76,9 +76,12 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 		Path("/view/{hash}").
 		Methods(http.MethodGet).
 		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			res := ingredientHandler.ResultsFromHash(mux.Vars(r)["hash"])
+			hash := mux.Vars(r)["hash"]
+			product := ingredientHandler.ProductFromHash(hash)
+			res := ingredientHandler.ResultsFromProduct(product)
+			res.Hash = hash
 			clientIP := getClientIP(r)
-			counter.Count(context.Background(), res, clientIP)
+			counter.Count(context.Background(), product, res, clientIP)
 			renders.Results(w, res)
 		})
 

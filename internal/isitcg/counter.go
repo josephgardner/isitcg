@@ -3,25 +3,33 @@ package isitcg
 import (
 	"context"
 	"crypto/sha256"
+	"encoding/json"
 	"fmt"
 	"log"
-	"strings"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 )
 
-// normalizeProductName normalizes a product name for consistent hashing
-func normalizeProductName(name string) string {
-	name = strings.TrimSpace(name)
-	name = strings.ToLower(name)
-	// Collapse multiple spaces into one
-	fields := strings.Fields(name)
-	return strings.Join(fields, " ")
+// Submission represents data pushed to analytics inbox
+type Submission struct {
+	ProductName        string   `json:"product_name"`
+	Ingredients        string   `json:"ingredients"`
+	IPHash             string   `json:"ip_hash"`
+	Timestamp          int64    `json:"timestamp"`
+	UnknownIngredients []string `json:"unknown_ingredients"`
 }
 
+// Size limits
+const (
+	maxProductName = 100
+	maxIngredients = 5000
+	maxUnknown     = 50
+	maxInboxSize   = 10000 // Max submissions in inbox before oldest are dropped
+)
+
 type Counter interface {
-	Count(ctx context.Context, results Results, clientIP string) error
+	Count(ctx context.Context, product Product, results Results, clientIP string) error
 }
 
 func NewRedisCounter(db *redis.Client) Counter {
@@ -32,39 +40,54 @@ type redisCounter struct {
 	db *redis.Client
 }
 
-func (c *redisCounter) Count(ctx context.Context, results Results, clientIP string) error {
-	if results.ProductName != "" {
-		// Normalize and hash product name for consistent keys
-		normalized := normalizeProductName(results.ProductName)
-		hash := fmt.Sprintf("%x", sha256.Sum256([]byte(normalized)))
-		hllKey := fmt.Sprintf("products:hll:%s", hash)
+func truncateString(s string, maxLen int) string {
+	if len(s) > maxLen {
+		return s[:maxLen]
+	}
+	return s
+}
 
-		// Track unique IPs with HyperLogLog
-		if err := c.db.PFAdd(ctx, hllKey, clientIP).Err(); err != nil {
-			log.Printf("failed to add IP to HLL for product %s: %v", results.ProductName, err)
-		}
+func truncateSlice(s []string, maxLen int) []string {
+	if len(s) > maxLen {
+		return s[:maxLen]
+	}
+	return s
+}
 
-		// Set rolling TTL (90 days) - resets on each access
-		if err := c.db.Expire(ctx, hllKey, 90*24*time.Hour).Err(); err != nil {
-			log.Printf("failed to set TTL for HLL key %s: %v", hllKey, err)
-		}
-
-		// Update last-seen timestamp
-		if err := c.db.ZAdd(ctx, "products:recent", redis.Z{
-			Score:  float64(time.Now().Unix()),
-			Member: results.ProductName,
-		}).Err(); err != nil {
-			log.Printf("failed to update timestamp for product %s: %v", results.ProductName, err)
-		}
+func (c *redisCounter) Count(ctx context.Context, product Product, results Results, clientIP string) error {
+	if product.Name == "" || product.Ingredients == "" {
+		return nil
 	}
 
-	for _, ingredient := range results.Remainder {
-		if ingredient != "" {
-			if err := c.db.ZIncrBy(ctx, "ingredients:unknown", 1, ingredient).Err(); err != nil {
-				log.Printf("failed to increment unknown ingredient count for %s: %v", ingredient, err)
-				return err
-			}
-		}
+	// Hash client IP for privacy
+	ipHash := fmt.Sprintf("%x", sha256.Sum256([]byte(clientIP)))
+
+	// Build submission
+	submission := Submission{
+		ProductName:        truncateString(product.Name, maxProductName),
+		Ingredients:        truncateString(product.Ingredients, maxIngredients),
+		IPHash:             ipHash,
+		Timestamp:          time.Now().Unix(),
+		UnknownIngredients: truncateSlice(results.Remainder, maxUnknown),
+	}
+
+	// Marshal to JSON
+	data, err := json.Marshal(submission)
+	if err != nil {
+		log.Printf("failed to marshal submission: %v", err)
+		return err
+	}
+
+	// Push to inbox
+	if err := c.db.LPush(ctx, "submissions:inbox", data).Err(); err != nil {
+		log.Printf("failed to push to submissions inbox: %v", err)
+		return err
+	}
+
+	// Trim to max size (keep newest, drop oldest)
+	if err := c.db.LTrim(ctx, "submissions:inbox", 0, maxInboxSize-1).Err(); err != nil {
+		log.Printf("failed to trim submissions inbox: %v", err)
+		// Don't return error - push succeeded
 	}
 
 	return nil

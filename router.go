@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"strings"
 
@@ -81,6 +82,11 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 			res := ingredientHandler.ResultsFromProduct(product)
 			res.Hash = hash
 			clientIP := getClientIP(r)
+			log.Printf("DEBUG IP - X-Forwarded-For: %q, X-Real-IP: %q, RemoteAddr: %q, Result: %q",
+				r.Header.Get("X-Forwarded-For"),
+				r.Header.Get("X-Real-IP"),
+				r.RemoteAddr,
+				clientIP)
 			counter.Count(context.Background(), product, res, clientIP)
 			renders.Results(w, res)
 		})

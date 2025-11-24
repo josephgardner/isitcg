@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"net/http"
 	"strings"
 
@@ -57,15 +56,21 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			if err := r.ParseForm(); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
 			}
 
-			if url, err := router.Get(ROUTE_VIEW).URL(
-				"hash",
-				ingredientHandler.CreateHash(
-					r.PostFormValue("productname"),
-					r.PostFormValue("ingredients"),
-				),
-			); err != nil {
+			productName := r.PostFormValue("productname")
+			ingredients := r.PostFormValue("ingredients")
+
+			hash := ingredientHandler.CreateHash(productName, ingredients)
+
+			// Count on POST (not GET) to avoid bot traffic
+			product := ingredientHandler.ProductFromHash(hash)
+			res := ingredientHandler.ResultsFromProduct(product)
+			clientIP := getClientIP(r)
+			counter.Count(context.Background(), product, res, clientIP)
+
+			if url, err := router.Get(ROUTE_VIEW).URL("hash", hash); err != nil {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
 			} else {
 				http.Redirect(w, r, url.String(), http.StatusSeeOther)
@@ -81,13 +86,6 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 			product := ingredientHandler.ProductFromHash(hash)
 			res := ingredientHandler.ResultsFromProduct(product)
 			res.Hash = hash
-			clientIP := getClientIP(r)
-			log.Printf("DEBUG IP - X-Forwarded-For: %q, X-Real-IP: %q, RemoteAddr: %q, Result: %q",
-				r.Header.Get("X-Forwarded-For"),
-				r.Header.Get("X-Real-IP"),
-				r.RemoteAddr,
-				clientIP)
-			counter.Count(context.Background(), product, res, clientIP)
 			renders.Results(w, res)
 		})
 

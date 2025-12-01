@@ -1,1 +1,1 @@
-﻿// Write your Javascript code.
+// Site JavaScript

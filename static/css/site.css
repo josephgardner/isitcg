@@ -616,9 +616,10 @@ h4.card-title {
 #popular-products h3 {
     font-family: 'Molle', 'Leckerli One', cursive;
     font-size: 1.2em;
-    margin: 0 0 12px 0;
+    margin: 4px 0 12px 0;
     color: #ed878d;
     text-align: center;
+    line-height: 1.1;
 }
 
 #popular-products .beta-badge {

@@ -747,3 +747,35 @@ h4.card-title {
         flex-shrink: 0 !important;
     }
 }
+
+/* AdSense Ad Units */
+.adsense-unit {
+    margin: 24px 0;
+    text-align: center;
+    min-height: 90px;
+}
+
+.adsense-top {
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.adsense-incontent {
+    margin: 32px 0;
+}
+
+.adsense-bottom {
+    margin: 32px 0 24px 0;
+}
+
+@media (max-width: 767px) {
+    .adsense-unit {
+        margin: 16px 0;
+        min-height: 50px;
+    }
+
+    .adsense-incontent,
+    .adsense-bottom {
+        margin: 20px 0;
+    }
+}

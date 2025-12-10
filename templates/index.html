@@ -6,12 +6,24 @@
         3. Click submit to see if it is Curly Girl (CG) Approved!</p>
 </div>
 <div class="main">
-    <form method="post" action="/">
-        <input type="text" name="productname" placeholder="Product Name (optional)" size="100"
+    <form method="post" action="/" id="ingredientForm">
+        <input type="text" id="productname" name="productname" placeholder="Product Name (optional)" size="100"
             value="{{ .Name }}" /><br>
         <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)" name="ingredients"
             rows=10 cols=100>{{ .Ingredients }}</textarea>
-        <div><button type="submit" class="btn btn-secondary btn-lg">Submit</button></div>
+        <div>
+            <button type="submit" class="btn btn-secondary btn-lg">Submit</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg" id="demoButton">Try Demo</button>
+        </div>
     </form>
 </div>
+{{end}}
+
+{{define "scripts"}}
+<script>
+    document.getElementById('demoButton').addEventListener('click', function() {
+        document.getElementById('productname').value = 'DevaCurl SuperCream Coconut Curl Styler';
+        document.getElementById('ingredients').value = 'Water, Cetearyl Alcohol, Glycerin, Behentrimonium Methosulfate, Cocos Nucifera (Coconut) Oil, Panthenol, Citric Acid, Fragrance, Sodium Benzoate, Potassium Sorbate';
+    });
+</script>
 {{end}}

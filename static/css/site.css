@@ -750,26 +750,24 @@ h4.card-title {
 
 /* AdSense Ad Units */
 .adsense-unit {
-    margin: 24px 0;
+    margin: 24px auto;
     text-align: center;
     min-height: 60px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: visible;
 }
 
 .adsense-unit ins {
-    display: inline-block !important;
+    display: block !important;
+    margin: 0 auto !important;
     max-width: 100% !important;
 }
 
 .adsense-unit ins > iframe {
+    margin: 0 auto !important;
     max-width: 100% !important;
-    display: block;
 }
 
 .adsense-top {

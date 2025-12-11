@@ -757,17 +757,19 @@ h4.card-title {
     max-width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .adsense-unit ins {
-    display: block !important;
+    display: inline-block !important;
     max-width: 100% !important;
-    width: 100% !important;
 }
 
 .adsense-unit ins > iframe {
     max-width: 100% !important;
-    width: 100% !important;
+    display: block;
 }
 
 .adsense-top {

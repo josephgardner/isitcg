@@ -752,10 +752,4 @@ h4.card-title {
 .adsense-unit {
     padding: 15px;
     text-align: center;
-    overflow: hidden;
-}
-
-.adsense-unit ins,
-.adsense-unit ins iframe {
-    max-width: 100% !important;
 }

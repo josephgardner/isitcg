@@ -48,7 +48,11 @@ func renderer() renders {
 }
 
 func loadTemplate(name string) *template.Template {
-	return template.Must(template.ParseFiles(
+	funcMap := template.FuncMap{
+		"div":  func(a, b int) int { return a / b },
+		"mult": func(a, b int) int { return a * b },
+	}
+	return template.Must(template.New("base.html").Funcs(funcMap).ParseFiles(
 		"./templates/base.html",
 		fmt.Sprintf("./templates/%s.html", name),
 	))

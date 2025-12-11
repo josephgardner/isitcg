@@ -750,33 +750,7 @@ h4.card-title {
 
 /* AdSense Ad Units */
 .adsense-unit {
-    width: 100%;
-    margin: 15px 0;
+    padding: 15px;
     text-align: center;
-    clear: both;
-}
-
-.adsense-top {
-    margin-top: 20px;
-    margin-bottom: 24px;
-}
-
-.adsense-incontent {
-    margin: 32px 0;
-}
-
-.adsense-bottom {
-    margin: 32px 0 24px 0;
-}
-
-@media (max-width: 767px) {
-    .adsense-unit {
-        margin: 16px 0;
-        min-height: 50px;
-    }
-
-    .adsense-incontent,
-    .adsense-bottom {
-        margin: 20px 0;
-    }
+    overflow: hidden;
 }

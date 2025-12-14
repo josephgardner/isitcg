@@ -75,6 +75,22 @@ a.logo_text {
     font-family: 'Montserrat';
 }
 
+/* NEW badge for navigation */
+.nav-new-badge {
+    display: inline-block;
+    font-size: 0.45em;
+    padding: 1px 3.5px;
+    background-color: #ed878d;
+    color: #fff;
+    border-radius: 2px;
+    vertical-align: middle;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    position: relative;
+    top: -0.1em;
+}
+
 .center {
     margin: 0 auto;
 }
@@ -634,6 +650,23 @@ h4.card-title {
     font-weight: 600;
 }
 
+#popular-products .see-all {
+    display: inline-block;
+    font-size: 0.55em;
+    color: #7fb1b2;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    float: right;
+    line-height: 1.8;
+    transition: color 0.2s ease;
+}
+
+#popular-products .see-all:hover {
+    color: #5a9192;
+    text-decoration: underline;
+}
+
 #popular-products ul {
     list-style: none;
     padding: 0;
@@ -718,6 +751,11 @@ h4.card-title {
 
 /* Final mobile override - MUST be last */
 @media screen and (max-width: 1024px) {
+    #popular-products .see-all {
+        font-size: 0.5em !important;
+        line-height: 2 !important;
+    }
+
     #popular-products .product-info {
         flex: 1 !important;
         display: flex !important;

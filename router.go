@@ -96,5 +96,13 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 			res := ingredientHandler.ProductFromHash(mux.Vars(r)["hash"])
 			renders.Index(w, res)
 		})
+
+	router.NewRoute().
+		Path("/trending").
+		Methods(http.MethodGet).
+		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			renders.Trending(w)
+		})
+
 	return router
 }

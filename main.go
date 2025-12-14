@@ -25,7 +25,13 @@ func main() {
 	}
 	db := redis.NewClient(opt)
 	counter := isitcg.NewRedisCounter(db)
-	router := router(ingredients, renderer(), counter)
+
+	analyticsURL := os.Getenv("ANALYTICS_URL")
+	if analyticsURL == "" {
+		analyticsURL = "https://analytics.apps.algoplay.com"
+	}
+
+	router := router(ingredients, renderer(analyticsURL), counter)
 
 	wwwroot := http.FileServer(http.Dir("./static/"))
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", wwwroot))

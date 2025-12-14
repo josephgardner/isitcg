@@ -1,0 +1,357 @@
+{{define "title"}}Trending Products | Is It CG?{{end}}
+{{define "content"}}
+<style>
+    /* Trending Products Grid */
+    .trending-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem 2rem;
+    }
+
+    .trending-titlebar {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 24px;
+        margin: 15px 0;
+        webkit-box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+        box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+    }
+
+    .trending-titlebar h1 {
+        font-family: 'Molle', 'Leckerli One', cursive;
+        text-align: center;
+        color: #ed878d;
+        font-size: 32px;
+        margin-bottom: 8px;
+        font-weight: 400;
+    }
+
+    .trending-titlebar p {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        color: #706f71;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .loading,
+    .error,
+    .empty {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 10px;
+        webkit-box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+        box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+    }
+
+    .loading {
+        color: #7f8c8d;
+    }
+
+    .error {
+        color: #ed878d;
+    }
+
+    .empty {
+        color: #706f71;
+    }
+
+    .spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #7fb1b2;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 1rem;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        webkit-box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+        box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+    }
+
+    .badge-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        z-index: 10;
+    }
+
+    .badge {
+        color: white;
+        padding: 6px 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        border-bottom-left-radius: 10px;
+        line-height: 1;
+    }
+
+    .badge-hot {
+        background: #ed878d;
+        z-index: 1;
+        margin-right: -6px;
+        padding-right: 15px;
+    }
+
+    .badge-popular {
+        background: #7fb1b2;
+        z-index: 2;
+        margin-left: -4px;
+    }
+
+    .product-image-wrapper {
+        width: 100%;
+        aspect-ratio: 1;
+        background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 15px;
+    }
+
+    .product-image.placeholder {
+        background: linear-gradient(135deg, #ed878d 0%, #ce5964 100%);
+        color: white;
+        font-size: 4rem;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .product-info {
+        padding: 16px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-brand {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #7fb1b2;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+    }
+
+    .product-title {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.8em;
+    }
+
+    .product-meta {
+        margin-top: auto;
+        padding-top: 8px;
+    }
+
+    .view-button {
+        background: #7fb1b2;
+        color: white;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 0;
+        font-size: 11px;
+        font-weight: 400;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        margin-top: 12px;
+        transition: all 0.2s;
+        width: 100%;
+    }
+
+    .view-button:hover {
+        background: #6fa1a2;
+    }
+
+    @media (max-width: 768px) {
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .trending-container {
+            padding: 0 1rem 1rem;
+        }
+
+        .trending-titlebar {
+            padding: 16px;
+            margin: 10px 0;
+        }
+
+        .trending-titlebar h1 {
+            font-size: 24px;
+        }
+
+        .trending-titlebar p {
+            font-size: 14px;
+        }
+
+        .product-title {
+            font-size: 0.8rem;
+            min-height: auto;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+    }
+</style>
+
+<div class="trending-container">
+    <div class="trending-titlebar">
+        <h1>Trending Products</h1>
+        <p>Products the IsItCG community is searching for right now</p>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading trending products...</p>
+    </div>
+
+    <div id="error" class="error" style="display: none;">
+        <h3>Oops!</h3>
+        <p>Failed to load products. Please try again later.</p>
+    </div>
+
+    <div id="empty" class="empty" style="display: none;">
+        <h3>Check back soon!</h3>
+        <p>No products found yet. Our community is growing!</p>
+    </div>
+
+    <div id="products" class="products-grid" style="display: none;"></div>
+</div>
+{{end}}
+
+{{define "scripts"}}
+<script>
+    const API_URL = '{{.AnalyticsURL}}/api/products/popular?limit=100';
+
+    async function loadProducts() {
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error('Failed to fetch');
+
+            const data = await response.json();
+
+            document.getElementById('loading').style.display = 'none';
+
+            if (!data.products || data.products.length === 0) {
+                document.getElementById('empty').style.display = 'block';
+                return;
+            }
+
+            renderProducts(data.products);
+        } catch (error) {
+            console.error('Error loading products:', error);
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+        }
+    }
+
+    function renderProducts(products) {
+        const container = document.getElementById('products');
+
+        products.forEach((product, index) => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+
+            // Render badges from server
+            let badges = '';
+            if (product.badges && product.badges.length > 0) {
+                const badgeElements = product.badges.map(function (badge) {
+                    if (badge === 'hot') {
+                        return '<div class="badge badge-hot" title="Hot"><i class="fas fa-fire"></i></div>';
+                    } else if (badge === 'popular') {
+                        return '<div class="badge badge-popular" title="Popular"><i class="fas fa-star"></i></div>';
+                    }
+                    return '';
+                }).filter(function (b) { return b; });
+
+                if (badgeElements.length > 0) {
+                    badges = '<div class="badge-container">' + badgeElements.join('') + '</div>';
+                }
+            }
+
+            const imageHtml = product.amazon_image
+                ? '<img src="' + product.amazon_image + '" alt="' + product.amazon_title + '" class="product-image" loading="lazy">'
+                : '<div class="product-image placeholder">' + product.amazon_title.charAt(0).toUpperCase() + '</div>';
+
+            const brandHtml = product.brand ? '<div class="product-brand">' + product.brand + '</div>' : '';
+
+            card.innerHTML = badges +
+                '<div class="product-image-wrapper">' + imageHtml + '</div>' +
+                '<div class="product-info">' +
+                brandHtml +
+                '<div class="product-title">' + product.amazon_title + '</div>' +
+                '<div class="product-meta">' +
+                '<a href="' + product.amazon_url + '" target="_blank" rel="noopener sponsored" class="view-button">View on Amazon</a>' +
+                '</div>' +
+                '</div>';
+
+            container.appendChild(card);
+        });
+
+        container.style.display = 'grid';
+    }
+
+    loadProducts();
+</script>
+{{end}}

@@ -9,25 +9,40 @@ import (
 )
 
 const (
-	TMPL_INDEX   = "index"
-	TMPL_RESULTS = "results"
+	TMPL_INDEX    = "index"
+	TMPL_RESULTS  = "results"
+	TMPL_TRENDING = "trending"
 )
 
 type renders interface {
 	Index(w http.ResponseWriter, p isitcg.Product)
 	Results(w http.ResponseWriter, r isitcg.Results)
+	Trending(w http.ResponseWriter)
 }
 
 type rendersHtml struct {
-	views map[string]*template.Template
+	views        map[string]*template.Template
+	analyticsURL string
 }
 
 func (r *rendersHtml) Index(w http.ResponseWriter, p isitcg.Product) {
-	r.render(TMPL_INDEX, w, p)
+	r.render(TMPL_INDEX, w, struct {
+		isitcg.Product
+		AnalyticsURL string
+	}{p, r.analyticsURL})
 }
 
 func (r *rendersHtml) Results(w http.ResponseWriter, res isitcg.Results) {
-	r.render(TMPL_RESULTS, w, res)
+	r.render(TMPL_RESULTS, w, struct {
+		isitcg.Results
+		AnalyticsURL string
+	}{res, r.analyticsURL})
+}
+
+func (r *rendersHtml) Trending(w http.ResponseWriter) {
+	r.render(TMPL_TRENDING, w, map[string]string{
+		"AnalyticsURL": r.analyticsURL,
+	})
 }
 
 func (r *rendersHtml) render(name string, w http.ResponseWriter, data any) {
@@ -40,11 +55,15 @@ func (r *rendersHtml) render(name string, w http.ResponseWriter, data any) {
 
 var _ renders = (*rendersHtml)(nil)
 
-func renderer() renders {
-	return &rendersHtml{map[string]*template.Template{
-		TMPL_INDEX:   loadTemplate(TMPL_INDEX),
-		TMPL_RESULTS: loadTemplate(TMPL_RESULTS),
-	}}
+func renderer(analyticsURL string) renders {
+	return &rendersHtml{
+		views: map[string]*template.Template{
+			TMPL_INDEX:    loadTemplate(TMPL_INDEX),
+			TMPL_RESULTS:  loadTemplate(TMPL_RESULTS),
+			TMPL_TRENDING: loadTemplate(TMPL_TRENDING),
+		},
+		analyticsURL: analyticsURL,
+	}
 }
 
 func loadTemplate(name string) *template.Template {

@@ -271,11 +271,12 @@
         "Hydrolyzed Wheat Protein Hydroxypropyl Polysiloxane",
         "Hydrolyzed Wheat Protein Hydroxypropyl Polysiloxane (water soluble)",
         "Hydrolyzed Wheat Protein PG-Propyl Silanetriol",
-        "Hydrolyzed Wheat Protein PG-Propyl Silanetriol",
         "Hydrolyzed Wheat protein/hydroxypropyl polysiloxane and cystine/silicone co-polymers",
         "Hydroxyethyl Acetomonium PG-Dimethicone",
         "hydroxypropyl polysiloxane and cystine",
         "PEG-12 Dimethicone",
+        "PEG-4 Rapeseedamide",
+        "PEG-7 Glyceryl Cocoate",
         "PEG-8 Distearmonium Chloride PG-Dimethicone",
         "PEG-Dimethicone",
         "Quaternium 86",
@@ -285,7 +286,6 @@
         "Silicone Quaternium 11",
         "Silicone Quaternium 12",
         "Silicone Quaternium 15",
-        "Silicone Quaternium 16",
         "Silicone Quaternium 16",
         "Silicone Quaternium 18",
         "Silicone Quaternium 19",
@@ -306,7 +306,6 @@
         "Silicone Quaternium-12",
         "Silicone Quaternium-15",
         "Silicone Quaternium-16",
-        "Silicone Quaternium-16",
         "Silicone Quaternium-18",
         "Silicone Quaternium-19",
         "Silicone Quaternium-2",
@@ -321,7 +320,8 @@
         "Silicone Quaternium-8",
         "Silicone Quaternium-9",
         "Stearalkonium Dimethicone PEG-8 Phthalate",
-        "Steardimonium Hydroxypropyl Panthenyl PEG-7 Dimethicone Phosphate Chloride"
+        "Steardimonium Hydroxypropyl Panthenyl PEG-7 Dimethicone Phosphate Chloride",
+        "Trideceth-9 Pg-Amodimethicone"
       ]
     },
     {

@@ -45,9 +45,11 @@
                     crossorigin="anonymous"></script>
                 <!-- Results_Top_Leaderboard -->
                 <ins class="adsbygoogle"
-                    style="display:inline-block;width:728px;height:90px"
+                    style="display:block"
                     data-ad-client="ca-pub-3346949665170660"
-                    data-ad-slot="9024310442"></ins>
+                    data-ad-slot="9024310442"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -96,9 +98,11 @@
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3346949665170660"
                     crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
-                    style="display:inline-block;width:728px;height:90px"
+                    style="display:block"
                     data-ad-client="ca-pub-3346949665170660"
-                    data-ad-slot="3598214630"></ins>
+                    data-ad-slot="3598214630"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -113,9 +117,11 @@
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3346949665170660"
                     crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
-                    style="display:inline-block;width:728px;height:90px"
+                    style="display:block"
                     data-ad-client="ca-pub-3346949665170660"
-                    data-ad-slot="2285132964"></ins>
+                    data-ad-slot="2285132964"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -147,23 +153,29 @@
         {{end}}
 
         <div class="container">
-            <div class="center">
-                <script type="text/javascript">
-                    amzn_assoc_placement = "adunit0";
-                    amzn_assoc_tracking_id = "isitcg0a-20";
-                    amzn_assoc_ad_mode = "search";
-                    amzn_assoc_ad_type = "smart";
-                    amzn_assoc_marketplace = "amazon";
-                    amzn_assoc_region = "US";
-                    amzn_assoc_default_search_phrase = "{{.SearchResult}}";
-                    amzn_assoc_default_category = "Beauty";
-                    amzn_assoc_linkid = "e44f390874f79511be7ef180922c859f";
-                    amzn_assoc_design = "in_content";
-                    amzn_assoc_default_browse_node = "3760911";
-                </script>
-                <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-            </div>
+            <div class="center" id="amazon-widget"></div>
         </div>
+        <script type="text/javascript">
+            // Load Amazon widget asynchronously to avoid blocking page render
+            (function() {
+                amzn_assoc_placement = "adunit0";
+                amzn_assoc_tracking_id = "isitcg0a-20";
+                amzn_assoc_ad_mode = "search";
+                amzn_assoc_ad_type = "smart";
+                amzn_assoc_marketplace = "amazon";
+                amzn_assoc_region = "US";
+                amzn_assoc_default_search_phrase = "{{.SearchResult}}";
+                amzn_assoc_default_category = "Beauty";
+                amzn_assoc_linkid = "e44f390874f79511be7ef180922c859f";
+                amzn_assoc_design = "in_content";
+                amzn_assoc_default_browse_node = "3760911";
+
+                var script = document.createElement('script');
+                script.src = "//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US";
+                script.async = true;
+                document.getElementById('amazon-widget').appendChild(script);
+            })();
+        </script>
     </div>
 
     <div class="results-sidebar">

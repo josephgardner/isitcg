@@ -844,6 +844,7 @@
       "Result": "warning",
       "Rank": 10,
       "Ingredients": [
+        "Acrylamidopropyltrimonium Chloride/Acrylamide Copolymer",
         "Behenamidopropyl dimethylamine",
         "Behentrimonium chloride",
         "Behentrimonium methosulfate",
@@ -862,9 +863,11 @@
         "guar hydroxypropyltrimonium chloride",
         "Hydrogenated Palm Trimethylammonium chloride",
         "Hydroxypropyl Guar Hydroxypropyltrimonium Chloride",
+        "Hydroxypropylammonium Gluconate",
         "Isostearamidopropyl dimethylamine",
         "Isostearamidopropyl morpholine",
         "Lauryltrimonium chloride",
+        "Linoleamidopropyl PG-Dimonium Chloride Phosphate",
         "Pg-Hydroxyethylcellulose Cocodimonium Chloride",
         "Quaternium-15",
         "Quaternium-22",
@@ -872,6 +875,7 @@
         "Quaternium-95",
         "Stearalkonium chloride",
         "Stearamidopropyl dimethylamine",
+        "Steartrimonium Chloride",
         "Sunflower Conditioner (Disunflower-oylethyl Dimonium Chloride)",
         "Wheatgermamidopropyl dimethylamine"
       ]

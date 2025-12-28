@@ -1,0 +1,82 @@
+{{define "title"}}Widget Test | Is It CG?{{end}}
+{{define "content"}}
+<style>
+    .test-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .test-section {
+        background: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 5px rgba(0,0,0,.15);
+    }
+    .test-section h2 {
+        font-family: 'Molle', cursive;
+        color: #ed878d;
+        margin-bottom: 15px;
+    }
+    .test-section h3 {
+        font-size: 14px;
+        color: #666;
+        margin: 10px 0;
+    }
+</style>
+
+<div class="test-container">
+    <div class="test-section">
+        <h2>Amazon Native Widget Test</h2>
+        <p>Testing different Amazon widget configurations:</p>
+    </div>
+
+    <div class="test-section">
+        <h3>1. Manual Mode with ASINs (enhanced_links)</h3>
+        <div id="amzn-test-1"></div>
+        <script>
+            amzn_assoc_placement = "adunit1";
+            amzn_assoc_tracking_id = "isitcg0a-20";
+            amzn_assoc_ad_mode = "manual";
+            amzn_assoc_ad_type = "smart";
+            amzn_assoc_marketplace = "amazon";
+            amzn_assoc_region = "US";
+            amzn_assoc_design = "enhanced_links";
+            amzn_assoc_asins = "B01MU1R2P9,B08WGD6R81,B00I32AN4K";
+        </script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+    </div>
+
+    <div class="test-section">
+        <h3>2. Manual Mode with ASINs (in_content)</h3>
+        <div id="amzn-test-2"></div>
+        <script>
+            amzn_assoc_placement = "adunit2";
+            amzn_assoc_tracking_id = "isitcg0a-20";
+            amzn_assoc_ad_mode = "manual";
+            amzn_assoc_ad_type = "smart";
+            amzn_assoc_marketplace = "amazon";
+            amzn_assoc_region = "US";
+            amzn_assoc_design = "in_content";
+            amzn_assoc_asins = "B01MU1R2P9,B08WGD6R81,B00I32AN4K";
+        </script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+    </div>
+
+    <div class="test-section">
+        <h3>3. Search Mode (curly hair products)</h3>
+        <div id="amzn-test-3"></div>
+        <script>
+            amzn_assoc_placement = "adunit3";
+            amzn_assoc_tracking_id = "isitcg0a-20";
+            amzn_assoc_ad_mode = "search";
+            amzn_assoc_ad_type = "smart";
+            amzn_assoc_marketplace = "amazon";
+            amzn_assoc_region = "US";
+            amzn_assoc_default_search_phrase = "curly hair gel";
+            amzn_assoc_default_category = "Beauty";
+        </script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+    </div>
+</div>
+{{end}}

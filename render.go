@@ -9,15 +9,17 @@ import (
 )
 
 const (
-	TMPL_INDEX    = "index"
-	TMPL_RESULTS  = "results"
-	TMPL_TRENDING = "trending"
+	TMPL_INDEX        = "index"
+	TMPL_RESULTS      = "results"
+	TMPL_TRENDING     = "trending"
+	TMPL_TEST_WIDGETS = "test_widgets"
 )
 
 type renders interface {
 	Index(w http.ResponseWriter, p isitcg.Product)
 	Results(w http.ResponseWriter, r isitcg.Results)
 	Trending(w http.ResponseWriter)
+	TestWidgets(w http.ResponseWriter)
 }
 
 type rendersHtml struct {
@@ -45,6 +47,12 @@ func (r *rendersHtml) Trending(w http.ResponseWriter) {
 	})
 }
 
+func (r *rendersHtml) TestWidgets(w http.ResponseWriter) {
+	r.render(TMPL_TEST_WIDGETS, w, map[string]string{
+		"AnalyticsURL": r.analyticsURL,
+	})
+}
+
 func (r *rendersHtml) render(name string, w http.ResponseWriter, data any) {
 	if v, ok := r.views[name]; !ok {
 		http.Error(w, fmt.Sprintf("View not found: %v", name), http.StatusInternalServerError)
@@ -58,9 +66,10 @@ var _ renders = (*rendersHtml)(nil)
 func renderer(analyticsURL string) renders {
 	return &rendersHtml{
 		views: map[string]*template.Template{
-			TMPL_INDEX:    loadTemplate(TMPL_INDEX),
-			TMPL_RESULTS:  loadTemplate(TMPL_RESULTS),
-			TMPL_TRENDING: loadTemplate(TMPL_TRENDING),
+			TMPL_INDEX:        loadTemplate(TMPL_INDEX),
+			TMPL_RESULTS:      loadTemplate(TMPL_RESULTS),
+			TMPL_TRENDING:     loadTemplate(TMPL_TRENDING),
+			TMPL_TEST_WIDGETS: loadTemplate(TMPL_TEST_WIDGETS),
 		},
 		analyticsURL: analyticsURL,
 	}

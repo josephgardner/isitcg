@@ -1,4 +1,9 @@
-{{define "title"}}Is It CG? - Results{{end}}
+{{define "title"}}{{if .ProductName}}{{.ProductName}} - Is it CG Approved?{{else}}Is It CG? - Results{{end}}{{end}}
+{{define "description"}}{{if .ProductName}}Check if {{.ProductName}} is Curly Girl Method approved. See full ingredient breakdown and find CG-friendly alternatives.{{else}}Check if your hair product is Curly Girl Method approved. See which ingredients are safe and which to avoid.{{end}}{{end}}
+{{define "og_title"}}{{if .ProductName}}{{.ProductName}} - Is it CG Approved?{{else}}Is It CG? - Results{{end}}{{end}}
+{{define "og_description"}}{{if .ProductName}}Check if {{.ProductName}} is Curly Girl Method approved.{{else}}Check your hair product ingredients.{{end}}{{end}}
+{{define "og_url"}}/view/{{.Hash}}{{end}}
+{{define "canonical"}}/view/{{.Hash}}{{end}}
 {{define "content"}}
 <div class="results-layout">
     <div class="results-main">
@@ -128,5 +133,8 @@
 {{end}}
 
 {{define "scripts"}}
+<script>
+    window.PRODUCT_SEARCH = {{.ProductName | js}};
+</script>
 <script src="{{.AnalyticsURL}}/embed.js"></script>
 {{end}}

@@ -104,13 +104,5 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 			renders.Trending(w)
 		})
 
-	// Hidden test page for experiments (not linked anywhere)
-	router.NewRoute().
-		Path("/_test/widgets").
-		Methods(http.MethodGet).
-		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			renders.TestWidgets(w)
-		})
-
 	return router
 }

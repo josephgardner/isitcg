@@ -202,6 +202,34 @@
         padding-top: 8px;
     }
 
+    .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 8px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.8rem;
+    }
+
+    .rating-stars {
+        color: #f5a623;
+        font-size: 0.75rem;
+    }
+
+    .rating-stars i {
+        margin-right: 1px;
+    }
+
+    .rating-value {
+        color: #333;
+        font-weight: 600;
+    }
+
+    .rating-count {
+        color: #7fb1b2;
+        font-size: 0.75rem;
+    }
+
     .view-button {
         background: #7fb1b2;
         color: white;
@@ -352,11 +380,38 @@
 
             const brandHtml = product.brand ? '<div class="product-brand">' + product.brand + '</div>' : '';
 
+            // Build rating HTML if available
+            let ratingHtml = '';
+            if (product.star_rating) {
+                const fullStars = Math.floor(product.star_rating);
+                const hasHalfStar = product.star_rating % 1 >= 0.3; // 0.3+ shows as half
+                const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+                let starsHtml = '<i class="fas fa-star"></i>'.repeat(fullStars);
+                if (hasHalfStar) starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                starsHtml += '<i class="far fa-star"></i>'.repeat(emptyStars);
+
+                let countHtml = '';
+                if (product.review_count) {
+                    const countFormatted = product.review_count >= 1000
+                        ? (product.review_count / 1000).toFixed(1) + 'K'
+                        : product.review_count.toString();
+                    countHtml = '<span class="rating-count">(' + countFormatted + ')</span>';
+                }
+
+                ratingHtml = '<div class="product-rating">' +
+                    '<span class="rating-value">' + product.star_rating.toFixed(1) + '</span>' +
+                    '<span class="rating-stars">' + starsHtml + '</span>' +
+                    countHtml +
+                    '</div>';
+            }
+
             card.innerHTML = badges +
                 '<div class="product-image-wrapper">' + imageHtml + '</div>' +
                 '<div class="product-info">' +
                 brandHtml +
                 '<div class="product-title">' + product.amazon_title + '</div>' +
+                ratingHtml +
                 '<div class="product-meta">' +
                 '<a href="' + product.amazon_url + '" target="_blank" rel="noopener sponsored" class="view-button">View on Amazon</a>' +
                 '</div>' +

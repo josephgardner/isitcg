@@ -293,7 +293,12 @@
 
 {{define "scripts"}}
 <script>
-    const API_URL = '{{.AnalyticsURL}}/api/products/popular?limit=100';
+    const params = new URLSearchParams(window.location.search);
+    const searchQuery = params.get('q') || '';
+    let API_URL = '{{.AnalyticsURL}}/api/products/popular?limit=100';
+    if (searchQuery) {
+        API_URL += '&q=' + encodeURIComponent(searchQuery);
+    }
 
     async function loadProducts() {
         try {

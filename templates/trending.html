@@ -337,6 +337,12 @@
         API_URL += '&q=' + encodeURIComponent(searchQuery);
     }
 
+    // Normalize Amazon image URLs to consistent 500px size
+    function normalizeImageUrl(url) {
+        if (!url) return url;
+        return url.replace(/\._AC_[A-Z]{2}\d+_\./, '._AC_SL500_.');
+    }
+
     async function loadProducts() {
         try {
             const response = await fetch(API_URL);
@@ -384,7 +390,7 @@
             }
 
             const imageHtml = product.amazon_image
-                ? '<img src="' + product.amazon_image + '" alt="' + product.amazon_title + '" class="product-image" loading="lazy">'
+                ? '<img src="' + normalizeImageUrl(product.amazon_image) + '" alt="' + product.amazon_title + '" class="product-image" loading="lazy">'
                 : '<div class="product-image placeholder">' + product.amazon_title.charAt(0).toUpperCase() + '</div>';
 
             const brandHtml = product.brand ? '<div class="product-brand">' + product.brand + '</div>' : '';

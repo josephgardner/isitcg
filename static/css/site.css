@@ -496,33 +496,23 @@ h4.card-title {
     #popular-products {
         display: block !important;
         visibility: visible !important;
-        margin-bottom: 10px;
-        margin-top: 15px;
-        padding: 0;
-        padding-top: 0;
+        margin-bottom: 4px;
+        margin-top: 4px;
+        padding: 6px 8px 0 8px !important;
         background-color: transparent;
         box-shadow: none;
     }
 
-    #popular-products h3 {
-        display: block !important;
-        font-size: 1em !important;
-        margin: 0 0 3px 0 !important;
-        padding: 4px 14px 0 14px !important;
-        font-weight: 400 !important;
-        color: #b8989b !important;
-        text-align: left !important;
+    #popular-products .embed-header {
+        display: none !important;
     }
 
-    #popular-products .beta-badge {
-        display: inline !important;
-        font-size: 0.3em !important;
-        padding: 2px 4px !important;
-        background-color: #7fb1b2 !important;
-        color: #fff !important;
-        border-radius: 3px !important;
-        vertical-align: middle !important;
-        margin-left: 3px !important;
+    #popular-products h3 {
+        display: none !important;
+    }
+
+    #popular-products .see-all-link {
+        display: none !important;
     }
 
     #popular-products ul {
@@ -531,8 +521,8 @@ h4.card-title {
         flex-direction: row;
         overflow-x: auto;
         overflow-y: hidden;
-        gap: 8px;
-        padding: 0 14px 6px 14px;
+        gap: 6px;
+        padding: 2px 8px;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -548,31 +538,91 @@ h4.card-title {
         flex: 0 0 200px;
         scroll-snap-align: start;
         margin-bottom: 0;
-        height: 62px;
+        height: auto;
+        min-height: 74px;
+    }
+
+    /* Show see-all-card on mobile (hidden on desktop) */
+    #popular-products li.see-all-card {
+        display: flex !important;
+        flex: 0 0 100px;
+        align-items: stretch;
+    }
+
+    #popular-products li.see-all-card a {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #7fb1b2 0%, #5a9192 100%);
+        color: white;
+        text-align: center;
+        width: 100%;
+    }
+
+    #popular-products li.see-all-card a:hover {
+        background: linear-gradient(135deg, #5a9192 0%, #4a8182 100%);
+    }
+
+    #popular-products .see-all-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    #popular-products .see-all-text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.7em;
+        font-weight: 600;
+    }
+
+    #popular-products .see-all-arrow {
+        font-size: 1.2em;
+    }
+
+    /* Hide bottom see-all on mobile */
+    #popular-products .see-all-bottom {
+        display: none !important;
     }
 
     #popular-products a {
         display: flex !important;
-        visibility: visible !important;
-        flex-direction: row;
-        text-align: left;
-        padding: 6px;
-        gap: 8px;
+        flex-direction: row !important;
+        align-items: center !important;
+        padding: 3px;
+        gap: 5px !important;
         height: 100%;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+        background-color: #fff;
+        border-radius: 6px !important;
+    }
+
+    #popular-products .product-image-wrap {
+        flex-shrink: 0;
     }
 
     #popular-products img {
-        width: 50px;
-        height: 50px;
-        margin: 0;
-        flex-shrink: 0;
+        width: 68px !important;
+        height: 68px !important;
+        padding: 2px !important;
+    }
+
+    /* Hide badge on mobile (too cluttered) */
+    #popular-products .product-badge {
+        display: none !important;
     }
 
     #popular-products .product-info {
         align-items: flex-start;
         justify-content: center;
-        gap: 2px;
+        gap: 1px;
+    }
+
+    /* Show brand on mobile */
+    #popular-products .product-brand {
+        display: block !important;
+        font-size: 0.55em !important;
+        margin-bottom: 1px !important;
     }
 
     #popular-products .product-title {
@@ -582,14 +632,31 @@ h4.card-title {
         color: #333 !important;
         line-height: 1.3 !important;
         display: -webkit-box !important;
-        -webkit-line-clamp: 2 !important;
+        -webkit-line-clamp: 3 !important;
         -webkit-box-orient: vertical !important;
         overflow: hidden !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* Compact star rating for mobile */
+    #popular-products .product-rating {
+        display: inline-flex !important;
+        font-size: 0.6em !important;
+        gap: 3px !important;
+        margin-bottom: 0 !important;
+    }
+
+    #popular-products .rating-stars {
+        font-size: 0.8em !important;
+    }
+
+    /* Hide review count on mobile */
+    #popular-products .rating-count {
+        display: none !important;
     }
 
     #popular-products .cta {
-        font-size: 0.6em;
-        margin-top: 4px;
+        display: none !important;
     }
 
     .titlebar .h3,
@@ -620,49 +687,41 @@ h4.card-title {
 
 }
 
-/* Popular Products Widget */
+/* Popular Products Widget - Desktop: Vertical cards (image above text) */
 #popular-products {
     background-color: #fff;
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px;
     webkit-box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
     box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
 }
 
+#popular-products .embed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
 #popular-products h3 {
     font-family: 'Molle', 'Leckerli One', cursive;
-    font-size: 1.2em;
-    margin: 4px 0 12px 0;
+    font-size: 1.3em;
+    margin: 0;
     color: #ed878d;
-    text-align: center;
     line-height: 1.1;
 }
 
-#popular-products .beta-badge {
-    font-size: 0.5em;
-    padding: 3px 6px;
-    background-color: #7fb1b2;
-    color: #fff;
-    border-radius: 4px;
-    vertical-align: middle;
-    margin-left: 6px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-}
-
-#popular-products .see-all {
-    display: inline-block;
-    font-size: 0.55em;
+#popular-products .see-all-link {
+    font-size: 0.75em;
     color: #7fb1b2;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    float: right;
-    line-height: 1.8;
     transition: color 0.2s ease;
+    white-space: nowrap;
 }
 
-#popular-products .see-all:hover {
+#popular-products .see-all-link:hover {
     color: #5a9192;
     text-decoration: underline;
 }
@@ -674,38 +733,70 @@ h4.card-title {
 }
 
 #popular-products li {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 #popular-products li:last-child {
     margin-bottom: 0;
 }
 
+/* Hide see-all-card on desktop (shown at bottom instead) */
+#popular-products li.see-all-card {
+    display: none;
+}
+
+/* Desktop: Clean horizontal layout - image left, content right, CTA full width */
 #popular-products a {
     display: flex;
-    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 14px;
+    row-gap: 0;
     text-decoration: none;
     color: #706f71;
-    padding: 8px;
+    padding: 10px;
     border-radius: 8px;
     transition: all 0.2s ease;
     background-color: #fafafa;
 }
 
 #popular-products a:hover {
-    background-color: #f5f5f5;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    background-color: #f0f0f0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
+}
+
+/* Image wrapper */
+#popular-products .product-image-wrap {
+    position: relative;
+    flex-shrink: 0;
 }
 
 #popular-products img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
-    flex-shrink: 0;
     border-radius: 6px;
     background-color: #fff;
-    padding: 4px;
+    padding: 6px;
+    display: block;
+}
+
+/* Hot badge on image */
+#popular-products .product-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ed878d;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #popular-products .product-info {
@@ -713,28 +804,102 @@ h4.card-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 4px;
     min-width: 0;
+}
+
+/* Brand name */
+#popular-products .product-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75em;
+    font-weight: 700;
+    color: #7fb1b2;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
 }
 
 #popular-products .product-title {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 0.8em;
-    line-height: 1.3;
+    font-size: 0.95em;
+    line-height: 1.35;
     color: #333;
+    margin-bottom: 4px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-#popular-products .cta {
+/* Star ratings */
+#popular-products .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.7em;
+    margin-bottom: 0;
+}
+
+#popular-products .rating-stars {
+    color: #f5a623;
+    font-size: 0.9em;
+    letter-spacing: -1px;
+}
+
+#popular-products .rating-stars i {
+    margin-right: 0;
+}
+
+#popular-products .rating-value {
+    color: #333;
+    font-weight: 600;
+}
+
+#popular-products .rating-count {
+    color: #7fb1b2;
+    font-size: 0.9em;
+}
+
+#popular-products .cta {
+    flex: 0 0 100%;
+    font-size: 0.85em;
     color: #7fb1b2;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.3px;
+    text-align: center;
+    padding: 6px 0 0 0;
+    margin: 6px 0 0 0;
+    border-top: 1px solid #eee;
+}
+
+/* Bottom See All card */
+#popular-products .see-all-bottom {
+    text-align: center;
+    padding: 0;
+    border: none;
+    margin-top: 8px;
+}
+
+#popular-products .see-all-bottom a {
+    display: block;
+    padding: 12px 10px;
+    background: linear-gradient(135deg, #7fb1b2 0%, #5a9192 100%);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+#popular-products .see-all-bottom a:hover {
+    background: linear-gradient(135deg, #6fa1a2 0%, #4a8182 100%);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .uppercase {
@@ -751,24 +916,19 @@ h4.card-title {
 
 /* Final mobile override - MUST be last */
 @media screen and (max-width: 1024px) {
-    #popular-products .see-all {
-        font-size: 0.5em !important;
-        line-height: 2 !important;
-    }
-
     #popular-products .product-info {
         flex: 1 !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
-        gap: 2px !important;
+        gap: 1px !important;
         min-width: 0 !important;
     }
 
     #popular-products .product-title {
         display: -webkit-box !important;
         -webkit-box-orient: vertical !important;
-        -webkit-line-clamp: 2 !important;
+        -webkit-line-clamp: 3 !important;
         overflow: hidden !important;
         font-size: 0.7em !important;
         font-weight: 600 !important;
@@ -776,13 +936,17 @@ h4.card-title {
         line-height: 1.3 !important;
         text-align: left !important;
         flex-shrink: 0 !important;
+        margin-bottom: 2px !important;
+    }
+
+    #popular-products .product-rating {
+        flex-shrink: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     #popular-products .cta {
-        display: block !important;
-        font-size: 0.6em !important;
-        margin-top: 4px !important;
-        flex-shrink: 0 !important;
+        display: none !important;
+        border: none !important;
     }
 }
 

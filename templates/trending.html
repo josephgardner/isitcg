@@ -137,6 +137,13 @@
         margin-left: -4px;
     }
 
+    .badge-sponsored {
+        background: #9b59b6;
+        z-index: 3;
+        margin-right: -6px;
+        padding-right: 15px;
+    }
+
     .product-image-wrapper {
         width: 100%;
         aspect-ratio: 1;
@@ -376,7 +383,9 @@
             let badges = '';
             if (product.badges && product.badges.length > 0) {
                 const badgeElements = product.badges.map(function (badge) {
-                    if (badge === 'hot') {
+                    if (badge === 'sponsored') {
+                        return '<div class="badge badge-sponsored" title="Sponsored"><i class="fas fa-ad"></i></div>';
+                    } else if (badge === 'hot') {
                         return '<div class="badge badge-hot" title="Hot"><i class="fas fa-fire"></i></div>';
                     } else if (badge === 'popular') {
                         return '<div class="badge badge-popular" title="Popular"><i class="fas fa-star"></i></div>';

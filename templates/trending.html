@@ -204,7 +204,8 @@
     .product-rating {
         display: flex;
         align-items: center;
-        gap: 6px;
+        flex-wrap: wrap;
+        gap: 4px 6px;
         margin-bottom: 8px;
         font-family: 'Montserrat', sans-serif;
         font-size: 0.8rem;
@@ -213,6 +214,7 @@
     .rating-stars {
         color: #f5a623;
         font-size: 0.75rem;
+        white-space: nowrap;
     }
 
     .rating-stars i {
@@ -285,9 +287,18 @@
         }
 
         .view-button {
-            font-size: 10px;
-            letter-spacing: 1px;
-            padding: 8px 12px;
+            font-size: 9px;
+            letter-spacing: 0.5px;
+            padding: 8px 10px;
+            white-space: nowrap;
+        }
+
+        .product-rating {
+            font-size: 0.7rem;
+        }
+
+        .rating-stars {
+            font-size: 0.65rem;
         }
     }
 </style>

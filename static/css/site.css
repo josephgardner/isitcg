@@ -655,9 +655,6 @@ h4.card-title {
         display: none !important;
     }
 
-    #popular-products .cta {
-        display: none !important;
-    }
 
     .titlebar .h3,
     .titlebar h3 {
@@ -782,21 +779,32 @@ h4.card-title {
     display: block;
 }
 
-/* Hot badge on image */
+/* Square badge on image */
 #popular-products .product-badge {
     position: absolute;
-    top: -6px;
-    right: -6px;
-    background: #ed878d;
+    top: 0;
+    right: 0;
     color: white;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7em;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 4px;
+    background: linear-gradient(135deg, #ed878d 0%, #d66974 100%);
+}
+
+#popular-products .product-badge.badge-sponsored {
+    background: linear-gradient(135deg, #706f71 0%, #5a595b 100%);
+}
+
+#popular-products .product-badge.badge-hot {
+    background: linear-gradient(135deg, #ed878d 0%, #d66974 100%);
+}
+
+#popular-products .product-badge.badge-popular {
+    background: linear-gradient(135deg, #7fb1b2 0%, #5a9192 100%);
 }
 
 #popular-products .product-info {
@@ -862,16 +870,7 @@ h4.card-title {
 }
 
 #popular-products .cta {
-    flex: 0 0 100%;
-    font-size: 0.85em;
-    color: #7fb1b2;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0.3px;
-    text-align: center;
-    padding: 6px 0 0 0;
-    margin: 6px 0 0 0;
-    border-top: 1px solid #eee;
+    display: none;
 }
 
 /* Bottom See All card */
@@ -944,9 +943,5 @@ h4.card-title {
         margin-bottom: 0 !important;
     }
 
-    #popular-products .cta {
-        display: none !important;
-        border: none !important;
-    }
 }
 

@@ -496,23 +496,41 @@ h4.card-title {
     #popular-products {
         display: block !important;
         visibility: visible !important;
-        margin-bottom: 4px;
+        margin-bottom: 0 !important;
         margin-top: 4px;
-        padding: 6px 8px 0 8px !important;
-        background-color: transparent;
-        box-shadow: none;
+        padding: 8px 8px 4px 8px !important;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     }
 
+    /* Compact header row on mobile */
     #popular-products .embed-header {
-        display: none !important;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0 !important;
+        margin: 0 0 4px 0 !important;
+        min-height: 0 !important;
     }
 
     #popular-products h3 {
-        display: none !important;
+        display: inline !important;
+        font-size: 0.95em !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1.2 !important;
     }
 
     #popular-products .see-all-link {
-        display: none !important;
+        display: inline !important;
+        font-size: 0.85em !important;
+        padding: 0 0 0 4px !important;
+        margin: 0 !important;
+        white-space: nowrap;
+        line-height: 1.2 !important;
+        height: auto !important;
+        min-height: 0 !important;
     }
 
     #popular-products ul {
@@ -521,8 +539,9 @@ h4.card-title {
         flex-direction: row;
         overflow-x: auto;
         overflow-y: hidden;
-        gap: 6px;
-        padding: 2px 8px;
+        gap: 4px;
+        padding: 2px 0 0 0;
+        margin: 0 !important;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -535,7 +554,8 @@ h4.card-title {
     #popular-products li {
         display: block !important;
         visibility: visible !important;
-        flex: 0 0 200px;
+        flex: 0 0 calc(50% - 12px);
+        max-width: 180px;
         scroll-snap-align: start;
         margin-bottom: 0;
         height: auto;
@@ -583,15 +603,18 @@ h4.card-title {
     /* Hide bottom see-all on mobile */
     #popular-products .see-all-bottom {
         display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     #popular-products a {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
-        padding: 3px;
-        gap: 5px !important;
-        height: 100%;
+        padding: 3px !important;
+        gap: 4px !important;
+        height: auto !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
         background-color: #fff;
         border-radius: 6px !important;
@@ -607,9 +630,29 @@ h4.card-title {
         padding: 2px !important;
     }
 
-    /* Hide badge on mobile (too cluttered) */
-    #popular-products .product-badge {
-        display: none !important;
+    /* Mobile badge styling for embed widget */
+    #popular-products .badge-container {
+        display: flex !important;
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+    }
+
+    #popular-products .badge {
+        width: 16px !important;
+        height: 16px !important;
+        font-size: 0.5rem !important;
+        border-bottom-left-radius: 4px !important;
+    }
+
+    /* Last badge (rightmost) matches mobile card border-radius */
+    #popular-products .badge:last-child {
+        border-top-right-radius: 6px !important;
+    }
+
+    #popular-products .badge-popular,
+    #popular-products .badge-sponsored {
+        margin-left: -3px !important;
     }
 
     #popular-products .product-info {
@@ -622,7 +665,8 @@ h4.card-title {
     #popular-products .product-brand {
         display: block !important;
         font-size: 0.55em !important;
-        margin-bottom: 1px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0 !important;
     }
 
     #popular-products .product-title {
@@ -779,32 +823,33 @@ h4.card-title {
     display: block;
 }
 
-/* Square badge on image */
-#popular-products .product-badge {
+/* Badge container positioning for embed widget (on card, not image) */
+#popular-products a {
+    position: relative;
+}
+
+#popular-products .badge-container {
     position: absolute;
     top: 0;
     right: 0;
-    color: white;
-    width: 18px;
-    height: 18px;
-    font-size: 0.7em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom-left-radius: 4px;
-    background: linear-gradient(135deg, #ed878d 0%, #d66974 100%);
+    z-index: 10;
 }
 
-#popular-products .product-badge.badge-sponsored {
-    background: linear-gradient(135deg, #706f71 0%, #5a595b 100%);
+#popular-products .badge {
+    width: 20px;
+    height: 20px;
+    font-size: 0.65em;
+    border-bottom-left-radius: 5px;
 }
 
-#popular-products .product-badge.badge-hot {
-    background: linear-gradient(135deg, #ed878d 0%, #d66974 100%);
+/* Last badge (rightmost) matches card's border-radius */
+#popular-products .badge:last-child {
+    border-top-right-radius: 8px;
 }
 
-#popular-products .product-badge.badge-popular {
-    background: linear-gradient(135deg, #7fb1b2 0%, #5a9192 100%);
+#popular-products .badge-popular,
+#popular-products .badge-sponsored {
+    margin-left: -4px;
 }
 
 #popular-products .product-info {
@@ -899,6 +944,75 @@ h4.card-title {
     text-decoration: none;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Shared Badge Styles - Used by trending page and embed widget */
+.badge-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    z-index: 10;
+}
+
+.badge {
+    color: white;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 6px;
+}
+
+/* Last badge (rightmost in flex row) gets top-right corner rounded to match card */
+.badge:last-child {
+    border-top-right-radius: 10px;
+}
+
+.badge-hot {
+    background: #ed878d;
+    z-index: 1;
+}
+
+.badge-popular {
+    background: #7fb1b2;
+    z-index: 2;
+    margin-left: -5px;
+}
+
+.badge-sponsored {
+    background: linear-gradient(135deg, #706f71 0%, #5a595b 100%);
+    z-index: 3;
+    margin-left: -8px;
+}
+
+/* First badge has no negative margin */
+.badge:first-child {
+    margin-left: 0;
+}
+
+/* Mobile badge sizing */
+@media (max-width: 768px) {
+    .badge {
+        width: 20px;
+        height: 20px;
+        font-size: 0.65rem;
+        border-bottom-left-radius: 5px;
+    }
+
+    .badge:last-child {
+        border-top-right-radius: 8px;
+    }
+
+    .badge-popular {
+        margin-left: -4px;
+    }
+
+    .badge-sponsored {
+        margin-left: -5px;
+    }
 }
 
 .uppercase {

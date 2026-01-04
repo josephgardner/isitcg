@@ -303,7 +303,7 @@
 <script>
     const params = new URLSearchParams(window.location.search);
     const searchQuery = params.get('q') || '';
-    let API_URL = '{{.AnalyticsURL}}/api/products/popular?limit=100';
+    let API_URL = '{{.AnalyticsURL}}/api/products/popular?limit=100&source=trending';
     if (searchQuery) {
         API_URL += '&q=' + encodeURIComponent(searchQuery);
     }

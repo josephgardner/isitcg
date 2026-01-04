@@ -523,20 +523,20 @@ h4.card-title {
     }
 
     #popular-products .see-all-link {
-        display: inline !important;
-        font-size: 0.85em !important;
-        padding: 0 0 0 4px !important;
+        font-size: 0.65em !important;
+        padding: 4px 6px !important;
         margin: 0 !important;
-        white-space: nowrap;
         line-height: 1.2 !important;
         height: auto !important;
         min-height: 0 !important;
+        gap: 1px;
     }
 
     #popular-products ul {
         display: flex !important;
         visibility: visible !important;
         flex-direction: row;
+        align-items: stretch;
         overflow-x: auto;
         overflow-y: hidden;
         gap: 4px;
@@ -552,14 +552,18 @@ h4.card-title {
     }
 
     #popular-products li {
-        display: block !important;
+        display: flex !important;
         visibility: visible !important;
         flex: 0 0 calc(50% - 12px);
         max-width: 180px;
         scroll-snap-align: start;
         margin-bottom: 0;
-        height: auto;
         min-height: 74px;
+    }
+
+    #popular-products li>a {
+        flex: 1;
+        height: 100%;
     }
 
     /* Show see-all-card on mobile (hidden on desktop) */
@@ -753,18 +757,25 @@ h4.card-title {
 }
 
 #popular-products .see-all-link {
-    font-size: 0.75em;
-    color: #7fb1b2;
+    font-size: 0.85em;
+    color: white;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    transition: color 0.2s ease;
     white-space: nowrap;
+    background: linear-gradient(135deg, #7fb1b2 0%, #5a9192 100%);
+    padding: 2px 8px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    gap: 6px;
 }
 
 #popular-products .see-all-link:hover {
-    color: #5a9192;
-    text-decoration: underline;
+    background: linear-gradient(135deg, #6fa1a2 0%, #4a8182 100%);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 #popular-products ul {
@@ -964,6 +975,7 @@ h4.card-title {
     align-items: center;
     justify-content: center;
     border-bottom-left-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 /* Last badge (rightmost in flex row) gets top-right corner rounded to match card */
@@ -1058,4 +1070,3 @@ h4.card-title {
     }
 
 }
-

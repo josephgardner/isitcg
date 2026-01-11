@@ -242,8 +242,8 @@ p.card-text {
 
 /* Titlebar Styling */
 .titlebar {
-    padding: 24px;
-    margin: 15px 0;
+    padding: 18px 24px;
+    margin: 10px 0;
     width: 100%;
     max-width: 100%;
     webkit-box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
@@ -294,6 +294,60 @@ p.card-text {
 
 .titlebar a:hover {
     font-weight: 600;
+}
+
+/* Compact homepage layout - fit above fold */
+.titlebar .display-3 {
+    font-size: 42px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.titlebar p {
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+/* Trending link in hero - inline style */
+.titlebar .trending-link {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.titlebar .trending-link a {
+    display: inline-block;
+    color: #7fb1b2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 2px solid #7fb1b2;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.titlebar .trending-link a:hover {
+    background-color: #7fb1b2;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Mobile: smaller title to prevent wrap */
+@media screen and (max-width: 480px) {
+    .titlebar .display-3 {
+        font-size: 32px;
+        white-space: normal;
+    }
+
+    .titlebar p {
+        font-size: 13px;
+    }
+
+    .titlebar .trending-link a {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
 }
 
 .btn-primary {

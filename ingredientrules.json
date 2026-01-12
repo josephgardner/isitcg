@@ -209,6 +209,7 @@
         "Disodium EDTA",
         "Disodium EDTA-copper",
         "EDTA",
+        "EDTA-2Na",
         "HEDTA",
         "Oryza Sativa (Rice) Extract",
         "Pentasoidum Pentetate",
@@ -219,9 +220,9 @@
         "Sodium phytate",
         "TEA-EDTA",
         "Tetrasodium EDTA",
-        "tetrasodium glutamate diacetate",
         "Tetrasodium Glutamate Diacetate",
         "TETRASODIUM GLUTAMATE DIACETATE",
+        "tetrasodium glutamate diacetate",
         "Trisodium EDTA",
         "Trisodium Ethylenediamine Disuccinate",
         "Trisodium HEDTA"

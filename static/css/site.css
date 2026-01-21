@@ -308,29 +308,32 @@ p.card-text {
     line-height: 1.4;
 }
 
-/* Trending link in hero - inline style */
+/* Trending link in hero - filled button style */
 .titlebar .trending-link {
-    margin-top: 10px;
+    margin-top: 16px;
     margin-bottom: 0;
 }
 
 .titlebar .trending-link a {
     display: inline-block;
-    color: #7fb1b2;
+    background-color: #7fb1b2;
+    color: #fff;
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
-    padding: 6px 14px;
-    border: 2px solid #7fb1b2;
-    border-radius: 20px;
+    padding: 10px 20px;
+    border-radius: 25px;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(127, 177, 178, 0.35);
 }
 
 .titlebar .trending-link a:hover {
-    background-color: #7fb1b2;
+    background-color: #6fa1a2;
     color: #fff;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(127, 177, 178, 0.45);
+    transform: translateY(-2px);
 }
 
 /* Mobile: smaller title to prevent wrap */
@@ -346,7 +349,7 @@ p.card-text {
 
     .titlebar .trending-link a {
         font-size: 12px;
-        padding: 5px 12px;
+        padding: 8px 16px;
     }
 }
 

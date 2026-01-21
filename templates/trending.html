@@ -1,9 +1,27 @@
-{{define "title"}}Being Checked Now | Is It CG?{{end}}
-{{define "description"}}See what hair products the curly community is checking right now. Discover mousses, gels, conditioners and more that others are looking up for the Curly Girl Method.{{end}}
-{{define "og_title"}}Being Checked Now | Is It CG?{{end}}
-{{define "og_description"}}See what hair products the curly community is checking right now for the Curly Girl Method.{{end}}
+{{define "title"}}Trending Now | Is It CG?{{end}}
+{{define "description"}}Popular hair products the curly community is loving. Discover trending mousses, gels, conditioners and more for the Curly Girl Method.{{end}}
+{{define "og_title"}}Trending Now | Is It CG?{{end}}
+{{define "og_description"}}Popular hair products the curly community is loving right now.{{end}}
 {{define "og_url"}}/trending{{end}}
 {{define "canonical"}}/trending{{end}}
+{{define "structured_data"}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Trending Curly Girl Products",
+  "description": "Popular hair products the curly community is loving. Discover trending mousses, gels, conditioners and more for the Curly Girl Method.",
+  "url": "https://www.isitcg.com/trending",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Trending CG Products",
+    "description": "Most searched Curly Girl Method approved products",
+    "itemListOrder": "https://schema.org/ItemListOrderDescending",
+    "numberOfItems": 100
+  }
+}
+</script>
+{{end}}
 {{define "content"}}
 <style>
     /* Trending Products Grid */
@@ -37,6 +55,64 @@
         color: #706f71;
         font-size: 16px;
         font-weight: 400;
+    }
+
+    .filter-chip-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #f0f7f7;
+        border: 1px solid #7fb1b2;
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        color: #333;
+    }
+
+    .filter-chip-label {
+        color: #706f71;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .filter-chip-value {
+        font-weight: 600;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .filter-chip-clear {
+        background: none;
+        border: none;
+        color: #7fb1b2;
+        cursor: pointer;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+
+    .filter-chip-clear:hover {
+        background: #7fb1b2;
+        color: white;
     }
 
     .loading,
@@ -276,8 +352,17 @@
 
 <div class="trending-container">
     <div class="trending-titlebar">
-        <h1>Being Checked Now</h1>
-        <p>See what the curly community is looking up right now</p>
+        <h1>Trending Now</h1>
+        <p>What curly girls are loving</p>
+        <div id="filter-chip-container" class="filter-chip-container" style="display: none;">
+            <div class="filter-chip">
+                <span class="filter-chip-label">Similar to:</span>
+                <span id="filter-chip-value" class="filter-chip-value"></span>
+                <button class="filter-chip-clear" onclick="clearFilter()" title="Clear filter">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <div id="loading" class="loading">
@@ -306,6 +391,13 @@
     let API_URL = '{{.AnalyticsURL}}/api/products/popular?limit=100&source=trending';
     if (searchQuery) {
         API_URL += '&q=' + encodeURIComponent(searchQuery);
+        // Show filter chip
+        document.getElementById('filter-chip-value').textContent = searchQuery;
+        document.getElementById('filter-chip-container').style.display = 'flex';
+    }
+
+    function clearFilter() {
+        window.location.href = window.location.pathname;
     }
 
     // Normalize Amazon image URLs to consistent 500px size

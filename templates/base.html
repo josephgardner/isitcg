@@ -38,6 +38,32 @@
     />
     <meta name="theme-color" content="#ffffff" />
 
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Is it CG?",
+      "url": "https://www.isitcg.com",
+      "description": "Free Curly Girl Method ingredient checker tool",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Is it CG?",
+        "url": "https://www.isitcg.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.isitcg.com/static/apple-touch-icon.png"
+        },
+        "sameAs": [
+          "https://www.facebook.com/Is-it-CG-105262064366791/",
+          "https://www.pinterest.com/isitcg/",
+          "https://www.instagram.com/isitcgapp/"
+        ]
+      }
+    }
+    </script>
+    {{block "structured_data" .}}{{end}}
+
     <link
       rel="stylesheet"
       id="malina-font-awesome-css"

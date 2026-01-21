@@ -101,7 +101,9 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 		Path("/trending").
 		Methods(http.MethodGet).
 		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			renders.Trending(w)
+			searchQuery := r.URL.Query().Get("q")
+			noCache := r.URL.Query().Get("nocache") == "true"
+			renders.Trending(w, searchQuery, noCache)
 		})
 
 	router.NewRoute().

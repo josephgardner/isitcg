@@ -17,9 +17,9 @@
     "name": "Trending CG Products",
     "description": "Most searched Curly Girl Method approved products",
     "itemListOrder": "https://schema.org/ItemListOrderDescending",
-    "numberOfItems": {{len .Products}}{{if .Products}},
+    "numberOfItems": {{len (productsWithRatings .Products)}}{{if .Products}},
     "itemListElement": [
-      {{range $i, $p := .Products}}{{if $i}},{{end}}
+      {{range $i, $p := productsWithRatings .Products}}{{if $i}},{{end}}
       {
         "@type": "ListItem",
         "position": {{$i}},
@@ -27,12 +27,12 @@
           "@type": "Product",
           "name": "{{$p.AmazonTitle}}",
           {{if $p.Brand}}"brand": {"@type": "Brand", "name": "{{$p.Brand}}"},{{end}}
-          "url": "{{$p.AmazonURL}}"{{if $p.StarRating}},
+          "url": "{{$p.AmazonURL}}",
           "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "{{formatRating $p.StarRating}}",
             "reviewCount": "{{$p.ReviewCount}}"
-          }{{end}}
+          }
         }
       }{{end}}
     ]{{end}}

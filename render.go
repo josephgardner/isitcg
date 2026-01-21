@@ -231,6 +231,15 @@ func loadTemplate(name string) *template.Template {
 			}
 			return s
 		},
+		"productsWithRatings": func(products []TrendingProduct) []TrendingProduct {
+			var filtered []TrendingProduct
+			for _, p := range products {
+				if p.StarRating > 0 {
+					filtered = append(filtered, p)
+				}
+			}
+			return filtered
+		},
 	}
 	return template.Must(template.New("base.html").Funcs(funcMap).ParseFiles(
 		"./templates/base.html",

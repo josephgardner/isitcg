@@ -1133,6 +1133,147 @@ h4.card-title {
 
 }
 
+/* Bottom embed - mobile only, shares styles with sidebar embed */
+#popular-products-bottom {
+    display: none;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    webkit-box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+    box-shadow: 0 1px 5px 0px rgba(3, 3, 3, .15);
+}
+
+@media screen and (max-width: 1024px) {
+    /* Show bottom embed on mobile with carousel styles */
+    #popular-products-bottom {
+        display: block;
+        margin-top: 20px;
+        padding: 8px 8px 4px 8px;
+    }
+
+    #popular-products-bottom .embed-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0;
+        margin: 0 0 4px 0;
+    }
+
+    #popular-products-bottom h3 {
+        font-family: 'Molle', 'Leckerli One', cursive;
+        font-size: 0.95em;
+        margin: 0;
+        color: #ed878d;
+    }
+
+    #popular-products-bottom .see-all-link {
+        font-size: 0.65em;
+        padding: 4px 6px;
+    }
+
+    #popular-products-bottom ul {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 4px;
+        padding: 2px 0 0 0;
+        margin: 0;
+        list-style: none;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    #popular-products-bottom ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    #popular-products-bottom li {
+        flex: 0 0 calc(50% - 12px);
+        max-width: 180px;
+        scroll-snap-align: start;
+        min-height: 74px;
+    }
+
+    #popular-products-bottom a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 3px;
+        gap: 4px;
+        background-color: #fff;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+        text-decoration: none;
+        color: #706f71;
+    }
+
+    #popular-products-bottom img {
+        width: 68px;
+        height: 68px;
+        padding: 2px;
+        object-fit: contain;
+    }
+
+    #popular-products-bottom .product-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        min-width: 0;
+    }
+
+    #popular-products-bottom .product-brand {
+        font-size: 0.55em;
+        font-weight: 700;
+        color: #7fb1b2;
+        text-transform: uppercase;
+    }
+
+    #popular-products-bottom .product-title {
+        font-size: 0.7em;
+        font-weight: 600;
+        color: #333;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    #popular-products-bottom .product-rating {
+        display: inline-flex;
+        font-size: 0.6em;
+        gap: 3px;
+    }
+
+    #popular-products-bottom .rating-stars {
+        color: #f5a623;
+        font-size: 0.8em;
+    }
+
+    #popular-products-bottom .see-all-bottom,
+    #popular-products-bottom .cta {
+        display: none;
+    }
+
+    #popular-products-bottom li.see-all-card {
+        display: flex;
+        flex: 0 0 100px;
+        align-items: stretch;
+    }
+
+    #popular-products-bottom li.see-all-card a {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #7fb1b2 0%, #5a9192 100%);
+        color: white;
+        text-align: center;
+        width: 100%;
+    }
+}
+
 /* ========================================
    Trending Products Page
    ======================================== */

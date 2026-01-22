@@ -119,7 +119,7 @@ func (r *rendersHtml) fetchTrendingProducts(searchQuery string, noCache bool) ([
 	}
 
 	// Fetch from API
-	apiURL := fmt.Sprintf("%s/api/products/popular?limit=100&source=trending", r.analyticsURL)
+	apiURL := fmt.Sprintf("%s/api/products/popular?limit=40&source=trending", r.analyticsURL)
 	if searchQuery != "" {
 		apiURL += "&q=" + url.QueryEscape(searchQuery)
 	}

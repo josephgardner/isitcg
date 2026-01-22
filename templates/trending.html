@@ -70,38 +70,42 @@
     </div>
     {{else}}
     <div class="products-grid">
-        {{range .Products}}
+        {{range $i, $p := .Products}}
         <div class="product-card">
-            {{if .Badges}}
+            {{if $p.Badges}}
             <div class="badge-container">
-                {{if hasBadge .Badges "hot"}}<div class="badge badge-hot" title="Hot"><i class="fas fa-fire"></i></div>{{end}}
-                {{if hasBadge .Badges "popular"}}<div class="badge badge-popular" title="Popular"><i class="fas fa-star"></i></div>{{end}}
-                {{if hasBadge .Badges "sponsored"}}<div class="badge badge-sponsored" title="Sponsored"><i class="fas fa-ad"></i></div>{{end}}
+                {{if hasBadge $p.Badges "hot"}}<div class="badge badge-hot" title="Hot"><i class="fas fa-fire"></i></div>{{end}}
+                {{if hasBadge $p.Badges "popular"}}<div class="badge badge-popular" title="Popular"><i class="fas fa-star"></i></div>{{end}}
+                {{if hasBadge $p.Badges "sponsored"}}<div class="badge badge-sponsored" title="Sponsored"><i class="fas fa-ad"></i></div>{{end}}
             </div>
             {{end}}
             <div class="product-image-wrapper">
-                {{if .AmazonImage}}
-                <img src="{{.AmazonImage}}" alt="{{.AmazonTitle}}" class="product-image" loading="lazy">
+                {{if $p.AmazonImage}}
+                {{if eq $i 0}}
+                <img src="{{$p.AmazonImage}}" alt="{{$p.AmazonTitle}}" class="product-image" width="280" height="280" fetchpriority="high">
                 {{else}}
-                <div class="product-image placeholder">{{slice .AmazonTitle 0 1}}</div>
+                <img src="{{$p.AmazonImage}}" alt="{{$p.AmazonTitle}}" class="product-image" width="280" height="280" loading="lazy">
+                {{end}}
+                {{else}}
+                <div class="product-image placeholder">{{slice $p.AmazonTitle 0 1}}</div>
                 {{end}}
             </div>
             <div class="product-info">
-                {{if .Brand}}<div class="product-brand">{{.Brand}}</div>{{end}}
-                <div class="product-title">{{.AmazonTitle}}</div>
-                {{if .StarRating}}
+                {{if $p.Brand}}<div class="product-brand">{{$p.Brand}}</div>{{end}}
+                <div class="product-title">{{$p.AmazonTitle}}</div>
+                {{if $p.StarRating}}
                 <div class="product-rating">
-                    <span class="rating-value">{{formatRating .StarRating}}</span>
+                    <span class="rating-value">{{formatRating $p.StarRating}}</span>
                     <span class="rating-stars">
-                        {{range seq (fullStars .StarRating)}}<i class="fas fa-star"></i>{{end}}
-                        {{if hasHalfStar .StarRating}}<i class="fas fa-star-half-alt"></i>{{end}}
-                        {{range seq (emptyStars .StarRating)}}<i class="far fa-star"></i>{{end}}
+                        {{range seq (fullStars $p.StarRating)}}<i class="fas fa-star"></i>{{end}}
+                        {{if hasHalfStar $p.StarRating}}<i class="fas fa-star-half-alt"></i>{{end}}
+                        {{range seq (emptyStars $p.StarRating)}}<i class="far fa-star"></i>{{end}}
                     </span>
-                    {{if .ReviewCount}}<span class="rating-count">({{formatCount .ReviewCount}})</span>{{end}}
+                    {{if $p.ReviewCount}}<span class="rating-count">({{formatCount $p.ReviewCount}})</span>{{end}}
                 </div>
                 {{end}}
                 <div class="product-meta">
-                    <a href="{{.AmazonURL}}" target="_blank" rel="noopener sponsored" class="view-button">View on Amazon</a>
+                    <a href="{{$p.AmazonURL}}" target="_blank" rel="noopener sponsored" class="view-button">View on Amazon</a>
                 </div>
             </div>
         </div>

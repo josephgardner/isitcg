@@ -78,11 +78,16 @@
       href="https://fonts.googleapis.com/css?family=Molle:400i|Leckerli+One|Montserrat|Open+Sans:400,700&display=swap"
       rel="stylesheet"
     />
-    <script
-      data-ad-client="ca-pub-3346949665170660"
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-    ></script>
+    <script>
+      // Only load AdSense on production
+      if (location.hostname === 'isitcg.com' || location.hostname === 'www.isitcg.com') {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+        s.dataset.adClient = 'ca-pub-3346949665170660';
+        document.head.appendChild(s);
+      }
+    </script>
   </head>
 
   <body>
@@ -285,14 +290,16 @@
     </footer>
 
     <script
-      src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"
       crossorigin="anonymous"
-      integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk"
+      integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w=="
+      referrerpolicy="no-referrer"
     ></script>
     <script
-      src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"
       crossorigin="anonymous"
-      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      integrity="sha512-oBTprMeNEKCnqfuqKd6sbvFzmFQtlXS3e0C/RGFV0hD6QzhHV+ODfaQbAlmY6/q0ubbwlAM/nCJjkrgA3waLzg=="
+      referrerpolicy="no-referrer"
     ></script>
     <script src="/static/js/mobile-menu.js"></script>
     <script>
@@ -300,28 +307,31 @@
     </script>
     <script src="/static/js/site.min.js?v=3"></script>
     <script>
-      (function (i, s, o, g, r, a, m) {
-        i["GoogleAnalyticsObject"] = r;
-        (i[r] =
-          i[r] ||
-          function () {
-            (i[r].q = i[r].q || []).push(arguments);
-          }),
-          (i[r].l = 1 * new Date());
-        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m);
-      })(
-        window,
-        document,
-        "script",
-        "https://www.google-analytics.com/analytics.js",
-        "ga"
-      );
+      // Only load Google Analytics on production
+      if (location.hostname === 'isitcg.com' || location.hostname === 'www.isitcg.com') {
+        (function (i, s, o, g, r, a, m) {
+          i["GoogleAnalyticsObject"] = r;
+          (i[r] =
+            i[r] ||
+            function () {
+              (i[r].q = i[r].q || []).push(arguments);
+            }),
+            (i[r].l = 1 * new Date());
+          (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+          a.async = 1;
+          a.src = g;
+          m.parentNode.insertBefore(a, m);
+        })(
+          window,
+          document,
+          "script",
+          "https://www.google-analytics.com/analytics.js",
+          "ga"
+        );
 
-      ga("create", "UA-99980139-1", "auto");
-      ga("send", "pageview");
+        ga("create", "UA-99980139-1", "auto");
+        ga("send", "pageview");
+      }
     </script>
     {{block "scripts" .}}{{end}}
   </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta name="impact-site-verification" value="1074212868" />
     <meta charset="utf-8" />
@@ -66,53 +66,12 @@
 
     <link
       rel="stylesheet"
-      id="malina-font-awesome-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/framework/fonts/font-awesome/css/all.min.css?ver=5.8.1"
-      type="text/css"
-      media="all"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
-    <link
-      rel="stylesheet"
-      id="line-awesome-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/framework/fonts/line-awesome/css/line-awesome.min.css?ver=1.0"
-      type="text/css"
-      media="all"
-    />
-    <link
-      rel="stylesheet"
-      id="dlmenu-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/css/dlmenu.css?ver=1.0"
-      type="text/css"
-      media="all"
-    />
-    <link
-      rel="stylesheet"
-      id="malina-basic-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/css/basic.css?ver=1.0"
-      type="text/css"
-      media="all"
-    />
-    <link
-      rel="stylesheet"
-      id="malina-skeleton-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/css/grid.css?ver=1"
-      type="text/css"
-      media="all"
-    />
-    <link
-      rel="stylesheet"
-      id="malina-stylesheet-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/style.css?ver=1.0"
-      type="text/css"
-      media="all"
-    />
-    <link
-      rel="stylesheet"
-      id="malina-responsive-css"
-      href="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/css/responsive.css?ver=1.0"
-      type="text/css"
-      media="all"
-    />
+    <link rel="stylesheet" href="/static/css/theme.min.css" />
 
     <link rel="stylesheet" href="/static/css/site.css?v=31" />
     <link
@@ -226,7 +185,7 @@
             <a href="https://www.isitcg.com/" class="logo_text">Is it CG?</a>
           </div>
           <div id="dl-menu" class="dl-menuwrapper">
-            <button class="dl-trigger"></button>
+            <button class="dl-trigger" aria-label="Open menu"></button>
 
             <ul id="nav-mobile" class="dl-menu">
               <li
@@ -274,7 +233,7 @@
       </header>
     </div>
 
-    <div class="container-fluid body-content">{{block "content" .}}{{end}}</div>
+    <main class="container-fluid body-content">{{block "content" .}}{{end}}</main>
     <footer id="footer" class="footer-layout-2">
       <div class="special-bg"></div>
       <div class="container">
@@ -335,27 +294,7 @@
       crossorigin="anonymous"
       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     ></script>
-    <script
-      type="text/javascript"
-      src="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/js/theia-sticky-sidebar.js?ver=1.7.0"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/js/jquery.dlmenu.js?ver=1.0.1"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/js/malina-functions.js?ver=1.0"
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="https://isitcg.lisagardnerdesign.com/wp-includes/js/wp-embed.min.js?ver=5.3.2"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://isitcg.lisagardnerdesign.com/wp-content/plugins/malina-elements/js/isotope.min.js?ver=3.0.0"
-    ></script>
+    <script src="/static/js/mobile-menu.js"></script>
     <script>
       window.ANALYTICS_URL = '{{if .AnalyticsURL}}{{.AnalyticsURL}}{{else}}https://analytics.apps.algoplay.com{{end}}';
     </script>

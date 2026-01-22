@@ -1,7 +1,7 @@
 body {
     padding-top: 0;
     font-family: 'Open Sans';
-    background-image: url("https://isitcg.lisagardnerdesign.com/wp-content/themes/malina/images/bg-pattern.png");
+    background-image: url("/static/images/bg-pattern.png");
     background-repeat: repeat;
     color: #706f71;
     margin: 0;
@@ -14,7 +14,7 @@ body {
     padding-right: 15px;
     padding-top: 110px;
     margin-bottom: 15px;
-    background-image: url("https://isitcg.lisagardnerdesign.com/wp-content/uploads/2020/01/background-curls-copy-3.png");
+    background-image: url("/static/images/background-curls.png");
     background-repeat: repeat-x;
     background-color: transparent;
     min-height: 525px;
@@ -73,6 +73,11 @@ a.logo_text {
 .menu li a,
 .dl-menuwrapper li a {
     font-family: 'Montserrat';
+}
+
+/* Mobile menu hamburger icon size */
+.dl-menuwrapper button.dl-trigger {
+    font-size: 20px;
 }
 
 /* NEW badge for navigation */

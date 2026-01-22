@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gorilla/mux"
@@ -102,6 +103,10 @@ func router(ingredientHandler isitcg.IngredientHandler, renders renders, counter
 		Methods(http.MethodGet).
 		HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			searchQuery := r.URL.Query().Get("q")
+			// Decode JSON unicode escapes like \u0026 -> &
+			if unquoted, err := strconv.Unquote(`"` + searchQuery + `"`); err == nil {
+				searchQuery = unquoted
+			}
 			noCache := r.URL.Query().Get("nocache") == "true"
 			renders.Trending(w, searchQuery, noCache)
 		})

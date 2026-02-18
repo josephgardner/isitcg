@@ -14,9 +14,9 @@ function wikiUrl(ruleName) {
 }
 
 const EXAMPLES = [
-  { label: 'CG approved',           result: 'good',    hash: 'eyJuIjoiRElZIFNpbXBsZSBDb25kaXRpb25lciIsImkiOiJXYXRlciwgQ2V0eWwgQWxjb2hvbCwgQ29jYW1pZG9wcm9weWwgQmV0YWluZSwgUGFudGhlbm9sLCBDaXRyaWMgQWNpZCJ9' },
-  { label: 'Approved with caution',  result: 'warning', hash: 'eyJuIjoiQ2FudHUgU2hlYSBCdXR0ZXIgTGVhdmUtSW4iLCJpIjoiV2F0ZXIsIFNoZWEgQnV0dGVyLCBDZXR5bCBBbGNvaG9sLCBHbHljZXJpbiwgQmVoZW50cmltb25pdW0gTWV0aG9zdWxmYXRlLCBGcmFncmFuY2UsIENpdHJpYyBBY2lkIn0' },
-  { label: 'Not CG approved',        result: 'danger',  hash: 'eyJuIjoiSGVyYmFsIEVzc2VuY2VzIEN1cmwgU2hhbXBvbyIsImkiOiJXYXRlciAoQXF1YSksIFNvZGl1bSBMYXVyeWwgU3VsZmF0ZSwgQ29jYW1pZG9wcm9weWwgQmV0YWluZSwgRGltZXRoaWNvbmUsIEdseWNlcmluLCBDZXR5bCBBbGNvaG9sLCBDaXRyaWMgQWNpZCwgRnJhZ3JhbmNlIn0' },
+  { label: 'CG approved',           result: 'good',    hash: 'eyJuIjoiIiwiaSI6IldhdGVyLCBDZXR5bCBBbGNvaG9sLCBDb2NhbWlkb3Byb3B5bCBCZXRhaW5lLCBQYW50aGVub2wsIENpdHJpYyBBY2lkIn0' },
+  { label: 'Approved with caution',  result: 'warning', hash: 'eyJuIjoiIiwiaSI6IldhdGVyLCBTaGVhIEJ1dHRlciwgQ2V0eWwgQWxjb2hvbCwgR2x5Y2VyaW4sIEJlaGVudHJpbW9uaXVtIE1ldGhvc3VsZmF0ZSwgRnJhZ3JhbmNlLCBDaXRyaWMgQWNpZCJ9' },
+  { label: 'Not CG approved',        result: 'danger',  hash: 'eyJuIjoiIiwiaSI6IldhdGVyIChBcXVhKSwgU29kaXVtIExhdXJ5bCBTdWxmYXRlLCBDb2NhbWlkb3Byb3B5bCBCZXRhaW5lLCBEaW1ldGhpY29uZSwgR2x5Y2VyaW4sIENldHlsIEFsY29ob2wsIENpdHJpYyBBY2lkLCBGcmFncmFuY2UifQ' },
 ]
 
 export function renderForm(container, prefilled = {}) {
@@ -37,7 +37,7 @@ export function renderForm(container, prefilled = {}) {
     </div>
     <div class="form-wrap">
       <form id="ingredient-form">
-        <input type="text" id="productname" placeholder="Product name (e.g., DevaCurl SuperCream)" value="${esc(prefilled.name || '')}">
+        <input type="text" id="productname" placeholder="Product name (optional)" value="${esc(prefilled.name || '')}">
         <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)">${esc(prefilled.ingredients || '')}</textarea>
         <button type="submit" class="btn btn-secondary">Submit</button>
       </form>

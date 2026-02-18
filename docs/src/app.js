@@ -75,7 +75,9 @@ function parseMarkdown(md) {
   function inline(s) {
     return escHtml(s)
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/__(.+?)__/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/_(.+?)_/g, '<em>$1</em>')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) =>
         `<a href="${escHtml(url)}" target="_blank" rel="noopener">${text}</a>`)

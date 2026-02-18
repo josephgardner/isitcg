@@ -332,27 +332,39 @@ textarea {
 
 /* ── Footer ── */
 footer {
+  background: #1e1e1e;
   text-align: center;
-  padding: 24px 16px 28px;
-  margin-top: 8px;
+  padding: 32px 16px;
+  margin-top: 24px;
 }
 
-.footer-credit {
-  font-size: 0.78rem;
-  color: #ccc;
-  margin-bottom: 3px;
+.footer-logo {
+  font-family: 'Leckerli One', cursive;
+  font-size: 1.4rem;
+  color: var(--pink);
+  margin-bottom: 16px;
 }
 
-.footer-credit a { color: #bbb; text-decoration: none; }
-.footer-credit a:hover { color: var(--teal); }
-
-.footer-meta {
-  font-size: 0.78rem;
-  color: #ccc;
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
-.footer-meta a { color: #bbb; text-decoration: none; }
-.footer-meta a:hover { color: var(--teal); }
+.footer-links a {
+  color: var(--teal);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover { text-decoration: underline; }
+
+.footer-tagline {
+  font-size: 0.75rem;
+  color: #555;
+}
 
 /* ── Responsive ── */
 @media (max-width: 540px) {

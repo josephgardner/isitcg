@@ -1,0 +1,321 @@
+:root {
+  --pink: #ed878d;
+  --teal: #7fb1b2;
+  --gray: #706f71;
+  --light: #fdf6f6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--gray);
+  background: var(--light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+header {
+  background: #fff;
+  padding: 14px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.logo {
+  font-family: 'Leckerli One', cursive;
+  font-size: 1.8rem;
+  color: var(--pink);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.tagline {
+  font-size: 0.82rem;
+  color: #bbb;
+}
+
+/* ── Main ── */
+main {
+  flex: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+/* ── Titlebar ── */
+.titlebar {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+.titlebar h1 {
+  font-family: 'Leckerli One', cursive;
+  font-size: 1.55rem;
+  font-weight: 400;
+  color: var(--pink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.titlebar h3 {
+  font-family: 'Leckerli One', cursive;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--gray);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.titlebar p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.examples-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  justify-content: center;
+}
+
+.examples-label {
+  font-size: 0.8rem;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.example-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter .15s;
+}
+
+.example-link::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.example-link:hover { filter: brightness(.9); }
+
+.example-good    { background: #e8f4f4; color: var(--teal); }
+.example-good::before    { background: var(--teal); }
+.example-warning { background: #f0eeec; color: #9e9890; }
+.example-warning::before { background: #c7c2bb; }
+.example-danger  { background: #fdf0f1; color: var(--pink); }
+.example-danger::before  { background: var(--pink); }
+
+/* ── Results titlebar ── */
+.result-titlebar {
+  padding-bottom: 18px;
+}
+
+.result-product {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gray);
+  margin-bottom: 10px;
+}
+
+.result-verdict {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Leckerli One', cursive;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.verdict-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.verdict-danger  .verdict-dot { background: var(--pink); }
+.verdict-warning .verdict-dot { background: #c7c2bb; }
+.verdict-good    .verdict-dot,
+.verdict-success .verdict-dot { background: var(--teal); }
+
+.verdict-danger  span:last-child { color: var(--pink); }
+.verdict-warning span:last-child { color: #9e9890; }
+.verdict-good    span:last-child,
+.verdict-success span:last-child { color: var(--teal); }
+
+.result-message {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--gray);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* ── Form ── */
+.form-wrap {
+  background: #fff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--gray);
+  display: block;
+  margin-bottom: 12px;
+  background: #fff;
+  transition: border-color .15s;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+textarea {
+  height: 180px;
+  resize: vertical;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: filter .15s;
+}
+
+.btn:hover { filter: brightness(.92); }
+
+.btn-primary   { background: var(--teal);  color: #fff; }
+.btn-secondary { background: var(--pink);  color: #fff; }
+.btn-ghost     { background: transparent; color: var(--gray); border: 1px solid #ddd; }
+.btn-ghost:hover { background: #f5f5f5; filter: none; }
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+/* ── Result panels ── */
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+.panel-heading {
+  padding: 10px 16px;
+  font-family: 'Leckerli One', cursive;
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 400;
+}
+
+.panel-danger  .panel-heading { background: var(--pink); }
+.panel-warning .panel-heading { background: #c7c2bb; }
+.panel-success .panel-heading,
+.panel-good    .panel-heading { background: var(--teal); }
+.panel-primary .panel-heading { background: var(--gray); }
+
+.panel-body {
+  padding: 14px 16px;
+}
+
+.panel-body h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.panel-body p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.panel-body a { color: var(--teal); }
+
+.list-group {
+  list-style: none;
+  border-top: 1px solid #f0f0f0;
+}
+
+.list-group li {
+  padding: 7px 16px;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 0.88rem;
+}
+
+.list-group li:last-child { border-bottom: none; }
+
+/* ── Community callout ── */
+.community-callout {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 12px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+.community-callout a { color: var(--teal); }
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 20px 16px;
+  font-size: 0.82rem;
+  color: #bbb;
+  margin-top: 8px;
+}
+
+footer a { color: var(--teal); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ── Responsive ── */
+@media (max-width: 540px) {
+  .logo { font-size: 1.4rem; }
+  .tagline { display: none; }
+  .titlebar h3 { font-size: 1.4rem; }
+  main { margin: 12px auto; }
+}

@@ -235,7 +235,21 @@ textarea {
 .btn:hover { filter: brightness(.92); }
 
 .btn-primary   { background: var(--teal);  color: #fff; }
-.btn-secondary { background: var(--pink);  color: #fff; }
+.btn-secondary {
+  background: var(--pink);
+  color: #fff;
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  box-shadow: 0 3px 10px rgba(237, 135, 141, .25);
+}
+
+.btn-secondary:hover {
+  filter: brightness(.95);
+  box-shadow: 0 4px 14px rgba(237, 135, 141, .35);
+}
 .btn-ghost     { background: transparent; color: var(--gray); border: 1px solid #ddd; }
 .btn-ghost:hover { background: #f5f5f5; filter: none; }
 
@@ -301,16 +315,16 @@ textarea {
 
 /* ── Community callout ── */
 .community-callout {
-  background: #fff;
+  background: #e8f4f4;
+  border: 1px solid #c5e2e2;
   border-radius: 10px;
   padding: 16px 20px;
   margin-top: 12px;
   font-size: 0.88rem;
   line-height: 1.7;
-  box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
 
-.community-callout a { color: var(--teal); }
+.community-callout a { color: var(--teal); font-weight: 600; }
 
 /* ── Glossary ── */
 .back-link {

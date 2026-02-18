@@ -333,26 +333,15 @@ textarea {
 /* ── Footer ── */
 footer {
   text-align: center;
-  padding: 24px 16px 28px;
+  padding: 20px 16px;
   margin-top: 8px;
+  font-size: 0.8rem;
+  color: #bbb;
 }
 
-.footer-credit {
-  font-size: 0.78rem;
-  color: #ccc;
-  margin-bottom: 3px;
-}
-
-.footer-credit a { color: var(--teal); text-decoration: none; }
-.footer-credit a:hover { text-decoration: underline; }
-
-.footer-meta {
-  font-size: 0.78rem;
-  color: #ccc;
-}
-
-.footer-meta a { color: var(--teal); text-decoration: none; }
-.footer-meta a:hover { text-decoration: underline; }
+footer a { color: var(--teal); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+footer .sep { color: #ddd; margin: 0 6px; }
 
 /* ── Responsive ── */
 @media (max-width: 540px) {

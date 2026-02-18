@@ -40,6 +40,26 @@ header {
   color: #bbb;
 }
 
+/* ── Site banner ── */
+.site-banner {
+  background: #fdf0f1;
+  border-bottom: 1px solid #f5d0d3;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  text-align: center;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.site-banner a {
+  color: var(--pink);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-banner a:hover { text-decoration: underline; }
+
 /* ── Main ── */
 main {
   flex: 1;

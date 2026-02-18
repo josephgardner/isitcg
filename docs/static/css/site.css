@@ -10,7 +10,8 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: var(--gray);
-  background: var(--light);
+  background: var(--light) url('../images/background-curls.png') repeat center top;
+  background-size: 900px auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@ header {
 }
 
 .logo {
-  font-family: 'Leckerli One', cursive;
+  font-family: 'Molle', cursive;
   font-size: 1.8rem;
   color: var(--pink);
   text-decoration: none;
@@ -58,7 +59,7 @@ main {
 }
 
 .titlebar h1 {
-  font-family: 'Leckerli One', cursive;
+  font-family: 'Molle', cursive;
   font-size: 1.55rem;
   font-weight: 400;
   color: var(--pink);
@@ -67,10 +68,10 @@ main {
 }
 
 .titlebar h3 {
-  font-family: 'Leckerli One', cursive;
+  font-family: 'Molle', cursive;
   font-size: 1.8rem;
   font-weight: 400;
-  color: var(--gray);
+  color: var(--pink);
   text-align: center;
   margin-bottom: 10px;
 }
@@ -128,7 +129,12 @@ main {
 /* ── Results titlebar ── */
 .result-titlebar {
   padding-bottom: 18px;
+  border-top: 4px solid #eee;
 }
+
+.result-titlebar:has(.verdict-danger)  { border-top-color: var(--pink); }
+.result-titlebar:has(.verdict-warning) { border-top-color: #c7c2bb; }
+.result-titlebar:has(.verdict-good)    { border-top-color: var(--teal); }
 
 .result-product {
   font-size: 1.1rem;
@@ -141,7 +147,7 @@ main {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-family: 'Leckerli One', cursive;
+  font-family: 'Molle', cursive;
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 16px;
@@ -195,6 +201,12 @@ textarea {
   transition: border-color .15s;
 }
 
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #ccc;
+  font-style: italic;
+}
+
 input[type="text"]:focus,
 textarea:focus {
   outline: none;
@@ -245,7 +257,7 @@ textarea {
 
 .panel-heading {
   padding: 10px 16px;
-  font-family: 'Leckerli One', cursive;
+  font-family: 'Molle', cursive;
   font-size: 1.25rem;
   color: #fff;
   font-weight: 400;
@@ -311,7 +323,7 @@ textarea {
 
 .back-link:hover { text-decoration: underline; }
 
-.glossary-body h1 { font-family: 'Leckerli One', cursive; font-size: 1.6rem; font-weight: 400; color: var(--pink); margin-bottom: 12px; }
+.glossary-body h1 { font-family: 'Molle', cursive; font-size: 1.6rem; font-weight: 400; color: var(--pink); margin-bottom: 12px; }
 .glossary-body h2 { font-size: 1rem; font-weight: 700; color: var(--gray); margin: 20px 0 6px; }
 .glossary-body h3 { font-size: 0.95rem; font-weight: 700; color: var(--gray); margin: 16px 0 4px; }
 .glossary-body p  { font-size: 0.92rem; line-height: 1.65; margin-bottom: 10px; }
@@ -337,11 +349,39 @@ footer {
   margin-top: 8px;
   font-size: 0.8rem;
   color: #bbb;
+  background: #333;
+  box-shadow: none;
 }
 
 footer a { color: var(--teal); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 footer .sep { color: #ddd; margin: 0 6px; }
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #ccc;
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.social-link:hover { color: var(--teal); text-decoration: none; }
+
+.social-link svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
 
 /* ── Responsive ── */
 @media (max-width: 540px) {

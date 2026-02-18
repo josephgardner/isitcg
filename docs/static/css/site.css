@@ -343,16 +343,16 @@ footer {
   margin-bottom: 3px;
 }
 
-.footer-credit a { color: #bbb; text-decoration: none; }
-.footer-credit a:hover { color: var(--teal); }
+.footer-credit a { color: var(--teal); text-decoration: none; }
+.footer-credit a:hover { text-decoration: underline; }
 
 .footer-meta {
   font-size: 0.78rem;
   color: #ccc;
 }
 
-.footer-meta a { color: #bbb; text-decoration: none; }
-.footer-meta a:hover { color: var(--teal); }
+.footer-meta a { color: var(--teal); text-decoration: none; }
+.footer-meta a:hover { text-decoration: underline; }
 
 /* ── Responsive ── */
 @media (max-width: 540px) {

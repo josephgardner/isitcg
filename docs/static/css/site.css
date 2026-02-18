@@ -300,6 +300,36 @@ textarea {
 
 .community-callout a { color: var(--teal); }
 
+/* ── Glossary ── */
+.back-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--teal);
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+.glossary-body h1 { font-family: 'Leckerli One', cursive; font-size: 1.6rem; font-weight: 400; color: var(--pink); margin-bottom: 12px; }
+.glossary-body h2 { font-size: 1rem; font-weight: 700; color: var(--gray); margin: 20px 0 6px; }
+.glossary-body h3 { font-size: 0.95rem; font-weight: 700; color: var(--gray); margin: 16px 0 4px; }
+.glossary-body p  { font-size: 0.92rem; line-height: 1.65; margin-bottom: 10px; }
+.glossary-body ul { padding-left: 20px; margin-bottom: 10px; }
+.glossary-body li { font-size: 0.88rem; line-height: 1.7; }
+.glossary-body code { background: #f5f5f5; padding: 1px 5px; border-radius: 3px; font-size: 0.85em; }
+.glossary-body blockquote { border-left: 3px solid #ddd; padding-left: 12px; color: #999; font-style: italic; margin: 10px 0; }
+.glossary-body a { color: var(--teal); }
+
+.glossary-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.82rem;
+}
+
+.glossary-footer a { color: var(--teal); }
+
 /* ── Footer ── */
 footer {
   text-align: center;

@@ -7,10 +7,10 @@ function esc(s) {
     .replace(/"/g, '&quot;')
 }
 
-const WIKI_BASE = 'https://github.com/josephgardner/isitcg/wiki/'
+import { slugify } from './isitcg.js'
 
-function wikiUrl(ruleName) {
-  return WIKI_BASE + encodeURIComponent(ruleName.replace(/[\s-]+/g, '-'))
+function glossaryUrl(ruleName) {
+  return `#glossary/${slugify(ruleName)}`
 }
 
 const EXAMPLES = [
@@ -70,7 +70,7 @@ export function renderResults(container, { productName, result, matches, remaind
       <div class="panel-heading">${resultLabel(m.Result)}</div>
       <div class="panel-body">
         <h4>${esc(m.Name || '')}</h4>
-        <p>${esc(m.Description || '')} <a href="${wikiUrl(m.Name)}" target="_blank" rel="noopener">(More info)</a></p>
+        <p>${esc(m.Description || '')} <a href="${glossaryUrl(m.Name)}">(More info)</a></p>
       </div>
       <ul class="list-group">
         ${m.Ingredients.map(i => `<li>${esc(i)}</li>`).join('')}
@@ -111,6 +111,28 @@ export function renderResults(container, { productName, result, matches, remaind
       <a href="https://github.com/josephgardner/isitcg/blob/main/ingredientrules.json" target="_blank" rel="noopener">Edit ingredientrules.json on GitHub</a>
       &nbsp;&middot;&nbsp;
       <a href="https://github.com/josephgardner/isitcg/issues" target="_blank" rel="noopener">Open an issue</a>
+    </div>
+  `
+}
+
+export function renderGlossary(container, html, slug) {
+  container.innerHTML = `
+    <div class="titlebar">
+      <a href="#" class="back-link">← Back</a>
+      <div class="glossary-body">${html}</div>
+      <div class="glossary-footer">
+        <a href="https://github.com/josephgardner/isitcg/edit/main/docs/glossary/${esc(slug)}.md"
+           target="_blank" rel="noopener">Edit this page on GitHub</a>
+      </div>
+    </div>
+  `
+}
+
+export function renderGlossaryError(container) {
+  container.innerHTML = `
+    <div class="titlebar">
+      <a href="#" class="back-link">← Back</a>
+      <p style="margin-top:12px">Page not found. <a href="https://github.com/josephgardner/isitcg/new/main/docs/glossary" target="_blank" rel="noopener">Create it on GitHub</a>.</p>
     </div>
   `
 }

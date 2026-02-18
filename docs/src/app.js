@@ -1,5 +1,5 @@
 import { analyze, encode, decode } from './isitcg.js'
-import { renderForm, renderResults } from './render.js'
+import { renderForm, renderResults, renderGlossary, renderGlossaryError } from './render.js'
 
 const container = document.getElementById('app')
 let rules = []
@@ -38,6 +38,12 @@ function route() {
     return
   }
 
+  if (hash.startsWith('glossary/')) {
+    const slug = hash.slice(9)
+    loadGlossary(slug)
+    return
+  }
+
   try {
     const { n, i } = decode(hash)
     const results = analyze(n, i, rules)
@@ -47,6 +53,57 @@ function route() {
     renderForm(container)
     attachForm()
   }
+}
+
+async function loadGlossary(slug) {
+  try {
+    const res = await fetch(`glossary/${slug}.md`)
+    if (!res.ok) throw new Error()
+    const md = await res.text()
+    renderGlossary(container, parseMarkdown(md), slug)
+  } catch (_) {
+    renderGlossaryError(container)
+  }
+}
+
+// Minimal markdown parser — handles headings, paragraphs, lists, bold, italic, links, code.
+function parseMarkdown(md) {
+  function escHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+  }
+
+  function inline(s) {
+    return escHtml(s)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, url) =>
+        `<a href="${escHtml(url)}" target="_blank" rel="noopener">${text}</a>`)
+  }
+
+  const blocks = []
+  let listItems = []
+
+  function flushList() {
+    if (listItems.length) {
+      blocks.push(`<ul>${listItems.join('')}</ul>`)
+      listItems = []
+    }
+  }
+
+  for (const line of md.split('\n')) {
+    const t = line.trim()
+    if      (t.startsWith('### ')) { flushList(); blocks.push(`<h3>${inline(t.slice(4))}</h3>`) }
+    else if (t.startsWith('## '))  { flushList(); blocks.push(`<h2>${inline(t.slice(3))}</h2>`) }
+    else if (t.startsWith('# '))   { flushList(); blocks.push(`<h1>${inline(t.slice(2))}</h1>`) }
+    else if (t.startsWith('> '))   { flushList(); blocks.push(`<blockquote>${inline(t.slice(2))}</blockquote>`) }
+    else if (t.match(/^[-*] /))    { listItems.push(`<li>${inline(t.slice(2))}</li>`) }
+    else if (t === '')             { flushList() }
+    else                           { flushList(); blocks.push(`<p>${inline(t)}</p>`) }
+  }
+  flushList()
+
+  return blocks.join('\n')
 }
 
 function attachForm() {

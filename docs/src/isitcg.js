@@ -67,6 +67,11 @@ export function analyze(productName, ingredientsStr, rules) {
   return { productName, result, matches, remainder }
 }
 
+// Slugify a rule name for use in URLs and filenames.
+export function slugify(name) {
+  return name.toLowerCase().replace(/[\s-]+/g, '-').replace(/[^a-z0-9-]/g, '')
+}
+
 // Encode product name + ingredients into a URL-safe base64 hash.
 export function encode(name, ingredients) {
   return btoa(JSON.stringify({ n: name, i: ingredients }))

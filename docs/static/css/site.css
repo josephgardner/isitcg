@@ -338,18 +338,13 @@ footer {
 }
 
 .footer-credit {
-  font-size: 0.9rem;
-  color: var(--gray);
-  margin-bottom: 4px;
+  font-size: 0.78rem;
+  color: #ccc;
+  margin-bottom: 3px;
 }
 
-.footer-credit a {
-  color: var(--pink);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.footer-credit a:hover { text-decoration: underline; }
+.footer-credit a { color: #bbb; text-decoration: none; }
+.footer-credit a:hover { color: var(--teal); }
 
 .footer-meta {
   font-size: 0.78rem;

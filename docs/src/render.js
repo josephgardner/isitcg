@@ -108,9 +108,9 @@ export function renderResults(container, { productName, result, matches, remaind
     ${remainderPanel}
     <div class="community-callout">
       <strong>Wrong result or missing ingredient?</strong> This analyzer is entirely community-driven.<br>
-      <a href="https://github.com/josephgardner/isitcg/blob/main/ingredientrules.json" target="_blank" rel="noopener">Edit ingredientrules.json on GitHub</a>
+      <a href="https://github.com/josephgardner/isitcg/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">How to contribute</a>
       &nbsp;&middot;&nbsp;
-      <a href="https://github.com/josephgardner/isitcg/issues" target="_blank" rel="noopener">Open an issue</a>
+      <a href="https://github.com/josephgardner/isitcg/issues/new/choose" target="_blank" rel="noopener">Report a problem</a>
     </div>
   `
 }

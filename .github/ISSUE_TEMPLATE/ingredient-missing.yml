@@ -1,0 +1,67 @@
+name: Missing ingredient
+description: An ingredient isn't recognized by the tool — it should be added to the database.
+title: "Missing ingredient: [INGREDIENT NAME]"
+labels: ["needs-verification"]
+body:
+  - type: input
+    id: ingredient-name
+    attributes:
+      label: Ingredient name
+      description: Spell it exactly as it appears on the product label.
+      placeholder: e.g. Sodium Lauryl Sulfate
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Which category does it belong to?
+      description: Pick the category that best fits this ingredient. If you're not sure, leave it as "Not sure."
+      options:
+        - Not sure
+        - Sulfates to Avoid
+        - Silicones to Avoid
+        - Waxes and Oils to Avoid
+        - Drying Alcohols to Avoid
+        - Silicones to Use with Caution
+        - Proteins
+        - Humectants
+        - Polyquats
+        - Oils to use with Caution
+        - Conditioning Agents
+        - Parabens
+        - Itchy M's
+        - Chelating Agents
+        - Clarifying Ingredients
+        - Cleansing Agents
+        - Gentle Cleansers
+        - Film Forming Humectants
+        - Water Soluble Silicones
+        - Moisturizing Alcohols
+        - Waxes
+        - Botanical Ingredients - Extracts and Oils
+        - Preservatives
+        - Verified - Okay
+        - Verified - Caution
+    validations:
+      required: true
+
+  - type: input
+    id: product
+    attributes:
+      label: Product where you found it
+      description: Optional — helps us verify the label spelling.
+      placeholder: e.g. DevaCurl SuperCream
+
+  - type: input
+    id: source
+    attributes:
+      label: Source or citation
+      description: A product label photo, a CG blog, a study — anything that supports the categorization.
+      placeholder: e.g. https://example.com/cg-ingredient-guide
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else to add?
+      description: Context, alternate spellings, related ingredients, etc.

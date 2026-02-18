@@ -1,0 +1,93 @@
+name: Wrong category
+description: An ingredient is recognized but put in the wrong category (e.g., flagged as danger when it should be okay, or vice versa).
+title: "Wrong category: [INGREDIENT NAME]"
+labels: ["needs-verification"]
+body:
+  - type: input
+    id: ingredient-name
+    attributes:
+      label: Ingredient name
+      description: Spell it exactly as it appears in the tool or on your product label.
+      placeholder: e.g. Cetyl Alcohol
+    validations:
+      required: true
+
+  - type: dropdown
+    id: current-category
+    attributes:
+      label: Current category (what the tool shows now)
+      options:
+        - Not sure
+        - Sulfates to Avoid
+        - Silicones to Avoid
+        - Waxes and Oils to Avoid
+        - Drying Alcohols to Avoid
+        - Silicones to Use with Caution
+        - Proteins
+        - Humectants
+        - Polyquats
+        - Oils to use with Caution
+        - Conditioning Agents
+        - Parabens
+        - Itchy M's
+        - Chelating Agents
+        - Clarifying Ingredients
+        - Cleansing Agents
+        - Gentle Cleansers
+        - Film Forming Humectants
+        - Water Soluble Silicones
+        - Moisturizing Alcohols
+        - Waxes
+        - Botanical Ingredients - Extracts and Oils
+        - Preservatives
+        - Verified - Okay
+        - Verified - Caution
+    validations:
+      required: true
+
+  - type: dropdown
+    id: correct-category
+    attributes:
+      label: Correct category (where it should be)
+      options:
+        - Not sure
+        - Sulfates to Avoid
+        - Silicones to Avoid
+        - Waxes and Oils to Avoid
+        - Drying Alcohols to Avoid
+        - Silicones to Use with Caution
+        - Proteins
+        - Humectants
+        - Polyquats
+        - Oils to use with Caution
+        - Conditioning Agents
+        - Parabens
+        - Itchy M's
+        - Chelating Agents
+        - Clarifying Ingredients
+        - Cleansing Agents
+        - Gentle Cleansers
+        - Film Forming Humectants
+        - Water Soluble Silicones
+        - Moisturizing Alcohols
+        - Waxes
+        - Botanical Ingredients - Extracts and Oils
+        - Preservatives
+        - Verified - Okay
+        - Verified - Caution
+        - Remove it entirely
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source or citation
+      description: What supports the correct categorization? A product label, CG blog, study, or known resource.
+      placeholder: e.g. https://thenaturalhaven.com/cetyl-alcohol/
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else to add?
+      description: Context, why this matters, related ingredients that may also be wrong, etc.

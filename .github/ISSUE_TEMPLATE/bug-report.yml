@@ -1,0 +1,37 @@
+name: Bug report
+description: Something on the website isn't working correctly (not an ingredient database issue).
+title: "Bug: [SHORT DESCRIPTION]"
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What went wrong?
+      description: Describe what you expected to happen and what actually happened.
+      placeholder: |
+        I pasted my ingredient list and the page showed an error instead of results.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we make it happen again?
+      placeholder: |
+        1. Go to isitcg.com
+        2. Paste this ingredient list: ...
+        3. Click Analyze
+        4. See error
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: e.g. Chrome on iPhone, Firefox on Windows
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Screenshots, error messages, etc.

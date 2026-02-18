@@ -7,9 +7,10 @@ function esc(s) {
     .replace(/"/g, '&quot;')
 }
 
-function safeUrl(url) {
-  if (!url) return ''
-  return (url.startsWith('https://') || url.startsWith('http://')) ? url : ''
+const WIKI_BASE = 'https://github.com/josephgardner/isitcg/wiki/'
+
+function wikiUrl(ruleName) {
+  return WIKI_BASE + encodeURIComponent(ruleName.replace(/[\s-]+/g, '-'))
 }
 
 const EXAMPLES = [
@@ -69,7 +70,7 @@ export function renderResults(container, { productName, result, matches, remaind
       <div class="panel-heading">${resultLabel(m.Result)}</div>
       <div class="panel-body">
         <h4>${esc(m.Name || '')}</h4>
-        <p>${esc(m.Description || '')}${safeUrl(m.BlogUrl) ? ` <a href="${safeUrl(m.BlogUrl)}" target="_blank" rel="noopener">(More info)</a>` : ''}</p>
+        <p>${esc(m.Description || '')} <a href="${wikiUrl(m.Name)}" target="_blank" rel="noopener">(More info)</a></p>
       </div>
       <ul class="list-group">
         ${m.Ingredients.map(i => `<li>${esc(i)}</li>`).join('')}

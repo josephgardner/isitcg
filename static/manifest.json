@@ -1,5 +1,7 @@
 {
-    "name": "",
+    "name": "Is It Curly Girl?",
+    "short_name": "Is It CG?",
+    "start_url": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

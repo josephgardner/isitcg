@@ -423,4 +423,27 @@ footer .sep { color: #ddd; margin: 0 6px; }
   .tagline { display: none; }
   .titlebar h3 { font-size: 1.4rem; }
   main { margin: 12px auto; }
+
+  /* Tighten spacing to improve above-fold content on mobile */
+  .site-banner { padding: 7px 14px; font-size: 0.8rem; }
+  .titlebar { padding: 16px; }
+  .titlebar p { font-size: 0.875rem; }
+
+  /* Example chips: prevent awkward wrapping, use horizontal scroll */
+  .examples-label { display: none; }
+  .examples-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .examples-row::-webkit-scrollbar { display: none; }
+  .example-link {
+    flex-shrink: 0;
+    font-size: 0.73rem;
+    padding: 3px 9px;
+  }
 }

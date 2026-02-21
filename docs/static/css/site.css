@@ -424,10 +424,12 @@ footer .sep { color: #ddd; margin: 0 6px; }
   .titlebar h3 { font-size: 1.4rem; }
   main { margin: 12px auto; }
 
-  /* Tighten spacing to improve above-fold content on mobile */
+  /* Tighten spacing so footer fits in viewport */
   .site-banner { padding: 7px 14px; font-size: 0.8rem; }
-  .titlebar { padding: 16px; }
+  .titlebar { padding: 14px 16px; }
   .titlebar p { font-size: 0.875rem; }
+  .form-wrap { padding: 16px; }
+  textarea { height: 110px; }
 
   /* Example chips: prevent awkward wrapping, use horizontal scroll */
   .examples-label { display: none; }

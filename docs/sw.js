@@ -31,6 +31,26 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return
 
+  const url = new URL(e.request.url)
+  const isRules = url.pathname.endsWith('/ingredientrules.json')
+
+  if (isRules) {
+    // Stale-while-revalidate: serve cache instantly, refresh in background
+    e.respondWith(
+      caches.open(CACHE).then(cache =>
+        cache.match(e.request).then(cached => {
+          const fresh = fetch(e.request).then(response => {
+            if (response.ok) cache.put(e.request, response.clone())
+            return response
+          })
+          return cached || fresh
+        })
+      )
+    )
+    return
+  }
+
+  // Cache-first for everything else
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached

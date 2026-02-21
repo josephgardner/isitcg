@@ -125,4 +125,8 @@ function ga4(event, params) {
   if (typeof gtag === 'function') gtag('event', event, params)
 }
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'))
+}
+
 init()

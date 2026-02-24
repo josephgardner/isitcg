@@ -14,14 +14,14 @@ function glossaryUrl(ruleName) {
 }
 
 const EXAMPLES = [
-  { label: 'CG approved',           result: 'good',    hash: 'eyJuIjoiIiwiaSI6IldhdGVyLCBDZXR5bCBBbGNvaG9sLCBDb2NhbWlkb3Byb3B5bCBCZXRhaW5lLCBQYW50aGVub2wsIENpdHJpYyBBY2lkIn0' },
-  { label: 'Approved with caution',  result: 'warning', hash: 'eyJuIjoiIiwiaSI6IldhdGVyLCBTaGVhIEJ1dHRlciwgQ2V0eWwgQWxjb2hvbCwgR2x5Y2VyaW4sIEJlaGVudHJpbW9uaXVtIE1ldGhvc3VsZmF0ZSwgRnJhZ3JhbmNlLCBDaXRyaWMgQWNpZCJ9' },
-  { label: 'Not CG approved',        result: 'danger',  hash: 'eyJuIjoiIiwiaSI6IldhdGVyIChBcXVhKSwgU29kaXVtIExhdXJ5bCBTdWxmYXRlLCBDb2NhbWlkb3Byb3B5bCBCZXRhaW5lLCBEaW1ldGhpY29uZSwgR2x5Y2VyaW4sIENldHlsIEFsY29ob2wsIENpdHJpYyBBY2lkLCBGcmFncmFuY2UifQ' },
+  { label: 'CG approved',           short: 'CG approved',   result: 'good',    hash: 'eyJuIjoiIiwiaSI6IldhdGVyLCBDZXR5bCBBbGNvaG9sLCBDb2NhbWlkb3Byb3B5bCBCZXRhaW5lLCBQYW50aGVub2wsIENpdHJpYyBBY2lkIn0' },
+  { label: 'Approved with caution',  short: 'CG with caution',  result: 'warning', hash: 'eyJuIjoiIiwiaSI6IldhdGVyLCBTaGVhIEJ1dHRlciwgQ2V0eWwgQWxjb2hvbCwgR2x5Y2VyaW4sIEJlaGVudHJpbW9uaXVtIE1ldGhvc3VsZmF0ZSwgRnJhZ3JhbmNlLCBDaXRyaWMgQWNpZCJ9' },
+  { label: 'Not CG approved',        short: 'Not CG',        result: 'danger',  hash: 'eyJuIjoiIiwiaSI6IldhdGVyIChBcXVhKSwgU29kaXVtIExhdXJ5bCBTdWxmYXRlLCBDb2NhbWlkb3Byb3B5bCBCZXRhaW5lLCBEaW1ldGhpY29uZSwgR2x5Y2VyaW4sIENldHlsIEFsY29ob2wsIENpdHJpYyBBY2lkLCBGcmFncmFuY2UifQ' },
 ]
 
 export function renderForm(container, prefilled = {}) {
   const exampleLinks = EXAMPLES.map(e =>
-    `<a href="#${e.hash}" class="example-link example-${e.result}">${e.label}</a>`
+    `<a href="#${e.hash}" class="example-link example-${e.result}"><span class="chip-full">${e.label}</span><span class="chip-short">${e.short}</span></a>`
   ).join('')
 
   container.innerHTML = `

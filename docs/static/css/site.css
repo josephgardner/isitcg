@@ -138,6 +138,7 @@ main {
 }
 
 .example-link:hover { filter: brightness(.9); }
+.chip-short { display: none; }
 
 .example-good    { background: #e8f4f4; color: var(--teal); }
 .example-good::before    { background: var(--teal); }
@@ -277,6 +278,7 @@ textarea {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: 14px;
 }
 
@@ -426,17 +428,22 @@ footer .sep { color: #ddd; margin: 0 6px; }
 
   /* Tighten above-fold spacing on mobile */
   .site-banner { padding: 7px 14px; font-size: 0.8rem; }
-  .titlebar { padding: 16px; }
+  .banner-detail { display: none; }
+  .titlebar { padding: 16px; overflow: hidden; }
   .titlebar p { font-size: 0.875rem; }
 
-  /* Example chips: horizontal scroll, bleed to container edges so last chip isn't clipped */
+  /* Example chips: show short labels on mobile */
+  .chip-full { display: none; }
+  .chip-short { display: inline; }
+
+  /* Bleed scroll container to card edges so last chip isn't clipped */
   .examples-label { display: none; }
   .examples-row {
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 6px;
     margin-top: 10px;
     margin-inline: -16px;

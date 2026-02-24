@@ -429,7 +429,7 @@ footer .sep { color: #ddd; margin: 0 6px; }
   .titlebar { padding: 16px; }
   .titlebar p { font-size: 0.875rem; }
 
-  /* Example chips: prevent awkward wrapping, use horizontal scroll */
+  /* Example chips: horizontal scroll, bleed to container edges so last chip isn't clipped */
   .examples-label { display: none; }
   .examples-row {
     flex-wrap: nowrap;
@@ -439,6 +439,8 @@ footer .sep { color: #ddd; margin: 0 6px; }
     justify-content: flex-start;
     gap: 6px;
     margin-top: 10px;
+    margin-inline: -16px;
+    padding-inline: 16px;
   }
   .examples-row::-webkit-scrollbar { display: none; }
   .example-link {

@@ -1,21 +1,55 @@
 // Normalize an ingredient or rule ingredient for matching:
-// lowercase, remove [bracket content], remove (paren content), remove non-word chars.
-function normalize(s) {
-  return s.toLowerCase()
+// lowercase, remove [bracket content], remove (paren content), remove formatting.
+export function normalize(s) {
+  return s.normalize('NFKD').toLowerCase()
     .replace(/\[.*?\]/g, '')
     .replace(/\(.*?\)/g, '')
-    .replace(/\W/g, '')
+    .replace(/\p{M}/gu, '')
+    .replace(/[^\p{L}\p{N}]/gu, '')
+}
+
+const SUPPORTED_RESULTS = new Set(['danger', 'warning', 'good', 'success'])
+
+export function isValidRulesData(data) {
+  return Boolean(
+    data &&
+    Array.isArray(data.Rules) &&
+    data.Rules.length > 0 &&
+    data.Rules.every(rule =>
+      rule &&
+      typeof rule.Name === 'string' && rule.Name.trim().length > 0 &&
+      typeof rule.Description === 'string' &&
+      SUPPORTED_RESULTS.has(rule.Result) &&
+      Number.isFinite(rule.Rank) &&
+      Array.isArray(rule.Ingredients) && rule.Ingredients.length > 0 &&
+      rule.Ingredients.every(ingredient =>
+        typeof ingredient === 'string' && normalize(ingredient).length > 0
+      )
+    )
+  )
 }
 
 // Split an ingredient string by commas, respecting parentheses nesting.
 // Trims whitespace and leading/trailing periods from each part.
 export function parts(ingredientsStr) {
   const result = []
+  const openParentheses = []
+  const matchedParentheses = new Set()
+
+  for (let i = 0; i < ingredientsStr.length; i++) {
+    if (ingredientsStr[i] === '(') openParentheses.push(i)
+    else if (ingredientsStr[i] === ')' && openParentheses.length > 0) {
+      matchedParentheses.add(openParentheses.pop())
+      matchedParentheses.add(i)
+    }
+  }
+
   let current = ''
   let depth = 0
-  for (const ch of ingredientsStr) {
-    if (ch === '(') { depth++; current += ch }
-    else if (ch === ')') { depth--; current += ch }
+  for (let i = 0; i < ingredientsStr.length; i++) {
+    const ch = ingredientsStr[i]
+    if (ch === '(' && matchedParentheses.has(i)) { depth++; current += ch }
+    else if (ch === ')' && matchedParentheses.has(i)) { depth--; current += ch }
     else if (ch === ',' && depth === 0) {
       const part = current.trim().replace(/^\.+|\.+$/g, '')
       if (part.length > 0) result.push(part)
@@ -34,36 +68,42 @@ export function parts(ingredientsStr) {
 // Also splits ingredient on "/" and checks each part separately.
 export function matchAny(ingredient, candidates) {
   const norm = normalize(ingredient)
-  const slashParts = ingredient.split('/')
+  if (!norm) return false
+
+  const slashParts = ingredient.split('/').map(normalize).filter(Boolean)
   return candidates.some(c => {
     const nc = normalize(c)
+    if (!nc) return false
     if (norm === nc) return true
-    return slashParts.some(p => normalize(p) === nc)
+    return slashParts.includes(nc)
   })
 }
 
 // Analyze ingredients against rules.
 // Returns { productName, result, matches, remainder }.
-// result is 'danger', 'warning', or 'good'.
+// result is 'danger', 'warning', 'good', or 'unknown'.
 // matches is sorted by Rank ascending.
 // remainder contains unmatched ingredients.
 export function analyze(productName, ingredientsStr, rules) {
-  let remainder = parts(ingredientsStr)
+  const ingredients = parts(ingredientsStr)
   const matches = []
+  const matchedIngredients = new Set()
   let result = 'good'
 
   for (const rule of rules) {
-    const hit = remainder.filter(i => matchAny(i, rule.Ingredients))
+    const hit = ingredients.filter(i => matchAny(i, rule.Ingredients))
     if (hit.length === 0) continue
 
     matches.push({ ...rule, Ingredients: hit })
-    remainder = remainder.filter(i => !hit.includes(i))
+    hit.forEach(ingredient => matchedIngredients.add(ingredient))
 
     if (rule.Result === 'danger') result = 'danger'
     else if (rule.Result === 'warning' && result === 'good') result = 'warning'
   }
 
   matches.sort((a, b) => (a.Rank || 0) - (b.Rank || 0))
+  const remainder = ingredients.filter(ingredient => !matchedIngredients.has(ingredient))
+  if (result === 'good' && remainder.length > 0) result = 'unknown'
   return { productName, result, matches, remainder }
 }
 
@@ -72,14 +112,34 @@ export function slugify(name) {
   return name.toLowerCase().replace(/[\s-]+/g, '-').replace(/[^a-z0-9-]/g, '')
 }
 
-// Encode product name + ingredients into a URL-safe base64 hash.
-export function encode(name, ingredients) {
-  return btoa(JSON.stringify({ n: name, i: ingredients }))
+const UTF8_HASH_PREFIX = 'v1.'
+
+function toBase64Url(binary) {
+  return btoa(binary)
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
-// Decode a hash back to { n, i }.
+function fromBase64Url(encoded) {
+  const b64 = encoded.replace(/-/g, '+').replace(/_/g, '/')
+  const padding = '='.repeat((4 - (b64.length % 4)) % 4)
+  return atob(b64 + padding)
+}
+
+// Encode product name + ingredients as versioned UTF-8 Base64URL.
+export function encode(name, ingredients) {
+  const bytes = new TextEncoder().encode(JSON.stringify({ n: name, i: ingredients }))
+  let binary = ''
+  for (const byte of bytes) binary += String.fromCharCode(byte)
+  return UTF8_HASH_PREFIX + toBase64Url(binary)
+}
+
+// Decode a hash back to { n, i }, retaining support for unversioned legacy hashes.
 export function decode(hash) {
-  const b64 = hash.replace(/-/g, '+').replace(/_/g, '/')
-  return JSON.parse(atob(b64))
+  if (!hash.startsWith(UTF8_HASH_PREFIX)) {
+    return JSON.parse(fromBase64Url(hash))
+  }
+
+  const binary = fromBase64Url(hash.slice(UTF8_HASH_PREFIX.length))
+  const bytes = Uint8Array.from(binary, ch => ch.charCodeAt(0))
+  return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
 }

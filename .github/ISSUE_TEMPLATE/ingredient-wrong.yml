@@ -1,5 +1,5 @@
-name: Wrong category
-description: An ingredient is recognized but put in the wrong category (e.g., flagged as danger when it should be okay, or vice versa).
+name: Wrong or missing category
+description: An ingredient is recognized but shown in a wrong category or missing another applicable category.
 title: "Wrong category: [INGREDIENT NAME]"
 labels: ["needs-verification"]
 body:
@@ -48,7 +48,7 @@ body:
   - type: dropdown
     id: correct-category
     attributes:
-      label: Correct category (where it should be)
+      label: Correct or additional category
       options:
         - Not sure
         - Sulfates to Avoid
@@ -90,4 +90,4 @@ body:
     id: notes
     attributes:
       label: Anything else to add?
-      description: Context, why this matters, related ingredients that may also be wrong, etc.
+      description: Context, why this matters, any other categories that also apply, related ingredients that may also be wrong, etc.

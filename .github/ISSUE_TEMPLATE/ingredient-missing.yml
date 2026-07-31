@@ -16,7 +16,7 @@ body:
     id: category
     attributes:
       label: Which category does it belong to?
-      description: Pick the category that best fits this ingredient. If you're not sure, leave it as "Not sure."
+      description: Pick one category that fits this ingredient. If more than one category applies, list the others in the notes below. If you're not sure, leave it as "Not sure."
       options:
         - Not sure
         - Sulfates to Avoid

@@ -37,7 +37,9 @@ export function renderForm(container, prefilled = {}) {
     </div>
     <div class="form-wrap">
       <form id="ingredient-form">
+        <label for="productname" class="field-label">Product name <span>(optional)</span></label>
         <input type="text" id="productname" placeholder="Product name (optional)" value="${esc(prefilled.name || '')}">
+        <label for="ingredients" class="field-label">Ingredients</label>
         <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)">${esc(prefilled.ingredients || '')}</textarea>
         <button type="submit" class="btn btn-secondary">Submit</button>
       </form>
@@ -48,12 +50,14 @@ export function renderForm(container, prefilled = {}) {
 function resultLabel(r) {
   if (r === 'danger')  return 'Not CG Approved'
   if (r === 'warning') return 'CG Approved with caution'
+  if (r === 'unknown') return 'Unable to Verify'
   return 'CG Approved'
 }
 
 function resultMessage(r) {
   if (r === 'danger')  return 'Uh oh! This product contains ingredients that aren\'t CG approved.'
   if (r === 'warning') return 'This product is CG approved, but contains some ingredients that may not work for everyone.'
+  if (r === 'unknown') return 'We couldn\'t verify every ingredient in this product.'
   return 'Great news — this product is CG approved!'
 }
 
@@ -80,10 +84,10 @@ export function renderResults(container, { productName, result, matches, remaind
 
   const remainderPanel = remainder.length > 0 ? `
     <div class="panel panel-primary">
-      <div class="panel-heading">Probably OK</div>
+      <div class="panel-heading">Unknown Ingredients</div>
       <div class="panel-body">
-        <h4>Remaining Ingredients</h4>
-        <p>These weren't matched to any known rule — likely fine, or not yet in our database.</p>
+        <h4>Not Found in Our Database</h4>
+        <p>These weren't matched to any known rule, so the product cannot be fully verified.</p>
       </div>
       <ul class="list-group">
         ${remainder.map(i => `<li>${esc(i)}</li>`).join('')}
@@ -115,10 +119,11 @@ export function renderResults(container, { productName, result, matches, remaind
   `
 }
 
-export function renderGlossary(container, html, slug) {
+export function renderGlossary(container, html, slug, backHash = '') {
+  const backUrl = backHash ? `#${esc(backHash)}` : '#'
   container.innerHTML = `
     <div class="titlebar">
-      <a href="#" class="back-link">← Back</a>
+      <a href="${backUrl}" class="back-link">← Back</a>
       <div class="glossary-body">${html}</div>
       <div class="glossary-footer">
         <a href="https://github.com/josephgardner/isitcg/edit/main/docs/glossary/${esc(slug)}.md"
@@ -128,10 +133,11 @@ export function renderGlossary(container, html, slug) {
   `
 }
 
-export function renderGlossaryError(container) {
+export function renderGlossaryError(container, backHash = '') {
+  const backUrl = backHash ? `#${esc(backHash)}` : '#'
   container.innerHTML = `
     <div class="titlebar">
-      <a href="#" class="back-link">← Back</a>
+      <a href="${backUrl}" class="back-link">← Back</a>
       <p style="margin-top:12px">Page not found. <a href="https://github.com/josephgardner/isitcg/new/main/docs/glossary" target="_blank" rel="noopener">Create it on GitHub</a>.</p>
     </div>
   `

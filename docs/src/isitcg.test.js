@@ -19,6 +19,14 @@ describe('parts()', () => {
     expect(parts('Water (Aqua, Eau), Glycerin')).toEqual(['Water (Aqua, Eau)', 'Glycerin'])
   })
 
+  test('a stray closing parenthesis does not merge later ingredients', () => {
+    expect(parts('one), two, three')).toEqual(['one)', 'two', 'three'])
+  })
+
+  test('an unclosed parenthesis does not merge later ingredients', () => {
+    expect(parts('one (two, three')).toEqual(['one (two', 'three'])
+  })
+
   test('handles empty string', () => {
     expect(parts('')).toEqual([])
   })
@@ -33,7 +41,7 @@ describe('analyze() — ported from rule-tests.yml', () => {
     const res = analyze('', 'one, two, three', [
       { Result: 'one-result', Ingredients: ['one'] },
     ])
-    expect(res.result).toBe('good')
+    expect(res.result).toBe('unknown')
     expect(res.matches).toHaveLength(1)
     expect(res.matches[0].Result).toBe('one-result')
     expect(res.matches[0].Ingredients).toEqual(['one'])
@@ -89,9 +97,25 @@ describe('analyze() — ported from rule-tests.yml', () => {
 
   test('no matching rules: everything is remainder', () => {
     const res = analyze('', 'one, two, three', [])
-    expect(res.result).toBe('good')
+    expect(res.result).toBe('unknown')
     expect(res.matches).toEqual([])
     expect(res.remainder).toEqual(['one', 'two', 'three'])
+  })
+
+  test('unmatched ingredients prevent an otherwise-good approval', () => {
+    const res = analyze('', 'water, mystery ingredient', [
+      { Result: 'good', Ingredients: ['water'] },
+    ])
+
+    expect(res.result).toBe('unknown')
+  })
+
+  test('unknown ingredients do not weaken a danger verdict', () => {
+    const res = analyze('', 'sulfate, mystery ingredient', [
+      { Result: 'danger', Ingredients: ['sulfate'] },
+    ])
+
+    expect(res.result).toBe('danger')
   })
 
   test('match with slashes: exact slash ingredient matches', () => {
@@ -111,16 +135,16 @@ describe('analyze() — ported from rule-tests.yml', () => {
     expect(res.remainder).toEqual([])
   })
 
-  test('match slashes two parts: first rule consumes ingredient, second rule misses', () => {
+  test('match slashes two parts: every matching rule is retained', () => {
     const res = analyze('', 'one/two/three', [
       { Result: 'one-result', Ingredients: ['one'] },
       { Result: 'two-result', Ingredients: ['two'] },
     ])
-    // Rule 1 matches "one/two/three" (via slash part "one") and consumes it
-    // Rule 2 finds nothing left
-    expect(res.matches).toHaveLength(1)
+    expect(res.matches).toHaveLength(2)
     expect(res.matches[0].Result).toBe('one-result')
     expect(res.matches[0].Ingredients).toEqual(['one/two/three'])
+    expect(res.matches[1].Result).toBe('two-result')
+    expect(res.matches[1].Ingredients).toEqual(['one/two/three'])
     expect(res.remainder).toEqual([])
   })
 
@@ -145,8 +169,8 @@ describe('analyze() — ported from rule-tests.yml', () => {
     expect(res.remainder).toEqual([])
   })
 
-  test('ignore invalid characters: unicode and special chars stripped', () => {
-    const res = analyze('', 'F!@#\u2593\u263a$%^o+=\u045d\u0b99(asdf)-o, F   \u01ce\u1e50 [ \u0b99&*^%$asdf]~`oo  ', [
+  test('ignore formatting characters without discarding letters', () => {
+    const res = analyze('', 'F!@#\u2593\u263a$%^o+=(asdf)-o, F [asdf]~`oo', [
       { Result: 'one', Ingredients: ['foo'] },
     ])
     expect(res.matches[0].Ingredients).toHaveLength(2)
@@ -191,12 +215,50 @@ describe('analyze() — ported from rule-tests.yml', () => {
     expect(res.result).toBe('danger')
   })
 
+  test('all matching rules contribute to the verdict regardless of rule order', () => {
+    const res = analyze('', 'Cyclopentasiloxane', [
+      {
+        Name: 'Silicones to Use with Caution',
+        Result: 'warning',
+        Rank: 5,
+        Ingredients: ['Cyclopentasiloxane'],
+      },
+      {
+        Name: 'Silicones to Avoid',
+        Result: 'danger',
+        Rank: 2,
+        Ingredients: ['Cyclopentasiloxane'],
+      },
+    ])
+
+    expect(res.result).toBe('danger')
+    expect(res.matches.map(rule => rule.Name)).toEqual([
+      'Silicones to Avoid',
+      'Silicones to Use with Caution',
+    ])
+    expect(res.remainder).toEqual([])
+  })
+
   test('warning escalates good result', () => {
     const res = analyze('', 'a, b', [
       { Result: 'warning', Ingredients: ['a'] },
       { Result: 'good',    Ingredients: ['b'] },
     ])
     expect(res.result).toBe('warning')
+  })
+})
+
+describe('matchAny()', () => {
+  test('does not treat different non-Latin ingredients as equal', () => {
+    expect(matchAny('水', ['甘油'])).toBe(false)
+  })
+
+  test('matches identical non-Latin ingredients', () => {
+    expect(matchAny('水', ['水'])).toBe(true)
+  })
+
+  test('matches equivalent accented and unaccented spellings', () => {
+    expect(matchAny('Óleo Mineral', ['Oleo Mineral'])).toBe(true)
   })
 })
 
@@ -213,6 +275,28 @@ describe('encode / decode', () => {
     const { n, i } = decode(hash)
     expect(n).toBe('')
     expect(i).toBe('sodium lauryl sulfate')
+  })
+
+  test('round-trips Unicode product names and ingredients', () => {
+    const hash = encode('Curly’s 🧴', 'Water, café extract, 水, 甘油')
+    const { n, i } = decode(hash)
+
+    expect(n).toBe('Curly’s 🧴')
+    expect(i).toBe('Water, café extract, 水, 甘油')
+  })
+
+  test('decodes existing unversioned hashes', () => {
+    const { n, i } = decode('eyJuIjoiIiwiaSI6IldhdGVyLCBHbHljZXJpbiJ9')
+
+    expect(n).toBe('')
+    expect(i).toBe('Water, Glycerin')
+  })
+
+  test('decodes legacy hashes containing Latin-1 characters', () => {
+    const { n, i } = decode('eyJuIjoiTGF0aW4tMSBjYWbpIiwiaSI6IkFxdWEifQ')
+
+    expect(n).toBe('Latin-1 café')
+    expect(i).toBe('Aqua')
   })
 
   test('encoded string is URL-safe (no +, /, or =)', () => {

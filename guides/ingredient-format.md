@@ -89,8 +89,9 @@ Before comparing, every ingredient string is passed through a normalization step
 
 1. Remove anything in `[square brackets]` (e.g., `[preservative]` → gone)
 2. Remove anything in `(parentheses)` (e.g., `(fragrance)` → gone)
-3. Remove all non-word characters — spaces, hyphens, slashes, periods, etc.
-4. Lowercase everything
+3. Fold accented characters to their base form (`Óleo` → `Oleo`)
+4. Remove formatting characters — spaces, hyphens, slashes, periods, etc. Unicode letters and numbers are preserved.
+5. Lowercase everything
 
 So `"Sodium Lauryl Sulfate"` becomes `sodiumlaurylsulfate`.
 
@@ -129,6 +130,21 @@ Similarly:
 
 If a product lists an ingredient as `"water/aqua"`, the app splits on `/` and checks each part separately. So `"water"` and `"aqua"` would be checked independently. You don't need to add slash-combined variants.
 
+### How matches become a result
+
+Each submitted ingredient is checked against every rule. A single ingredient may therefore appear in more than one category panel when it has multiple relevant classifications.
+
+The headline product result is determined in this order:
+
+1. `danger` if any ingredient matches a danger rule
+2. `warning` if there is no danger match and any ingredient matches a warning rule
+3. `unknown` if there is no danger or warning match and any submitted ingredient is unmatched
+4. `good` if every submitted ingredient is recognized and none matches a danger or warning rule
+
+`success` is treated the same as `good`. Unknown ingredients are displayed separately and are never assumed to be safe. A danger or warning result remains the headline when unknown ingredients are also present, and the unknown ingredients are still listed for the user.
+
+Matched category panels are sorted by `Rank`; rank controls presentation, not whether a rule participates in matching.
+
 ---
 
 ## Common pitfalls
@@ -142,10 +158,10 @@ If you want to match `"benzyl alcohol"`, add `"benzyl alcohol"` as its own entry
 ### Check for duplicates before adding
 
 Search `ingredientrules.json` for your ingredient before adding it. It may already exist:
-- In the same rule (case-only duplicate — redundant, remove it)
-- In a different rule (intentional? or an error?)
+- In the same rule (case-only or formatting-only duplicate — redundant, remove it)
+- In a different rule (possibly an intentional second classification)
 
-An ingredient should generally appear in only one rule. If it's in two rules, results will show both categories, which may be confusing.
+An ingredient may appear in multiple rules when each category accurately describes it. Results will show every applicable category, and the most severe match contributes to the headline verdict. When adding a second classification, include a source or explanation so reviewers can distinguish an intentional overlap from a mistake.
 
 ### Don't add overly generic terms
 

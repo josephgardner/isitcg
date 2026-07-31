@@ -156,6 +156,7 @@ main {
 .result-titlebar:has(.verdict-danger)  { border-top-color: var(--pink); }
 .result-titlebar:has(.verdict-warning) { border-top-color: #c7c2bb; }
 .result-titlebar:has(.verdict-good)    { border-top-color: var(--teal); }
+.result-titlebar:has(.verdict-unknown) { border-top-color: var(--gray); }
 
 .result-product {
   font-size: 1.1rem;
@@ -185,11 +186,13 @@ main {
 .verdict-warning .verdict-dot { background: #c7c2bb; }
 .verdict-good    .verdict-dot,
 .verdict-success .verdict-dot { background: var(--teal); }
+.verdict-unknown .verdict-dot { background: var(--gray); }
 
 .verdict-danger  span:last-child { color: var(--pink); }
 .verdict-warning span:last-child { color: #9e9890; }
 .verdict-good    span:last-child,
 .verdict-success span:last-child { color: var(--teal); }
+.verdict-unknown span:last-child { color: var(--gray); }
 
 .result-message {
   font-size: 1.05rem;
@@ -205,6 +208,18 @@ main {
   border-radius: 10px;
   padding: 24px;
   box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.field-label span {
+  color: #aaa;
+  font-weight: 400;
 }
 
 input[type="text"],

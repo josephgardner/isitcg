@@ -18,9 +18,11 @@ Vanilla JS SPA served via GitHub Pages from the `docs/` directory. No build step
 
 ### Core Flow
 1. User submits product name + comma-separated ingredients via form
-2. Product data is JSON-serialized, DEFLATE-compressed, and Base64-encoded into a URL hash
+2. Product data is JSON-serialized and encoded as versioned UTF-8 Base64URL in the URL hash
 3. Hash routing (`#HASH` = results, `#edit/HASH` = prefill form) handles navigation
-4. Results show matched rules ranked by priority (danger > warning > good)
+4. Every matching rule is retained, including multiple classifications for the same ingredient
+5. Category panels are sorted by `Rank`; the headline uses the most severe match (`danger` > `warning` > `good`)
+6. If there is no danger or warning but at least one ingredient is unmatched, the headline result is `unknown` rather than approved
 
 ### Key Files
 
@@ -34,13 +36,13 @@ Vanilla JS SPA served via GitHub Pages from the `docs/` directory. No build step
 
 ### Matching Logic
 
-Uses equality (not substring) matching. `normalize()` strips `[bracket content]`, `(paren content)`, and non-word chars, then lowercases. Ingredients are split on `/` for per-part matching.
+Uses equality (not substring) matching. `normalize()` strips `[bracket content]`, `(paren content)`, accents, and formatting while preserving Unicode letters and numbers, then lowercases. Ingredients are split on `/` for per-part matching. Each submitted ingredient is checked against every rule, so intentional multi-category matches are preserved rather than consumed by the first matching rule.
 
 ### Data Structures
 
-**Rule** — name, description, result type (`danger`/`warning`/`good`), rank, and ingredient list
+**Rule** — name, description, result type (`danger`/`warning`/`good`; legacy `success` means `good`), rank, and ingredient list
 
-**Results** — ProductName, overall Result, sorted MatchingRules, and Remainder (unmatched ingredients)
+**Results** — ProductName, overall Result (`danger`/`warning`/`good`/`unknown`), all matching rules sorted by rank, and Remainder (unmatched ingredients)
 
 ## Deployment
 

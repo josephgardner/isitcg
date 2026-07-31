@@ -19,6 +19,14 @@ describe('parts()', () => {
     expect(parts('Water (Aqua, Eau), Glycerin')).toEqual(['Water (Aqua, Eau)', 'Glycerin'])
   })
 
+  test('a stray closing parenthesis does not merge later ingredients', () => {
+    expect(parts('one), two, three')).toEqual(['one)', 'two', 'three'])
+  })
+
+  test('an unclosed parenthesis does not merge later ingredients', () => {
+    expect(parts('one (two, three')).toEqual(['one (two', 'three'])
+  })
+
   test('handles empty string', () => {
     expect(parts('')).toEqual([])
   })

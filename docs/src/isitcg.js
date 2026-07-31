@@ -12,11 +12,23 @@ export function normalize(s) {
 // Trims whitespace and leading/trailing periods from each part.
 export function parts(ingredientsStr) {
   const result = []
+  const openParentheses = []
+  const matchedParentheses = new Set()
+
+  for (let i = 0; i < ingredientsStr.length; i++) {
+    if (ingredientsStr[i] === '(') openParentheses.push(i)
+    else if (ingredientsStr[i] === ')' && openParentheses.length > 0) {
+      matchedParentheses.add(openParentheses.pop())
+      matchedParentheses.add(i)
+    }
+  }
+
   let current = ''
   let depth = 0
-  for (const ch of ingredientsStr) {
-    if (ch === '(') { depth++; current += ch }
-    else if (ch === ')') { depth--; current += ch }
+  for (let i = 0; i < ingredientsStr.length; i++) {
+    const ch = ingredientsStr[i]
+    if (ch === '(' && matchedParentheses.has(i)) { depth++; current += ch }
+    else if (ch === ')' && matchedParentheses.has(i)) { depth--; current += ch }
     else if (ch === ',' && depth === 0) {
       const part = current.trim().replace(/^\.+|\.+$/g, '')
       if (part.length > 0) result.push(part)

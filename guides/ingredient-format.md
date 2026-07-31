@@ -89,8 +89,9 @@ Before comparing, every ingredient string is passed through a normalization step
 
 1. Remove anything in `[square brackets]` (e.g., `[preservative]` → gone)
 2. Remove anything in `(parentheses)` (e.g., `(fragrance)` → gone)
-3. Remove all non-word characters — spaces, hyphens, slashes, periods, etc.
-4. Lowercase everything
+3. Fold accented characters to their base form (`Óleo` → `Oleo`)
+4. Remove formatting characters — spaces, hyphens, slashes, periods, etc. Unicode letters and numbers are preserved.
+5. Lowercase everything
 
 So `"Sodium Lauryl Sulfate"` becomes `sodiumlaurylsulfate`.
 

@@ -34,7 +34,7 @@ Vanilla JS SPA served via GitHub Pages from the `docs/` directory. No build step
 
 ### Matching Logic
 
-Uses equality (not substring) matching. `normalize()` strips `[bracket content]`, `(paren content)`, and non-word chars, then lowercases. Ingredients are split on `/` for per-part matching.
+Uses equality (not substring) matching. `normalize()` strips `[bracket content]`, `(paren content)`, accents, and formatting while preserving Unicode letters and numbers, then lowercases. Ingredients are split on `/` for per-part matching.
 
 ### Data Structures
 

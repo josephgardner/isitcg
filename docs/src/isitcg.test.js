@@ -161,8 +161,8 @@ describe('analyze() — ported from rule-tests.yml', () => {
     expect(res.remainder).toEqual([])
   })
 
-  test('ignore invalid characters: unicode and special chars stripped', () => {
-    const res = analyze('', 'F!@#\u2593\u263a$%^o+=\u045d\u0b99(asdf)-o, F   \u01ce\u1e50 [ \u0b99&*^%$asdf]~`oo  ', [
+  test('ignore formatting characters without discarding letters', () => {
+    const res = analyze('', 'F!@#\u2593\u263a$%^o+=(asdf)-o, F [asdf]~`oo', [
       { Result: 'one', Ingredients: ['foo'] },
     ])
     expect(res.matches[0].Ingredients).toHaveLength(2)
@@ -237,6 +237,20 @@ describe('analyze() — ported from rule-tests.yml', () => {
       { Result: 'good',    Ingredients: ['b'] },
     ])
     expect(res.result).toBe('warning')
+  })
+})
+
+describe('matchAny()', () => {
+  test('does not treat different non-Latin ingredients as equal', () => {
+    expect(matchAny('水', ['甘油'])).toBe(false)
+  })
+
+  test('matches identical non-Latin ingredients', () => {
+    expect(matchAny('水', ['水'])).toBe(true)
+  })
+
+  test('matches equivalent accented and unaccented spellings', () => {
+    expect(matchAny('Óleo Mineral', ['Oleo Mineral'])).toBe(true)
   })
 })
 

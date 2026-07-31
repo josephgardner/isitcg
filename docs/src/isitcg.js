@@ -1,10 +1,11 @@
 // Normalize an ingredient or rule ingredient for matching:
-// lowercase, remove [bracket content], remove (paren content), remove non-word chars.
-function normalize(s) {
-  return s.toLowerCase()
+// lowercase, remove [bracket content], remove (paren content), remove formatting.
+export function normalize(s) {
+  return s.normalize('NFKD').toLowerCase()
     .replace(/\[.*?\]/g, '')
     .replace(/\(.*?\)/g, '')
-    .replace(/\W/g, '')
+    .replace(/\p{M}/gu, '')
+    .replace(/[^\p{L}\p{N}]/gu, '')
 }
 
 // Split an ingredient string by commas, respecting parentheses nesting.
@@ -34,11 +35,14 @@ export function parts(ingredientsStr) {
 // Also splits ingredient on "/" and checks each part separately.
 export function matchAny(ingredient, candidates) {
   const norm = normalize(ingredient)
-  const slashParts = ingredient.split('/')
+  if (!norm) return false
+
+  const slashParts = ingredient.split('/').map(normalize).filter(Boolean)
   return candidates.some(c => {
     const nc = normalize(c)
+    if (!nc) return false
     if (norm === nc) return true
-    return slashParts.some(p => normalize(p) === nc)
+    return slashParts.includes(nc)
   })
 }
 

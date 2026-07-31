@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises'
 import { describe, expect, test } from 'vitest'
+import { normalize } from './isitcg.js'
 
 const rootRules = JSON.parse(
   await readFile(new URL('../../ingredientrules.json', import.meta.url), 'utf8'),
@@ -9,13 +10,6 @@ const pagesRules = JSON.parse(
 )
 
 const supportedResults = new Set(['danger', 'warning', 'good', 'success'])
-
-function normalizeIngredient(ingredient) {
-  return ingredient.toLowerCase()
-    .replace(/\[.*?\]/g, '')
-    .replace(/\(.*?\)/g, '')
-    .replace(/\W/g, '')
-}
 
 function expectValidRules(data) {
   expect(data).toHaveProperty('Rules')
@@ -34,7 +28,7 @@ function expectValidRules(data) {
       typeof ingredient === 'string' && ingredient.trim().length > 0
     )).toBe(true)
     expect(rule.Ingredients.every(ingredient =>
-      normalizeIngredient(ingredient).length > 0
+      normalize(ingredient).length > 0
     )).toBe(true)
   }
 }

@@ -48,22 +48,24 @@ export function matchAny(ingredient, candidates) {
 // matches is sorted by Rank ascending.
 // remainder contains unmatched ingredients.
 export function analyze(productName, ingredientsStr, rules) {
-  let remainder = parts(ingredientsStr)
+  const ingredients = parts(ingredientsStr)
   const matches = []
+  const matchedIngredients = new Set()
   let result = 'good'
 
   for (const rule of rules) {
-    const hit = remainder.filter(i => matchAny(i, rule.Ingredients))
+    const hit = ingredients.filter(i => matchAny(i, rule.Ingredients))
     if (hit.length === 0) continue
 
     matches.push({ ...rule, Ingredients: hit })
-    remainder = remainder.filter(i => !hit.includes(i))
+    hit.forEach(ingredient => matchedIngredients.add(ingredient))
 
     if (rule.Result === 'danger') result = 'danger'
     else if (rule.Result === 'warning' && result === 'good') result = 'warning'
   }
 
   matches.sort((a, b) => (a.Rank || 0) - (b.Rank || 0))
+  const remainder = ingredients.filter(ingredient => !matchedIngredients.has(ingredient))
   return { productName, result, matches, remainder }
 }
 

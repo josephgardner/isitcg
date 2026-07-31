@@ -111,16 +111,16 @@ describe('analyze() — ported from rule-tests.yml', () => {
     expect(res.remainder).toEqual([])
   })
 
-  test('match slashes two parts: first rule consumes ingredient, second rule misses', () => {
+  test('match slashes two parts: every matching rule is retained', () => {
     const res = analyze('', 'one/two/three', [
       { Result: 'one-result', Ingredients: ['one'] },
       { Result: 'two-result', Ingredients: ['two'] },
     ])
-    // Rule 1 matches "one/two/three" (via slash part "one") and consumes it
-    // Rule 2 finds nothing left
-    expect(res.matches).toHaveLength(1)
+    expect(res.matches).toHaveLength(2)
     expect(res.matches[0].Result).toBe('one-result')
     expect(res.matches[0].Ingredients).toEqual(['one/two/three'])
+    expect(res.matches[1].Result).toBe('two-result')
+    expect(res.matches[1].Ingredients).toEqual(['one/two/three'])
     expect(res.remainder).toEqual([])
   })
 
@@ -189,6 +189,30 @@ describe('analyze() — ported from rule-tests.yml', () => {
       { Result: 'warning', Ingredients: ['c'] },
     ])
     expect(res.result).toBe('danger')
+  })
+
+  test('all matching rules contribute to the verdict regardless of rule order', () => {
+    const res = analyze('', 'Cyclopentasiloxane', [
+      {
+        Name: 'Silicones to Use with Caution',
+        Result: 'warning',
+        Rank: 5,
+        Ingredients: ['Cyclopentasiloxane'],
+      },
+      {
+        Name: 'Silicones to Avoid',
+        Result: 'danger',
+        Rank: 2,
+        Ingredients: ['Cyclopentasiloxane'],
+      },
+    ])
+
+    expect(res.result).toBe('danger')
+    expect(res.matches.map(rule => rule.Name)).toEqual([
+      'Silicones to Avoid',
+      'Silicones to Use with Caution',
+    ])
+    expect(res.remainder).toEqual([])
   })
 
   test('warning escalates good result', () => {

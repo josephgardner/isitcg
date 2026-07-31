@@ -8,6 +8,27 @@ export function normalize(s) {
     .replace(/[^\p{L}\p{N}]/gu, '')
 }
 
+const SUPPORTED_RESULTS = new Set(['danger', 'warning', 'good', 'success'])
+
+export function isValidRulesData(data) {
+  return Boolean(
+    data &&
+    Array.isArray(data.Rules) &&
+    data.Rules.length > 0 &&
+    data.Rules.every(rule =>
+      rule &&
+      typeof rule.Name === 'string' && rule.Name.trim().length > 0 &&
+      typeof rule.Description === 'string' &&
+      SUPPORTED_RESULTS.has(rule.Result) &&
+      Number.isFinite(rule.Rank) &&
+      Array.isArray(rule.Ingredients) && rule.Ingredients.length > 0 &&
+      rule.Ingredients.every(ingredient =>
+        typeof ingredient === 'string' && normalize(ingredient).length > 0
+      )
+    )
+  )
+}
+
 // Split an ingredient string by commas, respecting parentheses nesting.
 // Trims whitespace and leading/trailing periods from each part.
 export function parts(ingredientsStr) {

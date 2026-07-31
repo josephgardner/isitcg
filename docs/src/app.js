@@ -1,4 +1,4 @@
-import { analyze, encode, decode } from './isitcg.js'
+import { analyze, encode, decode, isValidRulesData } from './isitcg.js'
 import { renderForm, renderResults, renderGlossary, renderGlossaryError } from './render.js'
 
 const container = document.getElementById('app')
@@ -9,7 +9,9 @@ let lastResultsHash = ''
 async function init() {
   try {
     const res = await fetch('ingredientrules.json')
+    if (!res.ok) throw new Error(`Rules request failed: ${res.status}`)
     const data = await res.json()
+    if (!isValidRulesData(data)) throw new Error('Invalid ingredient rules')
     rules = data.Rules
   } catch (e) {
     container.innerHTML = '<p style="padding:24px;color:#ed878d">Failed to load ingredient rules. Try refreshing the page.</p>'

@@ -1,4 +1,12 @@
-import { afterAll, describe, expect, test, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+
+beforeEach(() => {
+  vi.resetModules()
+})
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
 
 describe('hash routing', () => {
   test('a stale glossary response cannot overwrite a newer route', async () => {
@@ -17,7 +25,18 @@ describe('hash routing', () => {
     vi.stubGlobal('location', { hash: '#glossary/first' })
     vi.stubGlobal('fetch', vi.fn(url => {
       if (url === 'ingredientrules.json') {
-        return Promise.resolve({ json: async () => ({ Rules: [] }) })
+        return Promise.resolve({
+          ok: true,
+          json: async () => ({
+            Rules: [{
+              Name: 'Test',
+              Description: '',
+              Result: 'good',
+              Rank: 1,
+              Ingredients: ['water'],
+            }],
+          }),
+        })
       }
       if (url === 'glossary/first.md') return glossaryResponse
       throw new Error(`Unexpected URL: ${url}`)
@@ -41,8 +60,39 @@ describe('hash routing', () => {
     expect(container.innerHTML).toContain('ingredient-form')
     expect(container.innerHTML).not.toContain('Stale Glossary')
   })
-})
 
-afterAll(() => {
-  vi.unstubAllGlobals()
+  test('an unsuccessful rules response renders the load error', async () => {
+    const container = { innerHTML: '' }
+    vi.stubGlobal('document', {
+      getElementById: id => id === 'app' ? container : null,
+    })
+    vi.stubGlobal('window', { addEventListener: vi.fn() })
+    vi.stubGlobal('navigator', {})
+    vi.stubGlobal('location', { hash: '' })
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: false, status: 503 }))
+
+    await import('./app.js')
+    await vi.waitFor(() => {
+      expect(container.innerHTML).toContain('Failed to load ingredient rules')
+    })
+  })
+
+  test('a malformed rules payload renders the load error', async () => {
+    const container = { innerHTML: '' }
+    vi.stubGlobal('document', {
+      getElementById: id => id === 'app' ? container : null,
+    })
+    vi.stubGlobal('window', { addEventListener: vi.fn() })
+    vi.stubGlobal('navigator', {})
+    vi.stubGlobal('location', { hash: '' })
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ Rules: 'not-an-array' }),
+    }))
+
+    await import('./app.js')
+    await vi.waitFor(() => {
+      expect(container.innerHTML).toContain('Failed to load ingredient rules')
+    })
+  })
 })

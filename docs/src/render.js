@@ -117,10 +117,11 @@ export function renderResults(container, { productName, result, matches, remaind
   `
 }
 
-export function renderGlossary(container, html, slug) {
+export function renderGlossary(container, html, slug, backHash = '') {
+  const backUrl = backHash ? `#${esc(backHash)}` : '#'
   container.innerHTML = `
     <div class="titlebar">
-      <a href="#" class="back-link">← Back</a>
+      <a href="${backUrl}" class="back-link">← Back</a>
       <div class="glossary-body">${html}</div>
       <div class="glossary-footer">
         <a href="https://github.com/josephgardner/isitcg/edit/main/docs/glossary/${esc(slug)}.md"
@@ -130,10 +131,11 @@ export function renderGlossary(container, html, slug) {
   `
 }
 
-export function renderGlossaryError(container) {
+export function renderGlossaryError(container, backHash = '') {
+  const backUrl = backHash ? `#${esc(backHash)}` : '#'
   container.innerHTML = `
     <div class="titlebar">
-      <a href="#" class="back-link">← Back</a>
+      <a href="${backUrl}" class="back-link">← Back</a>
       <p style="margin-top:12px">Page not found. <a href="https://github.com/josephgardner/isitcg/new/main/docs/glossary" target="_blank" rel="noopener">Create it on GitHub</a>.</p>
     </div>
   `

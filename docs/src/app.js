@@ -3,6 +3,8 @@ import { renderForm, renderResults, renderGlossary, renderGlossaryError } from '
 
 const container = document.getElementById('app')
 let rules = []
+let routeVersion = 0
+let lastResultsHash = ''
 
 async function init() {
   try {
@@ -18,9 +20,11 @@ async function init() {
 }
 
 function route() {
+  const version = ++routeVersion
   const hash = location.hash.slice(1) // strip leading #
 
   if (!hash) {
+    lastResultsHash = ''
     renderForm(container)
     attachForm()
     return
@@ -40,13 +44,14 @@ function route() {
 
   if (hash.startsWith('glossary/')) {
     const slug = hash.slice(9)
-    loadGlossary(slug)
+    loadGlossary(slug, version)
     return
   }
 
   try {
     const { n, i } = decode(hash)
     const results = analyze(n, i, rules)
+    lastResultsHash = hash
     renderResults(container, results, hash)
     ga4('results_viewed', { result_type: results.result })
   } catch (_) {
@@ -55,14 +60,16 @@ function route() {
   }
 }
 
-async function loadGlossary(slug) {
+async function loadGlossary(slug, version) {
   try {
     const res = await fetch(`glossary/${slug}.md`)
     if (!res.ok) throw new Error()
     const md = await res.text()
-    renderGlossary(container, parseMarkdown(md), slug)
+    if (version !== routeVersion) return
+    renderGlossary(container, parseMarkdown(md), slug, lastResultsHash)
   } catch (_) {
-    renderGlossaryError(container)
+    if (version !== routeVersion) return
+    renderGlossaryError(container, lastResultsHash)
   }
 }
 

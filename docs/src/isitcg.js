@@ -74,14 +74,34 @@ export function slugify(name) {
   return name.toLowerCase().replace(/[\s-]+/g, '-').replace(/[^a-z0-9-]/g, '')
 }
 
-// Encode product name + ingredients into a URL-safe base64 hash.
-export function encode(name, ingredients) {
-  return btoa(JSON.stringify({ n: name, i: ingredients }))
+const UTF8_HASH_PREFIX = 'v1.'
+
+function toBase64Url(binary) {
+  return btoa(binary)
     .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
-// Decode a hash back to { n, i }.
+function fromBase64Url(encoded) {
+  const b64 = encoded.replace(/-/g, '+').replace(/_/g, '/')
+  const padding = '='.repeat((4 - (b64.length % 4)) % 4)
+  return atob(b64 + padding)
+}
+
+// Encode product name + ingredients as versioned UTF-8 Base64URL.
+export function encode(name, ingredients) {
+  const bytes = new TextEncoder().encode(JSON.stringify({ n: name, i: ingredients }))
+  let binary = ''
+  for (const byte of bytes) binary += String.fromCharCode(byte)
+  return UTF8_HASH_PREFIX + toBase64Url(binary)
+}
+
+// Decode a hash back to { n, i }, retaining support for unversioned legacy hashes.
 export function decode(hash) {
-  const b64 = hash.replace(/-/g, '+').replace(/_/g, '/')
-  return JSON.parse(atob(b64))
+  if (!hash.startsWith(UTF8_HASH_PREFIX)) {
+    return JSON.parse(fromBase64Url(hash))
+  }
+
+  const binary = fromBase64Url(hash.slice(UTF8_HASH_PREFIX.length))
+  const bytes = Uint8Array.from(binary, ch => ch.charCodeAt(0))
+  return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
 }

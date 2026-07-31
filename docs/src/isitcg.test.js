@@ -239,6 +239,28 @@ describe('encode / decode', () => {
     expect(i).toBe('sodium lauryl sulfate')
   })
 
+  test('round-trips Unicode product names and ingredients', () => {
+    const hash = encode('Curly’s 🧴', 'Water, café extract, 水, 甘油')
+    const { n, i } = decode(hash)
+
+    expect(n).toBe('Curly’s 🧴')
+    expect(i).toBe('Water, café extract, 水, 甘油')
+  })
+
+  test('decodes existing unversioned hashes', () => {
+    const { n, i } = decode('eyJuIjoiIiwiaSI6IldhdGVyLCBHbHljZXJpbiJ9')
+
+    expect(n).toBe('')
+    expect(i).toBe('Water, Glycerin')
+  })
+
+  test('decodes legacy hashes containing Latin-1 characters', () => {
+    const { n, i } = decode('eyJuIjoiTGF0aW4tMSBjYWbpIiwiaSI6IkFxdWEifQ')
+
+    expect(n).toBe('Latin-1 café')
+    expect(i).toBe('Aqua')
+  })
+
   test('encoded string is URL-safe (no +, /, or =)', () => {
     const hash = encode('A Product', 'water, glycerin, citric acid')
     expect(hash).not.toMatch(/[+/=]/)

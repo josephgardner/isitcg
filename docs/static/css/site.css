@@ -210,6 +210,18 @@ main {
   box-shadow: 0 1px 4px rgba(0,0,0,.08);
 }
 
+.field-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.field-label span {
+  color: #aaa;
+  font-weight: 400;
+}
+
 input[type="text"],
 textarea {
   width: 100%;

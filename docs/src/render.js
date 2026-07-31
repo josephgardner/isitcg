@@ -37,7 +37,9 @@ export function renderForm(container, prefilled = {}) {
     </div>
     <div class="form-wrap">
       <form id="ingredient-form">
+        <label for="productname" class="field-label">Product name <span>(optional)</span></label>
         <input type="text" id="productname" placeholder="Product name (optional)" value="${esc(prefilled.name || '')}">
+        <label for="ingredients" class="field-label">Ingredients</label>
         <textarea id="ingredients" placeholder="Ingredients (Water, Glycerin, Citric Acid, ...)">${esc(prefilled.ingredients || '')}</textarea>
         <button type="submit" class="btn btn-secondary">Submit</button>
       </form>

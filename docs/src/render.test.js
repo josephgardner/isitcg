@@ -1,5 +1,16 @@
 import { describe, expect, test } from 'vitest'
-import { renderGlossary, renderResults } from './render.js'
+import { renderForm, renderGlossary, renderResults } from './render.js'
+
+describe('renderForm()', () => {
+  test('provides programmatic labels for both form fields', () => {
+    const container = { innerHTML: '' }
+
+    renderForm(container)
+
+    expect(container.innerHTML).toContain('<label for="productname"')
+    expect(container.innerHTML).toContain('<label for="ingredients"')
+  })
+})
 
 describe('renderResults()', () => {
   test('describes an unknown result without claiming approval', () => {

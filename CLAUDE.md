@@ -18,7 +18,7 @@ Vanilla JS SPA served via GitHub Pages from the `docs/` directory. No build step
 
 ### Core Flow
 1. User submits product name + comma-separated ingredients via form
-2. Product data is JSON-serialized, DEFLATE-compressed, and Base64-encoded into a URL hash
+2. Product data is JSON-serialized and encoded as versioned UTF-8 Base64URL in the URL hash
 3. Hash routing (`#HASH` = results, `#edit/HASH` = prefill form) handles navigation
 4. Results show matched rules ranked by priority (danger > warning > good)
 

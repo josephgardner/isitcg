@@ -48,12 +48,14 @@ export function renderForm(container, prefilled = {}) {
 function resultLabel(r) {
   if (r === 'danger')  return 'Not CG Approved'
   if (r === 'warning') return 'CG Approved with caution'
+  if (r === 'unknown') return 'Unable to Verify'
   return 'CG Approved'
 }
 
 function resultMessage(r) {
   if (r === 'danger')  return 'Uh oh! This product contains ingredients that aren\'t CG approved.'
   if (r === 'warning') return 'This product is CG approved, but contains some ingredients that may not work for everyone.'
+  if (r === 'unknown') return 'We couldn\'t verify every ingredient in this product.'
   return 'Great news — this product is CG approved!'
 }
 
@@ -80,10 +82,10 @@ export function renderResults(container, { productName, result, matches, remaind
 
   const remainderPanel = remainder.length > 0 ? `
     <div class="panel panel-primary">
-      <div class="panel-heading">Probably OK</div>
+      <div class="panel-heading">Unknown Ingredients</div>
       <div class="panel-body">
-        <h4>Remaining Ingredients</h4>
-        <p>These weren't matched to any known rule — likely fine, or not yet in our database.</p>
+        <h4>Not Found in Our Database</h4>
+        <p>These weren't matched to any known rule, so the product cannot be fully verified.</p>
       </div>
       <ul class="list-group">
         ${remainder.map(i => `<li>${esc(i)}</li>`).join('')}

@@ -33,7 +33,7 @@ describe('analyze() — ported from rule-tests.yml', () => {
     const res = analyze('', 'one, two, three', [
       { Result: 'one-result', Ingredients: ['one'] },
     ])
-    expect(res.result).toBe('good')
+    expect(res.result).toBe('unknown')
     expect(res.matches).toHaveLength(1)
     expect(res.matches[0].Result).toBe('one-result')
     expect(res.matches[0].Ingredients).toEqual(['one'])
@@ -89,9 +89,25 @@ describe('analyze() — ported from rule-tests.yml', () => {
 
   test('no matching rules: everything is remainder', () => {
     const res = analyze('', 'one, two, three', [])
-    expect(res.result).toBe('good')
+    expect(res.result).toBe('unknown')
     expect(res.matches).toEqual([])
     expect(res.remainder).toEqual(['one', 'two', 'three'])
+  })
+
+  test('unmatched ingredients prevent an otherwise-good approval', () => {
+    const res = analyze('', 'water, mystery ingredient', [
+      { Result: 'good', Ingredients: ['water'] },
+    ])
+
+    expect(res.result).toBe('unknown')
+  })
+
+  test('unknown ingredients do not weaken a danger verdict', () => {
+    const res = analyze('', 'sulfate, mystery ingredient', [
+      { Result: 'danger', Ingredients: ['sulfate'] },
+    ])
+
+    expect(res.result).toBe('danger')
   })
 
   test('match with slashes: exact slash ingredient matches', () => {

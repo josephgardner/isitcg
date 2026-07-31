@@ -44,7 +44,7 @@ export function matchAny(ingredient, candidates) {
 
 // Analyze ingredients against rules.
 // Returns { productName, result, matches, remainder }.
-// result is 'danger', 'warning', or 'good'.
+// result is 'danger', 'warning', 'good', or 'unknown'.
 // matches is sorted by Rank ascending.
 // remainder contains unmatched ingredients.
 export function analyze(productName, ingredientsStr, rules) {
@@ -66,6 +66,7 @@ export function analyze(productName, ingredientsStr, rules) {
 
   matches.sort((a, b) => (a.Rank || 0) - (b.Rank || 0))
   const remainder = ingredients.filter(ingredient => !matchedIngredients.has(ingredient))
+  if (result === 'good' && remainder.length > 0) result = 'unknown'
   return { productName, result, matches, remainder }
 }
 

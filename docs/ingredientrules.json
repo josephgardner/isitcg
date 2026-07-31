@@ -208,7 +208,6 @@
       "Rank": 13,
       "Ingredients": [
         "Diiospropyl Oxalate",
-        "disodium EDTA",
         "Disodium EDTA",
         "Disodium EDTA-copper",
         "EDTA",
@@ -225,8 +224,6 @@
         "TEA-EDTA",
         "Tetrasodium EDTA",
         "Tetrasodium Glutamate Diacetate",
-        "TETRASODIUM GLUTAMATE DIACETATE",
-        "tetrasodium glutamate diacetate",
         "Trisodium EDTA",
         "Trisodium Ethylenediamine Disuccinate",
         "Trisodium HEDTA"
@@ -525,7 +522,6 @@
         "Chamomilla Recutita (Matricaria) Flower Extract",
         "Chamomilla Recutita (Matricaria) Leaf Extract",
         "Chenopodium Quinoa Seed Extract",
-        "chenopodium quinoa seed extract",
         "CINNAMOMUM CASSIA BARK OIL",
         "Citrullus Lanatus (Watermelon) Seed Oil",
         "CITRUS ARANTIFOLIA OIL",
@@ -754,7 +750,6 @@
         "Hydrolyzed Adansonia Digitata (Baobab) Seed Protein",
         "Hydrolyzed Barley Protein",
         "hydrolyzed cicer seed extract",
-        "hydrolyzed collagen",
         "Hydrolyzed Collagen",
         "Hydrolyzed Corn Protein",
         "Hydrolyzed Jojoba Protein",
@@ -763,7 +758,6 @@
         "Hydrolyzed Milk Protein",
         "Hydrolyzed oat flour",
         "Hydrolyzed Oat Protein",
-        "hydrolyzed oat protein",
         "Hydrolyzed pea protein",
         "hydrolyzed quinoa",
         "hydrolyzed quinoa protein",
@@ -1167,7 +1161,6 @@
       "Result": "success",
       "Rank": 22,
       "Ingredients": [
-        "2-hexanediol",
         "2-Hexanediol",
         "3-O-Ethyl Ascorbic Acid",
         "ACACIA GUM",

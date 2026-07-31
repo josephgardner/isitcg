@@ -29,16 +29,18 @@ When someone opens a pull request to change `ingredientrules.json`, ask yourself
 **1. Is the ingredient name correct?**
 Check the spelling against a real product label or a reliable CG resource. Ingredient names on labels can vary — "Sodium Lauryl Sulfate" vs "Sodium Laurel Sulfate" are genuinely different spellings that appear on different products. Both may be worth including.
 
-**2. Is it in the right category?**
-Does this ingredient belong under "Sulfates to Avoid"? "Gentle Cleansers"? "Silicones to Avoid"? Use your CG knowledge here. The category list is in [ingredientrules.json](../ingredientrules.json).
+**2. Is it in the right category or categories?**
+Does this ingredient belong under "Sulfates to Avoid"? "Gentle Cleansers"? "Silicones to Avoid"? Some ingredients have multiple relevant properties and intentionally belong to more than one rule. Use your CG knowledge here. The category list is in [ingredientrules.json](../ingredientrules.json).
 
 **3. Is there a source?**
 The PR template asks contributors to link to a source. It doesn't have to be a scientific study — a product label, a known CG blog, or a well-established community resource all count. If there's no source at all, it's reasonable to ask for one before approving.
 
-**4. Is it a duplicate?**
-Search the PR diff for the ingredient name. Also do a quick search of `ingredientrules.json` to see if the same ingredient (or a near-identical spelling) already exists in another category.
+**4. Is it a redundant duplicate or an intentional second classification?**
+Search the PR diff for the ingredient name. Also do a quick search of `ingredientrules.json` to see if the same ingredient (or a near-identical spelling) already exists.
 
-> **Case note:** Matching is case-insensitive — "Sodium Lauryl Sulfate" and "sodium lauryl sulfate" are treated identically by the tool. If a PR adds a case-only duplicate of something already in the database, the new entry is redundant and can be removed.
+> **Case note:** Matching is case-insensitive — "Sodium Lauryl Sulfate" and "sodium lauryl sulfate" are treated identically by the tool. A case-only duplicate within the same rule is redundant and can be removed. An entry in a different rule may be intentional; confirm that the contributor means to add another classification and has explained why.
+
+The analyzer shows every matching category. Its overall verdict uses the most severe match, so adding an ingredient to a `danger` or `warning` rule can change the result even if that ingredient also appears in a `good` rule.
 
 **5. Did the CI tests pass?**
 You'll see a green checkmark or red X on the PR. If the tests failed, the JSON probably has a syntax error. You don't need to fix it — just leave a comment like "The tests are failing, there may be a formatting issue with the JSON. Can you take a look?"
@@ -56,7 +58,7 @@ You'll see a green checkmark or red X on the PR. If the tests failed, the JSON p
 **Request changes** when:
 - The ingredient seems wrong or misplaced
 - No source is provided and you want one
-- There's a duplicate you'd like removed
+- There's a redundant same-rule duplicate or an unsupported second classification
 
 **Close without merging** when:
 - The change is clearly incorrect and the contributor hasn't responded to requests for clarification

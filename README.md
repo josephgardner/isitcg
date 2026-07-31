@@ -12,7 +12,9 @@ isitcg.com is a free tool for the curly hair community. Paste in a product's ing
 
 1. You paste a product's ingredient list into the form
 2. The app checks each ingredient against a community-maintained list of rules (stored in [`ingredientrules.json`](ingredientrules.json))
-3. It shows you which ingredients matched, what category they fall into (danger / caution / good), and which ingredients weren't recognized
+3. It shows every category each ingredient matches (danger / caution / good) and calls out ingredients that weren't recognized
+
+If an ingredient intentionally belongs to more than one category, every matching category is shown. The overall result uses the most severe matched verdict (`danger` before `warning` before `good`). Unrecognized ingredients are never assumed safe: if there is no danger or warning match, they make the overall result **Unable to Verify**.
 
 The ingredient database is the heart of the tool. If an ingredient is missing or miscategorized, anyone can fix it.
 

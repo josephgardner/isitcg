@@ -30,7 +30,7 @@ Go to [ingredientrules.json](https://github.com/josephgardner/isitcg/blob/main/i
 
 ### Step 2 — Search for the ingredient first
 
-Press `Ctrl+F` (or `Cmd+F` on Mac) and search for the ingredient name. If it's already in the file, you're done — unless it's in the wrong category, in which case you'll want to move it.
+Press `Ctrl+F` (or `Cmd+F` on Mac) and search for the ingredient name. If it's already in the intended category, you're done. An ingredient can intentionally belong to more than one category when it has multiple relevant properties, but a second classification should have a source or explanation.
 
 ### Step 3 — Click the pencil icon
 
@@ -38,7 +38,7 @@ In the top-right corner of the file view, click the pencil (edit) icon. GitHub w
 
 ### Step 4 — Find the right rule
 
-The file is a list of rules. Each rule has a name like `"Sulfates to Avoid"` or `"Gentle Cleansers"`. Scroll to find the rule where your ingredient belongs.
+The file is a list of rules. Each rule has a name like `"Sulfates to Avoid"` or `"Gentle Cleansers"`. Scroll to find the rule or rules where your ingredient belongs.
 
 See the [ingredient format reference](guides/ingredient-format.md) if you're not sure which rule to use or how the file is structured.
 
@@ -56,7 +56,7 @@ Inside the rule's `"Ingredients"` array, add your ingredient as a new line. Foll
 ]
 ```
 
-**Important:** Matching is case-insensitive — `"Sodium Phytate"` and `"sodium phytate"` are treated as identical. Don't add the same ingredient in multiple cases. Pick whichever looks most natural (Title Case is conventional for multi-word names).
+**Important:** Matching is case-insensitive — `"Sodium Phytate"` and `"sodium phytate"` are treated as identical. Don't add the same ingredient in multiple cases within one rule. Pick whichever looks most natural (Title Case is conventional for multi-word names).
 
 Different *spellings* do need separate entries — `"Sodium Lauryl Sulfate"` and `"Sodium Laurel Sulfate"` are genuinely different strings that appear on different product labels.
 
@@ -97,6 +97,8 @@ Here's an annotated example of one rule:
 | `Result` | `danger`, `warning`, or `good` (also `success`, which is an older alias for `good`) |
 | `Rank` | Lower number = shown higher in results. Danger categories are ranked 1–4. |
 | `Ingredients` | The list of ingredient strings to match against |
+
+The analyzer checks each submitted ingredient against every rule. If an ingredient belongs to multiple rules, it appears in every applicable category panel. The overall product verdict is the most severe result found: `danger`, then `warning`, then `good`. If no danger or warning is found but one or more submitted ingredients are unmatched, the product is shown as **Unable to Verify** rather than CG-approved.
 
 For a deeper explanation of how matching works and common pitfalls, see [guides/ingredient-format.md](guides/ingredient-format.md).
 

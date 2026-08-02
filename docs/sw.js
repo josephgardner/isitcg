@@ -1,4 +1,4 @@
-const CACHE = 'isitcg-v2'
+const CACHE = 'isitcg-v3'
 
 const PRECACHE = [
   '/',
@@ -31,28 +31,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return
 
-  const url = new URL(e.request.url)
-  const isRules = url.pathname.endsWith('/ingredientrules.json')
-
-  if (isRules) {
-    // Stale-while-revalidate: serve cache instantly, refresh in background
-    e.respondWith(
-      caches.open(CACHE).then(cache =>
-        cache.match(e.request).then(cached => {
-          const fresh = fetch(e.request).then(async response => {
-            if (response.ok) await cache.put(e.request, response.clone())
-            return response
-          })
-          if (!cached) return fresh
-          e.waitUntil(fresh.catch(() => undefined))
-          return cached
-        })
-      )
-    )
-    return
-  }
-
-  // Network-first keeps the app current while retaining an offline fallback.
+  // Network-first keeps app code and rules current while retaining an offline fallback.
   e.respondWith(
     fetch(e.request)
       .then(async response => {

@@ -40,6 +40,34 @@ function dispatchFetch(request) {
 }
 
 describe('service worker fetch policy', () => {
+  test('ingredient rules prefer a fresh response over a cached response', async () => {
+    const cached = { source: 'cache' }
+    const fresh = { ok: true, source: 'network', clone: () => ({ source: 'clone' }) }
+    caches.match.mockResolvedValue(cached)
+    fetch.mockResolvedValue(fresh)
+
+    const response = await dispatchFetch({
+      method: 'GET',
+      url: 'https://www.isitcg.com/ingredientrules.json',
+    })
+
+    expect(response).toBe(fresh)
+    expect(cache.put).toHaveBeenCalled()
+  })
+
+  test('ingredient rules fall back to the cached response while offline', async () => {
+    const cached = { source: 'cache' }
+    caches.match.mockResolvedValue(cached)
+    fetch.mockRejectedValue(new TypeError('offline'))
+
+    const response = await dispatchFetch({
+      method: 'GET',
+      url: 'https://www.isitcg.com/ingredientrules.json',
+    })
+
+    expect(response).toBe(cached)
+  })
+
   test('navigation prefers a fresh response over a cached response', async () => {
     const cached = { source: 'cache' }
     const fresh = { ok: true, source: 'network', clone: () => ({ source: 'clone' }) }
